@@ -1,8 +1,21 @@
+.root {
+  --Moss-green: #334D42;
+  --Milkshake: #F7C2BC;
+  --Matcha: #DBE8C3;
+  --Tangerine: #FC8D08;
+  --Sunflower: #FFD04D;
+  --Marshmallow: #F4E2E1;
+  --Gray: #6c757d;
+  --White: #fff;
+  --Black: #000;
+
+  --font: outfit;
+}
 .jumbotron,
 .card-body,
 .container,
 .site-header {
-  font-family: 'Verdana', serif !important;
+  font-family: outfit; 
 }
 
 .jumbotron .display-4 {
