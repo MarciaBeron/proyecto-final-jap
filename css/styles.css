@@ -1,4 +1,4 @@
-.root {
+:root {
   --Moss-green: #334D42;
   --Milkshake: #F7C2BC;
   --Matcha: #DBE8C3;
@@ -11,6 +11,8 @@
 
   --font: outfit;
 }
+
+
 .jumbotron,
 .card-body,
 .container,
@@ -201,3 +203,30 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.header{
+  background-color: var(--Moss-green);
+  padding: 3px 5px;
+}
+
+.header nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.header__text {
+  font-family: var(--font);
+  color: var(--Tangerine);
+  margin-right: 20px;
+}
+
+.header__text:hover {
+  color: var(--Milkshake);
+}
+
+.header svg {
+  margin-left: auto;
+  cursor: pointer;
+}
+
