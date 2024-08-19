@@ -11,6 +11,9 @@
 
   --font: outfit;
 }
+body{
+  background-color: var(--White);
+}
 .login-box {
   background-color: var(--Matcha); 
   padding: 30px;
@@ -25,7 +28,7 @@
 }
 
 .login-box h2 {
-  font-family: outfit;
+  font-family: var(--font);
   font-size: 24px;
   margin-bottom: 20px;
   color: #607239; 
@@ -97,8 +100,6 @@
   align-items: center;
   justify-content: center;
 }
-
-
 
 .social-login button:hover {
   background-color: #E0E0E0;
@@ -174,14 +175,34 @@ nav a {
 }
 
 footer {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  width: 100%;
+  position: fixed;
+  bottom: 0%;
+  background-color: var(--Marshmallow);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
-
 footer p {
   margin-bottom: .25rem;
+  color: var(--Black);
+  font-weight: bold;
 }
-
+footer a{
+  color: var(--Moss-green);
+}
+.container{
+  display: flex;
+  justify-content: space-between;
+}
+.container div{
+  display: flex;
+  flex-wrap: wrap;
+  width: 30%;
+}
+.container i{
+  margin: 0% 1rem 0% 1rem;
+  font-size: large;
+}
 .site-header a {
   color: white;
   transition: ease-in-out color .15s;
@@ -202,6 +223,7 @@ footer p {
 }
 
 .alert {
+  display: none; /*silenciado por Marcia para ver el login hasta ser necesitado*/
   position: fixed;
   top: 80px;
   width: 50%;
@@ -310,7 +332,6 @@ a.custom-card:hover {
   font-family: var(--font);
   color: var(--Tangerine);
   margin-right: 20px;
-  margin-left: 25px;
 }
 
 .header__text:hover {
