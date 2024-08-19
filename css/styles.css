@@ -201,8 +201,8 @@ footer {
   position: fixed;
   bottom: 0%;
   background-color: var(--Marshmallow);
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 footer p {
   margin-bottom: .25rem;
@@ -341,7 +341,8 @@ a.custom-card:hover {
 
 .header{
   background-color: var(--Moss-green);
-  padding: 3px 5px;
+  padding: 3px 30px;
+  
 }
 
 .header nav {
@@ -353,7 +354,7 @@ a.custom-card:hover {
 .header__text {
   font-family: var(--font);
   color: var(--Tangerine);
-  margin-right: 20px;
+  margin-right: 50px;
 }
 
 .header__text:hover {
@@ -367,9 +368,9 @@ a.custom-card:hover {
 
 
 .logojap {
-  margin-right: 50px; /* Ajusta este valor según necesites */
+  margin-right: 130px; /* Ajusta este valor según necesites */
 }
 .logojap img {
-  width: 300px;
+  width: 270px;
   height: auto;
 }
