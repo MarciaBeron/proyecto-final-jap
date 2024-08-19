@@ -11,12 +11,11 @@
 
   --font: outfit;
 }
-body{
-  background-color: var(--White);
-}
+
 .login-box {
   background-color: var(--Matcha); 
   padding: 30px;
+  margin: 0 0 0 750px;
   border-radius: 15px;
   box-shadow: 0px 4px 10px rgba(173, 37, 37, 0.1);
   max-width: 400px;
@@ -25,6 +24,7 @@ body{
   border-radius: 15px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
   text-align: center;
+  align-items: center;
 }
 
 .login-box h2 {
@@ -36,7 +36,9 @@ body{
 }
 
 .divider {
+  align-items: center;
   text-align: center;
+  font-family: outfit;
   color:#334D42;
 }
 
@@ -103,6 +105,12 @@ body{
 
 .social-login button:hover {
   background-color: #E0E0E0;
+}
+
+.social-login img {
+  width: 30px;
+  height: auto;
+  display: block;
 }
 
 .jumbotron,
@@ -341,5 +349,12 @@ a.custom-card:hover {
 .header svg {
   margin-left: auto;
   cursor: pointer;
+}
+
+.logojap img {
+  width: 300px;
+  height: auto;
+  display: block;
+  margin 0;
 }
 

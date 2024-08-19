@@ -10,12 +10,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+
   <style>
     body {
       background-image: url('img/Proyecto\ Final\ JaP.png');
       background-size: 1450px 700px;
       background-repeat: no-repeat;
     }
+
     .inicios{
       position: relative;
       width: 20%;
@@ -25,13 +27,11 @@
   </style>
 </head>
 
-
   <div class="header">
     <nav>
       <a class="header__text" href="../proyecto-final-jap/index.html">Inicio</a>
       <a class="header__text" href="../proyecto-final-jap/products.html">Catálogo</a>
       <a class="header__text" href="">Registro</a>
-
      
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart-heart" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#F09100" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -40,35 +40,44 @@
           <path d="M6 5l14 1l-.717 5.016m-7.783 1.984h-5.5" />
           <path d="M18 22l3.35 -3.284a2.143 2.143 0 0 0 .005 -3.071a2.242 2.242 0 0 0 -3.129 -.006l-.224 .22l-.223 -.22a2.242 2.242 0 0 0 -3.128 -.006a2.143 2.143 0 0 0 -.006 3.071l3.355 3.296z" />
         </svg>
-      
-    
     </nav>
     
   </div>
+
   <body>
-    <div class="login-box">
-      <h2>LOGIN/ REGISTRO</h2>
-      <div class="social-login">
-          <button><img src="" alt="Facebook"> Facebook</button>
-          <button><img src="" alt="Google"> Google</button>
-          <button> Enlace mágico</button>
-      </div>
-    
-      <p class="divider">o inicie sesión con su e-mail</p>
-  
-      <form action="#" method="post">
-          <input type="text" name="email" placeholder="Usuario/E-mail" required>
-          <input type="password" name="password" placeholder="Contraseña">
-          <a href="#" class="forgot-password">Recuperar contraseña</a>
-  </form>
-  
-  <button type="submit">INGRESAR</button>
-  
-      <div class="register-link">
-        <p>¿No tienes usuario?</p>
-        <p>Registrate <a href="#" <span class="enlace">aquí</span></a></p>
-      </div>
+
+    <div class="logojap">
+      <img src="img/logintransparente.png" alt="logoemercado">
     </div>
+
+    <div class="login-box">
+      <h2>LOGIN / REGISTRO</h2>
+      
+        <div class="social-login">
+          <button><img src="img/Facebook_Logo_Primary.png" alt="Facebook"> Facebook</button>
+          <button><img src="img/google.png" alt="Google"> Google</button>
+          <button type="button" class="button"> <a href="#">Enlace mágico</a></button>
+        </div>
+    
+    <div class="divider">
+      <span>o inicie sesión con su e-mail</span>
+    </div>
+    
+    <div class="input-box">
+      <form action="#" method="post">
+          <input type="text" name="email" placeholder="Usuario / E-mail" required>
+          <input type="password" name="password" placeholder="Contraseña" required>
+          <a href="#" class="forgot-password">Recuperar contraseña</a>
+      </form>
+    </div>
+    <br>
+    <button type="submit">INGRESAR</button>
+  
+    <div class="register-link">
+      <p>¿No tienes usuario?<br>Registrate <a href="#"><span class="enlace">aquí</span></a></p>
+    </div>
+  </div>
+
   <footer class="text-muted">
     <div class="container">
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
@@ -83,6 +92,7 @@
       </p>
     </div>
   </footer>
+
   <script src="js/login.js"></script>
   <img src="img/login.png" alt="inicio" class="inicios">
 </body>
