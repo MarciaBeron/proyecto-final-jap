@@ -326,6 +326,7 @@ a.custom-card:hover {
   font-family: var(--font);
   color: var(--Tangerine);
   margin-right: 20px;
+  margin-left: 25px;
 }
 
 .header__text:hover {
