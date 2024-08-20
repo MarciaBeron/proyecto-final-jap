@@ -12,6 +12,21 @@
   --font: outfit;
 }
 
+body {
+  background-image: url(../img/Proyecto\ Final\ JaP.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  font-family: outfit;
+}
+
+.inicios{
+  position: relative;
+  width: 20%;
+  bottom: 250px;
+  left: 315px;
+}
+
 .login-container {
   display: flex;
   justify-content: center;
@@ -42,6 +57,7 @@
   margin-bottom: 20px;
   color: var(--Moss-green); 
   text-align: center;
+  text-transform: uppercase;
 }
 
 .divider {
@@ -125,13 +141,6 @@
     box-sizing: border-box;
     outline: none; 
     transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.jumbotron,
-.card-body,
-.container,
-.site-header {
-  font-family: outfit; 
 }
 
 .jumbotron .display-4 {
@@ -373,4 +382,73 @@ a.custom-card:hover {
 .logojap img {
   width: 270px;
   height: auto;
+}
+
+.container-p {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ min-height: 70vh;
+ 
+}
+.password-container{
+  border-radius: 8px;
+  text-align: center;
+  height: 300px;
+  background-color: var(--Matcha);
+  padding: 2rem;
+}
+
+.password-container h2{
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.password-container p{
+  margin-bottom: 2rem;
+  color: var(--Moss-green)
+}
+
+.password-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.password-container label {
+  text-align: center;
+  margin-bottom: .5rem;
+  font-weight: bold;
+}
+
+.password-container input[type="email"] {
+  padding: .75rem;
+  margin-bottom: 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 80%;
+  margin: 0 auto 1.5rem auto;
+}
+
+.password-container button {
+  padding: .75rem;
+  background-color: var(--Moss-green);
+  color: var(--White);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  z-index: 2;
+  width: 80%;
+  margin: 0 auto 1.5rem auto;
+
+}
+
+.password-container button:hover{
+  background-color: var(--Milkshake);
+}
+
+.password-container a{
+  text-decoration: none;
 }
