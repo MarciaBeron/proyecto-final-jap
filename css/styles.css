@@ -30,9 +30,10 @@
   text-align: center;
   align-items: center;
 }
-  
+
+
 .login-box a {
-  color: #0000FF; /* Azul para enlaces */
+  color: #0000FF; 
   text-decoration: none;
 }
  
@@ -45,10 +46,16 @@
 }
 
 .divider {
+  display: flex;
   align-items: center;
   text-align: center;
-  font-family: outfit;
-  color:#334D42;
+  margin: 20px 0;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  border-top: 2px solid var(--Moss-green); 
+  margin: 10 10px; 
 }
 
 .login-box input[type="text"],
@@ -62,6 +69,10 @@
     box-sizing: border-box;
     outline: none; 
     transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.forgot-password {
+  font-size: 10px;
 }
 
 .login-box button {
@@ -89,7 +100,7 @@
   color: #607239; 
   text-decoration: none; 
 }
-.register-link a.enlace {
+.register-link a .enlace {
   color: #0537c0; 
 }
 
@@ -367,7 +378,7 @@ a.custom-card:hover {
 
 
 .logojap {
-  margin-right: 50px; /* Ajusta este valor según necesites */
+  margin-right: 70px; 
 }
 .logojap img {
   width: 300px;
