@@ -50,7 +50,7 @@
           <button><img src="img/google.png" alt="Google"></button>
           
            <a href="#" class="magic-link">Enlace mágico</a>
-      
+           <form id="loginForm" onsubmit="return validateForm()">
         </div>
     
     <div class="divider">
@@ -58,16 +58,13 @@
     </div>
     
     <div class="input-box">
-      <form action="#" method="post">
+      <form id="loginForm" onsubmit="return validateForm()">
           <input type="text" name="email" placeholder="Usuario / E-mail" required>
           <input type="password" name="password" placeholder="Contraseña" required>
           <a href="forgot-password.html" class="forgot-password">Recuperar contraseña</a>
-      </form>
     </div>
-    <a href="index.html">
-      <button type="submit">ingresar</button>
-    </a>
-   
+     <button type="submit">ingresar</button>
+ </form>
   
     <div class="register-link">
       <p>¿No tienes usuario?<br>Registrate <a href="#"><span class="enlace">aquí</span></a></p>
@@ -90,6 +87,21 @@
   </footer>
 
   <script src="js/login.js"></script>
+    
+ <script>
+    function validateForm() {
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+  
+      if (email === "" || password === "") {
+        alert("Por favor, complete ambos campos.");
+        return false;
+      } else {
+        window.location.href = "index.html";
+        return false;
+      }
+    }
+   </script>
+   
 </body>
-
 </html>
