@@ -63,13 +63,6 @@ body {
   text-transform: uppercase;
 }
 
-.divider {
-  align-items: center;
-  text-align: center;
-  font-family: outfit;
-  color:#334D42;
-}
-
 .login-box input[type="text"],
 .login-box input[type="password"] {
     width: 100%; 
@@ -83,17 +76,23 @@ body {
     transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.login-box button {
+.login-box button{
   width: 30%;
   padding: 5px;
   background-color: #334D42; 
   color: #fff; 
+  text-transform: uppercase;
   border-radius: 15px; 
   font-size: 10px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  margin-top: 10px;
 }
+
+
+
+
 
 .register-link {
   font-family: outfit;
@@ -145,6 +144,22 @@ body {
     outline: none; 
     transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
+
+.magic-link {
+  display: inline-block;
+  width: auto;
+  padding: 5px 15px;
+  font-size: 11px;
+  background-color: var(--White);
+  border: 2px solid #F7C2BC;
+  border-radius: 55px;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.social-login a{
+  font-weight: bold;
+}
+
 
 .jumbotron .display-4 {
   font-weight: bold;
@@ -354,6 +369,7 @@ a.custom-card:hover {
 .header{
   background-color: var(--Moss-green);
   padding: 3px 30px;
+  display: flex;
   
 }
 
@@ -373,7 +389,7 @@ a.custom-card:hover {
   color: var(--Milkshake);
 }
 
-.header svg {
+.header a svg {
   margin-left: auto;
   cursor: pointer;
 }

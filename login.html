@@ -13,28 +13,33 @@
   <link href="css/styles.css" rel="stylesheet">
 
 </head>
-
-  <div class="header">
-    <nav>
-      <a class="header__text" href="../proyecto-final-jap/index.html">Inicio</a>
-      <a class="header__text" href="../proyecto-final-jap/products.html">Catálogo</a>
-      <a class="header__text" href="">Registro</a>
-     
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart-heart" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#F09100" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <body>
+    <div class="header">
+      <nav>
+        <a class="header__text" href="../proyecto-final-jap/index.html">Inicio</a>
+        <a class="header__text" href="../proyecto-final-jap/products.html">Catálogo</a>
+        <a class="header__text" href="">Registro</a>
+      </nav>
+      
+       <a href="cart.html">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon-cart" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#F09100" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
           <path d="M4 19a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
           <path d="M10 17h-4v-14h-2" />
           <path d="M6 5l14 1l-.717 5.016m-7.783 1.984h-5.5" />
           <path d="M18 22l3.35 -3.284a2.143 2.143 0 0 0 .005 -3.071a2.242 2.242 0 0 0 -3.129 -.006l-.224 .22l-.223 -.22a2.242 2.242 0 0 0 -3.128 -.006a2.143 2.143 0 0 0 -.006 3.071l3.355 3.296z" />
         </svg>
-    </nav>
-  </div>
-
-  <body>
-
+      </a>
+  
+         
+  
+    </div>
   <div class="login-container">
     <div class="logojap">
-    <img src="img/logintransparente.png" alt="logoemercado">
+      <a href="index.html">
+        <img src="img/logintransparente.png" alt="logoemercado">
+      </a>
+   
   </div>
 
     <div class="login-box">
@@ -43,7 +48,9 @@
         <div class="social-login">
           <button><img src="img/Facebook_Logo_Primary.png" alt="Facebook"></button>
           <button><img src="img/google.png" alt="Google"></button>
-          <button type="button" class="button"> <a href="#">Enlace mágico</a></button>
+          
+           <a href="#" class="magic-link">Enlace mágico</a>
+      
         </div>
     
     <div class="divider">
@@ -57,8 +64,10 @@
           <a href="forgot-password.html" class="forgot-password">Recuperar contraseña</a>
       </form>
     </div>
-    <br>
-    <button type="submit">INGRESAR</button>
+    <a href="index.html">
+      <button type="submit">ingresar</button>
+    </a>
+   
   
     <div class="register-link">
       <p>¿No tienes usuario?<br>Registrate <a href="#"><span class="enlace">aquí</span></a></p>
