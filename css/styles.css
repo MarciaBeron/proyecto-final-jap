@@ -12,6 +12,23 @@
   --font: outfit;
 }
 
+body {
+  background-image: url(../img/Proyecto\ Final\ JaP.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  font-family: outfit;
+}
+
+.inicios{
+  position: relative;
+  width: 20%;
+  bottom: 250px;
+  left: 315px;
+}
+
+
+
 .login-container {
   display: flex;
   justify-content: center;
@@ -30,10 +47,9 @@
   text-align: center;
   align-items: center;
 }
-
-
+  
 .login-box a {
-  color: #0000FF; 
+  color: #0000FF; /* Azul para enlaces */
   text-decoration: none;
 }
  
@@ -43,19 +59,14 @@
   margin-bottom: 20px;
   color: var(--Moss-green); 
   text-align: center;
+  text-transform: uppercase;
 }
 
 .divider {
-  display: flex;
   align-items: center;
   text-align: center;
-  margin: 20px 0;
-}
-.divider::before, .divider::after {
-  content: '';
-  flex: 1;
-  border-top: 2px solid var(--Moss-green); 
-  margin: 10 10px; 
+  font-family: outfit;
+  color:#334D42;
 }
 
 .login-box input[type="text"],
@@ -69,10 +80,6 @@
     box-sizing: border-box;
     outline: none; 
     transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.forgot-password {
-  font-size: 10px;
 }
 
 .login-box button {
@@ -100,7 +107,7 @@
   color: #607239; 
   text-decoration: none; 
 }
-.register-link a .enlace {
+.register-link a.enlace {
   color: #0537c0; 
 }
 
@@ -136,13 +143,6 @@
     box-sizing: border-box;
     outline: none; 
     transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.jumbotron,
-.card-body,
-.container,
-.site-header {
-  font-family: outfit; 
 }
 
 .jumbotron .display-4 {
@@ -212,8 +212,8 @@ footer {
   position: fixed;
   bottom: 0%;
   background-color: var(--Marshmallow);
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 footer p {
   margin-bottom: .25rem;
@@ -352,7 +352,8 @@ a.custom-card:hover {
 
 .header{
   background-color: var(--Moss-green);
-  padding: 3px 5px;
+  padding: 3px 30px;
+  
 }
 
 .header nav {
@@ -364,7 +365,7 @@ a.custom-card:hover {
 .header__text {
   font-family: var(--font);
   color: var(--Tangerine);
-  margin-right: 20px;
+  margin-right: 50px;
 }
 
 .header__text:hover {
@@ -378,9 +379,90 @@ a.custom-card:hover {
 
 
 .logojap {
-  margin-right: 70px; 
+  margin-right: 130px; /* Ajusta este valor según necesites */
 }
 .logojap img {
-  width: 300px;
+  width: 270px;
   height: auto;
+}
+
+.container-p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ajusta esto si es necesario para tu diseño */
+  padding: 20px;
+}
+
+.password-container {
+  background-color: var(--Matcha);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 350px;
+  text-align: center;
+}
+
+.password-container h2 {
+  font-family: var(--font);
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: var(--Moss-green);
+  text-transform: uppercase;
+}
+
+.password-container p {
+  margin-bottom: 30px;
+  color: var(--Moss-green);
+}
+
+.password-container input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #F7C2BC;
+  border-radius: 25px;
+  font-size: 14px;
+  background-color: #fff;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  margin-bottom: 20px; 
+}
+
+.password-container button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--Moss-green);
+  color: var(--White);
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  margin-bottom: 20px;
+}
+
+
+.password-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--Moss-green);
+  color: var(--White);
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.password-container button:hover {
+  background-color: var(--Milkshake);
+}
+
+.password-container a {
+  text-decoration: none;
+  color: var(--Moss-green);
 }
