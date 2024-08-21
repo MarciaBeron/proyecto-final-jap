@@ -16,7 +16,8 @@ body {
   background-image: url(../img/Proyecto\ Final\ JaP.png);
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
+  background-attachment: fixed;
+  min-height: 100vh;
   font-family: outfit;
 }
 
@@ -26,6 +27,8 @@ body {
   bottom: 250px;
   left: 315px;
 }
+
+
 
 .login-container {
   display: flex;
@@ -44,6 +47,7 @@ body {
   width: 350px;
   text-align: center;
   align-items: center;
+  
 }
   
 .login-box a {
@@ -58,38 +62,42 @@ body {
   color: var(--Moss-green); 
   text-align: center;
   text-transform: uppercase;
-}
-
-.divider {
-  align-items: center;
-  text-align: center;
-  font-family: outfit;
-  color:#334D42;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .login-box input[type="text"],
 .login-box input[type="password"] {
     width: 100%; 
     margin: 10px 0;
-    border: 2px solid #F7C2BC;
+    border: 2px solid var(--Milkshake);
     border-radius: 25px; 
     font-size: 14px;
     background-color: #fff;
     box-sizing: border-box;
     outline: none; 
     transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  }
 
-.login-box button {
+.login-box button{
   width: 30%;
   padding: 5px;
-  background-color: #334D42; 
-  color: #fff; 
+  background-color: var(--Moss-green); 
+  color: var(--White); 
+  text-transform: uppercase;
+  border: none;
   border-radius: 15px; 
   font-size: 10px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  margin-top: 10px;
+  
+}
+
+.login-box button:hover{
+  background-color: var(--Milkshake);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
 .register-link {
@@ -98,21 +106,18 @@ body {
   color: #607239;
   text-align: center; 
   margin-top: 15px;
+  
 }
 
 .register-link a {
-  font-size:small;
-  color: #607239; 
-  text-decoration: none; 
-}
-.register-link a.enlace {
-  color: #0537c0; 
+  color: blue;
+  text-decoration: none;
 }
 
 .social-login {
   display: flex;
   justify-content: center;
-  gap: 10px; 
+  gap: 30px; 
   margin-bottom: 20px;
 }
 
@@ -131,16 +136,27 @@ body {
   height: 30px;
 }
 
-.social-login button:last-child {
-  width: 40%; 
-    margin: 10px 0;
-    border: 2px solid #F7C2BC;
-    border-radius: 25px; 
-    font-size: 10px;
-    background-color: #fff;
-    box-sizing: border-box;
-    outline: none; 
-    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+.social-login a{
+  font-weight: bold;
+}
+.social-login button:hover {
+  background-color: transparent; 
+  box-shadow: none; 
+}
+
+.magic-link {
+  display: inline-flex;
+  width: 30%;
+  padding: 5px 10px;
+  font-size: 10px;
+  justify-content: center;
+  background-color: var(--White);
+  border: 2px solid #F7C2BC;
+  border-radius: 15px;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+  margin-top: 10px;
 }
 
 .jumbotron .display-4 {
@@ -351,6 +367,7 @@ a.custom-card:hover {
 .header{
   background-color: var(--Moss-green);
   padding: 3px 30px;
+  display: flex;
   
 }
 
@@ -370,7 +387,7 @@ a.custom-card:hover {
   color: var(--Milkshake);
 }
 
-.header svg {
+.header a svg {
   margin-left: auto;
   cursor: pointer;
 }
@@ -387,70 +404,139 @@ a.custom-card:hover {
 }
 
 .container-p {
- display: flex;
- justify-content: center;
- align-items: center;
- min-height: 70vh;
- 
-}
-.password-container{
-  border-radius: 8px;
-  text-align: center;
-  height: 300px;
-  background-color: var(--Matcha);
-  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ajusta esto si es necesario para tu diseño */
+  padding: 20px;
 }
 
-.password-container h2{
-  margin-top: 4rem;
-  margin-bottom: 1rem;
+.password-container {
+  background-color: var(--Matcha);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 350px;
+  text-align: center;
+}
+
+.password-container h2 {
+  font-family: var(--font);
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: var(--Moss-green);
   text-transform: uppercase;
 }
 
-.password-container p{
-  margin-bottom: 2rem;
-  color: var(--Moss-green)
-}
-
-.password-container form {
-  display: flex;
-  flex-direction: column;
-}
-
-.password-container label {
-  text-align: center;
-  margin-bottom: .5rem;
-  font-weight: bold;
+.password-container p {
+  margin-bottom: 30px;
+  color: var(--Moss-green);
 }
 
 .password-container input[type="email"] {
-  padding: .75rem;
-  margin-bottom: 1.5rem;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  width: 80%;
-  margin: 0 auto 1.5rem auto;
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #F7C2BC;
+  border-radius: 25px;
+  font-size: 14px;
+  background-color: #fff;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  margin-bottom: 20px; 
 }
 
-.password-container button {
-  padding: .75rem;
+.password-container button[type="submit"] {
+  width: 100%;
+  padding: 10px;
   background-color: var(--Moss-green);
   color: var(--White);
   border: none;
-  border-radius: 4px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
-  margin-bottom: 1rem;
-  z-index: 2;
-  width: 80%;
-  margin: 0 auto 1.5rem auto;
-
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  margin-bottom: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.password-container button:hover{
+
+.password-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--Moss-green);
+  color: var(--White);
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.password-container button:hover {
   background-color: var(--Milkshake);
 }
 
-.password-container a{
+.password-container a {
   text-decoration: none;
+  color: var(--Moss-green);
+}
+
+#products-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  padding: 0.75rem;
+}
+
+.card {
+  background-color: var(--Matcha);
+  border: 2px solid var(--Moss-green);
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  width: 19rem;
+  height: 25rem;
+  margin: 0.20rem;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-title {
+  color: var(--Moss-green);
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  color: var(--Gray);
+}
+
+.card-description {
+  color: var(--Gray);
+}
+
+.card-price {
+  color: var(--Tangerine);
+  font-size: 1.1rem;
+  font-weight: bold;
 }
