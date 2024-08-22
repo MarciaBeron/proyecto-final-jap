@@ -16,3 +16,25 @@ function validateForm() {
 document.addEventListener("DOMContentLoaded", function(){
 
 })
+
+document.addEventListener("DOMContentLoaded", function(){
+
+})
+
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+  event.preventDefault(); 
+
+  
+  const popup = document.getElementById("loginSuccessPopup");
+  popup.style.display = "flex";
+
+  
+  setTimeout(function() {
+      popup.style.display = "none";
+  }, 3000); 
+
+  
+  document.getElementById("closePopupButton").addEventListener("click", function() {
+      popup.style.display = "none";
+  });
+});

@@ -385,11 +385,12 @@ a.custom-card:hover {
 
 .header__text:hover {
   color: var(--Milkshake);
+  cursor: pointer;
 }
 
 .header a svg {
   margin-left: auto;
-  cursor: pointer;
+ 
 }
 
 
@@ -717,3 +718,60 @@ h1::after {
   background-color: var(--Milkshake);
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
+
+.popup {
+  display: none; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.popup-content p {
+  margin: 0 0 15px;
+  font-size: 18px;
+}
+
+.popup-content button {
+  padding: 10px 20px;
+  background-color: #F09100;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup.show{
+  display: flex;
+}
+
+.hidden {
+  display: none;
+}
+
+#popupForm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: --Matcha;
+  padding: 20px;
+  border: 2px solid --Moss-green;
+  border-radius: 4px;
+  z-index: 1000;
+  
+}
+ 
