@@ -28,8 +28,6 @@ body {
   left: 315px;
 }
 
-
-
 .login-container {
   display: flex;
   justify-content: center;
@@ -583,4 +581,46 @@ h1::after {
   color: var(--Tangerine);
   font-size: 1.1rem;
   font-weight: bold;
+}
+
+#newsletterPrompt {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  width: 30%;
+  background-color: var(--Matcha);
+  border: 3px solid var(--Moss-green);
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s ease-out;
+  z-index: 1000;
+}
+
+
+#newsletterPrompt.show {
+  transform: translate(-50%, 0);
+}
+
+#newsletterPrompt .prompt-content {
+  text-align: center;
+}
+
+#newsletterPrompt button {
+  margin: 5px;
+  padding: 10px 20px;
+  background-color: var(--Milkshake);
+  border: 1px solid var(--Moss-green);
+  border-radius: 4px;
+  color: #000;
+  cursor: pointer;
+}
+
+#newsletterPrompt button:hover {
+  background: var(--Sunflower);
+}
+
+#newsletterPrompt, #newsletterPrompt .prompt-content {
+  font-family: 'Outfit', sans-serif !important;
 }
