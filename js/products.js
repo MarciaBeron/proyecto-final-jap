@@ -1,12 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     const url = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
-    
     fetch(url)
         .then(response => response.json())
         .then(data => {
             const products = data.products;
             let htmlContent = '';
-
             products.forEach(product => {
                 htmlContent += `
                     <div class="col-lg-3 col-md-6 col-sm-12">
