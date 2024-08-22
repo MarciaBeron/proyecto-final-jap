@@ -649,3 +649,71 @@ h1::after {
 #newsletterPrompt, #newsletterPrompt .prompt-content {
   font-family: 'Outfit', sans-serif !important;
  }
+
+ .register-container {
+  background-color: var(--Matcha);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 350px;
+  width: 450px;
+  text-align: center;
+}
+
+.register-container h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: var(--Moss-green);
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.register-container h1::after {
+  content: none;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-form label {
+  align-self: flex-start;
+  margin-bottom: 5px;
+  color: var(--Moss-green);
+}
+
+.register-form input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 2px solid var(--Milkshake);
+  border-radius: 25px;
+  font-size: 14px;
+  background-color: var(--White);
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.register-form button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: var(--Moss-green);
+  color: var(--White);
+  text-transform: uppercase;
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.register-form button:hover {
+  background-color: var(--Milkshake);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
