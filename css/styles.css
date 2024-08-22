@@ -8,7 +8,6 @@
   --Gray: #6c757d;
   --White: #fff;
   --Black: #000;
-
   --font: outfit;
 }
 
@@ -18,17 +17,17 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   min-height: 100vh;
-  font-family: outfit;
+  font-family: var(--font);
 }
 
+/* por ahora afuera (Agus)
 .inicios{
   position: relative;
   width: 20%;
   bottom: 250px;
   left: 315px;
-}
-
-
+} 
+*/
 
 .login-container {
   display: flex;
@@ -46,37 +45,33 @@ body {
   max-width: 400px;
   width: 350px;
   text-align: center;
-  align-items: center;
-  
 }
   
 .login-box a {
-  color: #0000FF; /* Azul para enlaces */
+  color: #0000FF; 
   text-decoration: none;
 }
  
 .login-box h2 {
-  font-family: var(--font);
   font-size: 24px;
   margin-bottom: 20px;
   color: var(--Moss-green); 
-  text-align: center;
   text-transform: uppercase;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.login-box input[type="text"],
+.login-box input[type="email"],
 .login-box input[type="password"] {
-    width: 100%; 
-    margin: 10px 0;
-    border: 2px solid var(--Milkshake);
-    border-radius: 25px; 
-    font-size: 14px;
-    background-color: #fff;
-    box-sizing: border-box;
-    outline: none; 
-    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  width: 100%; 
+  margin: 10px 0;
+  border: 2px solid var(--Milkshake);
+  border-radius: 25px; 
+  font-size: 14px;
+  background-color: var(--White);
+  box-sizing: border-box;
+  outline: none; 
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   }
 
 .login-box button{
@@ -92,10 +87,9 @@ body {
   cursor: pointer;
   transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   margin-top: 10px;
-  
 }
 
-.login-box button:hover{
+.login-box button:hover {
   background-color: var(--Milkshake);
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
@@ -103,7 +97,7 @@ body {
 .register-link {
   font-family: outfit;
   font-size: small;
-  color: #607239;
+  color:var(--Moss-green);
   text-align: center; 
   margin-top: 15px;
   
@@ -126,9 +120,6 @@ body {
   border: none;
   padding: 0;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .social-login button img {
@@ -151,7 +142,7 @@ body {
   font-size: 10px;
   justify-content: center;
   background-color: var(--White);
-  border: 2px solid #F7C2BC;
+  border: 2px solid var(--Milkshake);
   border-radius: 15px;
   transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
@@ -159,6 +150,7 @@ body {
   margin-top: 10px;
 }
 
+/* Header */
 .jumbotron .display-4 {
   font-weight: bold;
 }
@@ -191,7 +183,7 @@ nav a {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  color: black;
+  color:var(--Black);
   font-weight: bold;
 }
 
@@ -221,6 +213,9 @@ nav a {
   font-size: 38px;
 }
 
+/*Fin del Header*/
+
+/*Inicio del footer*/
 footer {
   width: 100%;
   position: fixed;
@@ -251,18 +246,18 @@ footer a{
   font-size: large;
 }
 .site-header a {
-  color: white;
+  color:var(--White);
   transition: ease-in-out color .15s;
 }
 
 .site-header .dropdown-menu a {
-  color: black;
+  color:var(--Black);
 }
 
 .dropzone {
   border: 2px dashed #0087F7;
   border-radius: 5px;
-  background: white;
+  background: var(--White);
 }
 
 .img-fit {
@@ -394,7 +389,7 @@ a.custom-card:hover {
 
 
 .logojap {
-  margin-right: 130px; /* Ajusta este valor según necesites */
+  margin-right: 130px; 
 }
 .logojap img {
   width: 270px;
@@ -405,7 +400,7 @@ a.custom-card:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Ajusta esto si es necesario para tu diseño */
+  min-height: 100vh; 
   padding: 20px;
 }
 
@@ -435,10 +430,10 @@ a.custom-card:hover {
 .password-container input[type="email"] {
   width: 100%;
   padding: 10px;
-  border: 2px solid #F7C2BC;
+  border: 2px solid var(--Milkshake);
   border-radius: 25px;
   font-size: 14px;
-  background-color: #fff;
+  background-color: var(--White);
   box-sizing: border-box;
   outline: none;
   transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -537,4 +532,26 @@ a.custom-card:hover {
   color: var(--Tangerine);
   font-size: 1.1rem;
   font-weight: bold;
+}
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--Moss-green);
+  margin: 20px -50px; 
+  
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex-grow: 1;
+  border-top: 1px solid var(--Moss-green);
+  margin: 0 10px;
+}
+
+.divider span {
+  white-space: nowrap;
+  color: var(--Moss-green);
+  font-size: 16px;
 }
