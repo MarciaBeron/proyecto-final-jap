@@ -47,3 +47,26 @@ document.addEventListener("DOMContentLoaded", function(){
         newsletterPrompt.classList.remove("show");
     });
 });
+
+ document.addEventListener("DOMContentLoaded", function(){
+    var newsletterPrompt = document.getElementById("newsletterPrompt");
+    var yesButton = document.getElementById("yes");
+    var noButton = document.getElementById("no");
+    var popupForm = document.getElementById("popupForm");
+
+    setTimeout(function(){
+        newsletterPrompt.classList.remove("hidden");
+        newsletterPrompt.classList.add("show"); 
+    }, 100);
+
+    yesButton.addEventListener("click", function() {
+        console.log("El usuario quiere recibir novedades.");
+        newsletterPrompt.classList.add("hidden");
+        popupForm.classList.remove("hidden");
+    });
+
+    noButton.addEventListener("click", function() {
+        console.log("El usuario no quiere recibir novedades.");
+        newsletterPrompt.classList.add("hidden");
+    });
+});
