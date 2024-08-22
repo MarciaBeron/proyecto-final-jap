@@ -27,3 +27,23 @@ document.addEventListener("DOMContentLoaded", function(){
         logoutButton.style.display = "inline"; // or "block", depending on your layout
       }
 });
+
+document.addEventListener("DOMContentLoaded", function(){
+    var newsletterPrompt = document.getElementById("newsletterPrompt");
+    var yesButton = document.getElementById("yes");
+    var noButton = document.getElementById ("no");
+
+    setTimeout(function(){
+        newsletterPrompt.classList.add("show");
+    }, 100);
+
+    yesButton.addEventListener("click", function() {
+        console.log("El usuario quiere recibir novedades.");
+        newsletterPrompt.classList.remove("show");
+    });
+
+    noButton.addEventListener("click", function() {
+        console.log("El usuario no quiere recibir novedades.");
+        newsletterPrompt.classList.remove("show");
+    });
+});
