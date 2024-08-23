@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function(){
       if (!localStorage.getItem("user")) {
         logoutButton.style.display = "none";
       } else {
-        logoutButton.style.display = "inline"; // or "block", depending on your layout
+        logoutButton.style.display = "inline";
       }
 });
 
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 });
 
- document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function(){
     var newsletterPrompt = document.getElementById("newsletterPrompt");
     var yesButton = document.getElementById("yes");
     var noButton = document.getElementById("no");
@@ -68,5 +68,11 @@ document.addEventListener("DOMContentLoaded", function(){
     noButton.addEventListener("click", function() {
         console.log("El usuario no quiere recibir novedades.");
         newsletterPrompt.classList.add("hidden");
+    });
+
+    popupForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+        console.log("Formulario enviado");
+        popupForm.classList.add("hidden");
     });
 });
