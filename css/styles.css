@@ -767,11 +767,24 @@ h1::after {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: --Matcha;
+  background-color: var(--Matcha);
   padding: 20px;
-  border: 2px solid --Moss-green;
+  border: 2px solid var(--Moss-green);
   border-radius: 4px;
   z-index: 1000;
-  
+}
+
+#popupForm button[type="submit"] {
+  background-color: var(--Moss-green);
+  color: white;
+  border: none
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+#popupForm button[type="submit"]:hover {
+  background-color: var(--Milkshake);
 }
  
