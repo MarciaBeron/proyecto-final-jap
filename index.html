@@ -19,9 +19,10 @@
       <a class="header__text" href="index.html">Inicio</a>
       <a class="header__text" href="products.html">Catálogo</a>
       <a class="header__text" href="login.html">Registro</a>
+      <span id="user-name" class="header__text" style="float: right;"></span>
       <a class="header__text" onclick="return logout()" id="cerrar">Cerrar</a>
-
     </nav>
+
     <a href="cart.html">
       <svg xmlns="http://www.w3.org/2000/svg" class="icon-cart" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#F09100" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -41,7 +42,7 @@
           <div class="col-md-4">
             <div class="card mb-4 shadow-sm custom-card cursor-active" id="autos">
               <img class="bd-placeholder-img card-img-top" src="img/cars_index.jpg"
-                alt="Imgagen representativa de la categoría 'Autos'">
+                alt="Imagen representativa de la categoría 'Autos'">
               <h3 class="m-3">Autos</h3>
               <div class="card-body">
                 <p class="card-text">Los mejores precios en autos 0 kilómetro, de alta y media gama.</p>
@@ -91,6 +92,7 @@
       </form>
     </div>
   </main>
+
   <footer class="text-muted">
     <div class="container">
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
@@ -105,9 +107,10 @@
       </p>
     </div>
   </footer>
+
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/index.js"></script>
   <script src="js/init.js"></script>
+  
 </body>
-
 </html>

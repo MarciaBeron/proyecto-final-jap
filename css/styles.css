@@ -788,3 +788,21 @@ h1::after {
   background-color: var(--Milkshake);
 }
  
+.user-menu-container {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  background-color: var(--Moss-green);
+}
+
+.dropdown-item {
+  display: block;
+  padding: 8px 16px;
+  color: var(--Tangerine);
+}
+
+.dropdown-item:hover {
+  background-color: var(--Marshmallow);
+}
