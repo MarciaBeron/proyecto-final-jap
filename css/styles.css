@@ -777,7 +777,7 @@ h1::after {
 #popupForm button[type="submit"] {
   background-color: var(--Moss-green);
   color: white;
-  border: none
+  border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
@@ -805,4 +805,26 @@ h1::after {
 
 .dropdown-item:hover {
   background-color: var(--Marshmallow);
+}
+
+@media only screen and (min-width: 320px) {
+  .login-box{
+    width:fit-content;
+  }
+
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+    background-position: center;
+  }
+  .login-container{
+    display: block;
+  }
+  .logojap,
+  .logojap img,
+  .login-box {
+    margin: auto;
+  }
+
 }
