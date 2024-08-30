@@ -879,7 +879,6 @@ h1::after {
 .dropdown-item:hover {
   background-color: var(--Marshmallow);
 }
-<<<<<<< HEAD
   
   @media only screen and (max-width: 768px) {
   #products-container {
@@ -887,7 +886,6 @@ h1::after {
   }
   
   }
-=======
 
 @media only screen and (min-width: 320px) {
   .login-box{
@@ -910,4 +908,3 @@ h1::after {
   }
 
 }
->>>>>>> 266a050b63dc5ee8daf47ddc853e71dcb0e3db6c
