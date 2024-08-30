@@ -751,6 +751,7 @@ h1::after {
   font-size: 16px;
 }
 
+/* INICIO Prompt Newsletter */
 #newsletterPrompt {
   position: fixed;
   top: 0;
@@ -791,6 +792,7 @@ h1::after {
 #newsletterPrompt, #newsletterPrompt .prompt-content {
   font-family: 'Outfit', sans-serif !important;
  }
+ /* FIN Prompt Newsletter */
 
  .register-container {
   background-color: var(--Matcha);
@@ -929,32 +931,49 @@ h1::after {
   background-color: var(--Milkshake);
 }
  
+/* INICIO Nombre de Usuario y Menú Desplegable */
+#user-name {
+  margin-left: auto;
+  padding: 5px;
+  font-size: 18px;
+}
+
 .user-menu-container {
   position: relative;
   display: inline-block;
 }
 
 .dropdown-menu {
+  position: absolute;
+  right: 0;
   background-color: var(--Moss-green);
+  display: none;
+  min-width: 160px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  z-index: 1;
 }
 
 .dropdown-item {
   display: block;
   padding: 8px 16px;
   color: var(--Tangerine);
+  text-decoration: none;
 }
 
 .dropdown-item:hover {
   background-color: var(--Marshmallow);
 }
-  
-  @media only screen and (max-width: 768px) {
-  #products-container {
-  gap: 0rem;
-  }
-  
-  }
 
+.user-menu-container:hover .dropdown-menu {
+  display: block;
+}
+
+@media only screen and (max-width: 768px) {
+  #products-container {
+    gap: 0rem;
+  }
+}
+/* FIN Nombre de Usuario y Menú Desplegable */
 
 @media only screen and (max-width: 768px) {
   body {

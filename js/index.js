@@ -1,8 +1,69 @@
-function logout() {
+// Inicio Menú Desplegable
+document.addEventListener("DOMContentLoaded", function() {
+    function logout() {
     localStorage.removeItem("user");
     window.location.href = "login.html";
-}
+  }
 
+  const user = localStorage.getItem("user");
+  if (!user) {
+    window.location.href = "login.html";
+  }
+
+  const nav = document.querySelector('nav');
+  const userEmail = localStorage.getItem("user");
+
+  if (userEmail) {
+    const userLink = document.createElement('a');
+    userLink.href = "#";
+    userLink.textContent = `Hola, ${userEmail}`;
+    userLink.classList.add('header__text', 'user-link');
+
+    const dropdownMenu = document.createElement('div');
+    dropdownMenu.classList.add('dropdown-menu');
+    dropdownMenu.style.display = 'none';
+
+    const menuItems = [
+      { text: 'Mi perfil', href: 'my-profile.html' },
+      { text: 'Mis favoritos', href: 'favorites.html' },
+      { text: 'Vender', href: 'sell.html' },
+      { text: 'Cerrar sesión', href: '#' }
+    ];
+
+    menuItems.forEach(item => {
+      const menuItem = document.createElement('a');
+      menuItem.href = item.href;
+      menuItem.textContent = item.text;
+      menuItem.classList.add('dropdown-item');
+      dropdownMenu.appendChild(menuItem);
+
+      if (item.text === 'Cerrar sesión') {
+        menuItem.addEventListener('click', logout);
+      }
+    });
+
+    const userMenuContainer = document.createElement('div');
+    userMenuContainer.classList.add('user-menu-container');
+    userMenuContainer.appendChild(userLink);
+    userMenuContainer.appendChild(dropdownMenu);
+    nav.appendChild(userMenuContainer);
+
+    userLink.addEventListener('click', function(event) {
+      event.preventDefault();
+      dropdownMenu.style.display = dropdownMenu.style.display === 'none' ? 'block' : 'none';
+    });
+
+    document.addEventListener('click', function(event) {
+      const isClickInsideMenu = userMenuContainer.contains(event.target);
+      if (!isClickInsideMenu) {
+        dropdownMenu.style.display = 'none';
+      }
+    });
+  }
+});
+// Fin Menú Desplegable
+
+// Inicio Categorías
 document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("autos").addEventListener("click", function() {
         localStorage.setItem("catID", 101);
@@ -27,7 +88,9 @@ document.addEventListener("DOMContentLoaded", function(){
         logoutButton.style.display = "inline";
       }
 });
+// Fin Categorías
 
+// Inicio Prompt Newsletter
 document.addEventListener("DOMContentLoaded", function(){
   var newsletterPrompt = document.getElementById("newsletterPrompt");
   var yesButton = document.getElementById("yes");
@@ -60,58 +123,4 @@ document.addEventListener("DOMContentLoaded", function(){
       popupForm.classList.add("hidden");
   });
 });
-
-document.addEventListener("DOMContentLoaded", function() {
-    const nav = document.querySelector('nav');
-    const userEmail = localStorage.getItem("user");
-  
-    if (userEmail) {
-      const userLink = document.createElement('a');
-      userLink.href = "#";
-      userLink.textContent = `Hola, ${userEmail}`;
-      userLink.classList.add('header__text', 'user-link');
-  
-      const dropdownMenu = document.createElement('div');
-      dropdownMenu.classList.add('dropdown-menu');
-      dropdownMenu.style.display = 'none';
-  
-      const menuItems = [
-        { text: 'Mi perfil', href: 'my-profile.html' },
-        { text: 'Mis favoritos', href: 'favorites.html' },
-        { text: 'Vender', href: 'sell.html' },
-        { text: 'Cerrar sesión', href: '#' }
-      ];
-  
-      menuItems.forEach(item => {
-        const menuItem = document.createElement('a');
-        menuItem.href = item.href;
-        menuItem.textContent = item.text;
-        menuItem.classList.add('dropdown-item');
-        dropdownMenu.appendChild(menuItem);
-      });
-  
-      const userMenuContainer = document.createElement('div');
-      userMenuContainer.classList.add('user-menu-container');
-      userMenuContainer.appendChild(userLink);
-      userMenuContainer.appendChild(dropdownMenu);
-      nav.appendChild(userMenuContainer);
-  
-      userLink.addEventListener('click', function(event) {
-        event.preventDefault();
-        dropdownMenu.style.display = dropdownMenu.style.display === 'none' ? 'block' : 'none';
-      });
-  
-      document.addEventListener('click', function(event) {
-        const isClickInsideMenu = userMenuContainer.contains(event.target);
-        if (!isClickInsideMenu) {
-          dropdownMenu.style.display = 'none';
-        }
-      });
-  
-      const logoutLink = dropdownMenu.querySelector('a[href="#"]');
-      logoutLink.addEventListener('click', function() {
-        localStorage.removeItem('user');
-        window.location.href = 'login.html';
-      });
-    }
-  });
+// Fin Prompt Newsletter
