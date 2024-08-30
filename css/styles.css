@@ -218,6 +218,15 @@ nav a{
   font-size: 38px;
 }
 
+.menu-toggle{
+  display: none;
+  font-size: 37px;
+  background:none;
+  border: none;
+  color: var(--Tangerine);
+  cursor: pointer;
+}
+
 /*Fin del Header*/
 
 /*Inicio del footer*/
@@ -364,18 +373,82 @@ a.custom-card:hover {
   color: orange;
 }
 
-.header{
+.header {
   background-color: var(--Moss-green);
   padding: 3px 30px;
   display: flex;
-  
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
 }
 
 .header nav {
   display: flex;
   align-items: center;
   width: 100%;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
+
+@media (min-width: 768px) {
+  nav {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: rgba(222, 244, 222, 0.3);
+    width: auto;
+    max-width: 300px;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 10;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    margin: 0;
+    border: none;
+  }
+
+  nav.active {
+    display: flex;
+    max-width: 200px;
+    max-height: 300px;
+    
+   
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  nav a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    border-bottom: 2px solid var(--Tangerine);
+    box-sizing: border-box;
+   
+  }
+  nav a:last-child{
+    border-bottom:none;
+  }
+}
+
 
 .header__text {
   font-family: var(--font);
@@ -806,6 +879,7 @@ h1::after {
 .dropdown-item:hover {
   background-color: var(--Marshmallow);
 }
+<<<<<<< HEAD
   
   @media only screen and (max-width: 768px) {
   #products-container {
@@ -813,3 +887,27 @@ h1::after {
   }
   
   }
+=======
+
+@media only screen and (min-width: 320px) {
+  .login-box{
+    width:fit-content;
+  }
+
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+    background-position: center;
+  }
+  .login-container{
+    display: block;
+  }
+  .logojap,
+  .logojap img,
+  .login-box {
+    margin: auto;
+  }
+
+}
+>>>>>>> 266a050b63dc5ee8daf47ddc853e71dcb0e3db6c
