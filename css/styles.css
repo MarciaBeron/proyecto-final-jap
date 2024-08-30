@@ -879,6 +879,13 @@ h1::after {
 .dropdown-item:hover {
   background-color: var(--Marshmallow);
 }
+  
+  @media only screen and (max-width: 768px) {
+  #products-container {
+  gap: 0rem;
+  }
+  
+  }
 
 
 @media only screen and (max-width: 768px) {
