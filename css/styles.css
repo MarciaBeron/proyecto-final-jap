@@ -887,12 +887,6 @@ h1::after {
   
   }
 
-@media only screen and (min-width: 320px) {
-  .login-box{
-    width:fit-content;
-  }
-
-}
 
 @media only screen and (max-width: 768px) {
   body {
@@ -906,5 +900,24 @@ h1::after {
   .login-box {
     margin: auto;
   }
-
+  .login-box{
+    width:fit-content;
+  }
+  .container div{
+    flex-wrap: nowrap;
+    align-self: center;
+    width: fit-content;
+  }
+  .float-end{
+    display: none;
+  }
+  .container p{
+    font-size: small;
+    align-self: center;
+  }
+  .container{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
 }
