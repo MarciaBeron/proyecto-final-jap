@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let htmlContent = '';
             products.forEach(product => {
                 htmlContent += `
-                    <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="product-card">
                         <div class="card">
                             <img src="${product.image}" class="card-img-top" alt="${product.name}">
                             <div class="card-body">

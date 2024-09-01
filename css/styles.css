@@ -249,84 +249,39 @@ nav a{
 /*Inicio del footer*/
 footer {
   width: 100%;
+  position: fixed;
+  bottom: 0%;
   background-color: var(--Marshmallow);
-  padding:10px 0;
-  display: flex;
-  flex-direction:row; 
-  justify-content:center;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap: wrap;
-  margin-top: auto; 
-  box-sizing:border-box;
-  box-sizing: border-box;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
 }
-
 footer p {
-  margin: 0;
+  margin-bottom: .25rem;
   color: var(--Black);
   font-weight: bold;
 }
-
-footer a {
+footer a{
   color: var(--Moss-green);
 }
-
-footer .container {
-  width: 100%;
+.container{
   display: flex;
-  justify-content:space-between;
-  align-items: center;
-  padding: 0 20px; 
-  box-sizing: border-box;
-  height: auto;
-} 
-
-footer .icons {
+  justify-content: space-around;
+}
+.container div{
   display: flex;
-  gap: 10px;
-  justify-content: center;
-  width: 100%;
+  justify-content: space-between;
 }
-
-footer .icons a {
-  color: var(--Moss-green);
-  font-size: 1.5rem;
-  margin: 0 5px; 
+.jap-redes{
+  width: 66%;
 }
-
-footer div {
-  width: 100%;
-  max-width: 1366px;
-  padding: 0px;
+.container i{
+  margin: 0% 1rem 0% 1rem;
+  font-size: large;
 }
-
-footer .icons a {
-  margin: 0 5px; 
-  font-size: 1.5rem;
-  margin: 0 5px;
+.bi-chevron-double-up{
+  display: none;
 }
-
-
-@media (max-width: 1366px) {
-  footer div {
-      padding: 10px;
-  }
-}
-
-
-@media (max-width: 768px) {
-  footer div {
-      padding: 15px;
-  }
-}
-
-@media (max-width: 320px) {
-  footer div {
-      padding: 10px;
-  }
-}
- 
+/* fin de footer default*/ 
 .site-header a {
   color:var(--White);
   transition: ease-in-out color .15s;
@@ -444,10 +399,10 @@ a.custom-card:hover {
 .header {
   background-color: var(--Moss-green);
   padding: 3px 30px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
 }
 
 .header nav {
@@ -968,11 +923,6 @@ h1::after {
   display: block;
 }
 
-@media only screen and (max-width: 768px) {
-  #products-container {
-    gap: 0rem;
-  }
-}
 /* FIN Nombre de Usuario y Menú Desplegable */
 
 @media only screen and (max-width: 768px) {
@@ -990,25 +940,29 @@ h1::after {
   .login-box{
     width:fit-content;
   }
+  .container{
+    display: flex;
+  }
   .container div{
     flex-wrap: nowrap;
     align-self: center;
     width: fit-content;
   }
-  .float-end{
+  .container div.jap-redes{
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-self: center;
+  }
+  .bi-chevron-double-up{
+    display: block;
+    justify-self: end;
+  }
+  .volver-link{
     display: none;
   }
   .container p{
     font-size: small;
     align-self: center;
   }
-  .container{
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: center;
-  }
-}
-
-footer, footer * {
-  position: static !important; /* Resetea la propiedad position */
 }
