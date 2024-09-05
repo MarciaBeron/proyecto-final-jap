@@ -966,3 +966,80 @@ h1::after {
     align-self: center;
   }
 }
+
+.filter {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font);
+  font-size: 1.3rem;
+}
+
+.filter-menu {
+  background-color: rgba(255, 255, 255, 0.685); 
+  padding: 10px; 
+  font-size: 1.1rem;
+  color: var(--Moss-green);
+}
+
+.filter-toggle {
+  font-size: 1.3rem;
+  background-color: var(--Tangerine);
+  color: var(--Moss-green);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.filter-menu h3 {
+  margin: 0 0 10px 0;
+  color: var(--Moss-green);
+  font-size: 1.5rem;
+}
+
+.price-range {
+  margin-bottom: 10px;
+}
+
+.price-range input {
+  margin-right: 5px;
+  color: var(--Moss-green);
+  background-color: var(--Matcha);
+  border: var(--Moss-green);
+}
+
+#apply-filters {
+  background-color: var(--Moss-green); 
+  color: var(--Tangerine);
+  border: none; 
+  padding: 10px 20px; 
+  font-size: 1rem; 
+  border-radius: 4px; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease; 
+}
+
+#apply-filters:hover {
+  color: var(--Moss-green);
+  background-color: var(--Tangerine); 
+}
+
+/* Estilos para el menú desplegable (select) */
+#sort-options {
+  background-color: rgba(255, 255, 255, 0.685); 
+  color: var(--Moss-green); 
+  border: 1px solid var(--Moss-green); 
+  padding: 5px; 
+  border-radius: 4px; 
+  box-sizing: border-box; /* Incluye el borde y el padding en el ancho total */
+  transition: border-color 0.3s ease; 
+  margin-top: 1rem;
+}
+
+#sort-options:focus {
+  background-color: var(--Moss-green);
+  color: var(--Marshmallow);
+  border-color: var(--Moss-green); 
+  outline: none; 
+  font-size: 0.875rem;
+}
+
