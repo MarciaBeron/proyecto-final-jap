@@ -1,5 +1,40 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const url = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
+    const categoryTitle = document.getElementById('category-title');
+    const categoryId = localStorage.getItem('catID');
+
+    switch (categoryId) {
+        case '101':
+            categoryTitle.textContent = 'Autos';
+            break;
+        case '102':
+            categoryTitle.textContent = 'Juguetes';
+            break;
+        case '103':
+            categoryTitle.textContent = 'Muebles';
+            break;
+        case '104':
+            categoryTitle.textContent = 'Herramientas';
+            break;
+        case '105':
+            categoryTitle.textContent = 'Computadoras';
+            break;
+        case '106':
+            categoryTitle.textContent = 'Vestimenta';
+            break;
+        case '107':
+            categoryTitle.textContent = 'Electrodomésticos';
+            break;
+        case '108':
+            categoryTitle.textContent = 'Deporte';
+            break;
+        case '109':
+            categoryTitle.textContent = 'Celulares';
+            break;
+        default:
+            categoryTitle.textContent = 'Categoría Seleccionada';
+    }
+
+    const url = `https://japceibal.github.io/emercado-api/cats_products/${categoryId}.json`;
     fetch(url)
         .then(response => response.json())
         .then(data => {
