@@ -42,6 +42,24 @@
       <h1 id="category-title">Categoría Seleccionada</h1>
     </section>
 
+    <div class="filter">
+      <button class="filter-toggle" id="filter-toggle">Filtrar</button>
+      <div class="filter-menu" id="filter-menu">
+        <h3>Filtrar por precio</h3>
+        <div class="price-range">
+          <input type="number" id="min-price" placeholder="Mínimo">
+          <input type="number" id="max-price" placeholder="Máximo">
+        </div>
+        <button id="apply-filters">Ver productos</button>
+      <div > 
+      <select id="sort-options">
+        <option value="default">Ordenar por:</option>
+        <option value="price-asc">Menor precio</option>
+        <option value="price-desc">Mayor precio</option>
+        <option value="relevance-desc">Más vendidos</option>
+      </select>
+    </div>
+  
     <div id="products-container" class="products-container"></div>
   </main>
 
