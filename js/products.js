@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let htmlContent = '';
         products.forEach(product => {
             htmlContent += `
-                <div class="product-card">
+                <div class="product-card" onclick="selectProduct(${product.id})">
                     <div class="card">
                         <img src="${product.image}" class="card-img-top" alt="${product.name}">
                         <div class="card-body">
@@ -98,3 +98,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('products-container').innerHTML = htmlContent;
     }
 });
+
+// Function to handle product selection
+function selectProduct(productId) {
+    localStorage.setItem('selectedProductID', productId);  // Save the product ID in local storage
+    window.location.href = 'product-info.html';  // Redirect to product-info.html
+}
