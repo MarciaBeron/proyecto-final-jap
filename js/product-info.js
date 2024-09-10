@@ -20,10 +20,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const productTitle = document.getElementById('product-title');
         
         productTitle.textContent = product.name;
-
+        let imagesHtml = '';
+        product.images.forEach(image => {
+            imagesHtml += `<img src="${image}" class="product-img" alt="${product.name}"></img>`;
+        });
         let htmlContent = `
             <div class="product-detail">
-                <img src="${product.images[0]}" class="product-img" alt="${product.name}">
+                <div class="product-images">
+                    ${imagesHtml} <!-- Añadimos todas las imágenes aquí -->
+                </div>
                 <h2>${product.name}</h2>
                 <p>${product.description}</p>
                 <p>Precio: ${product.currency} ${product.cost}</p>
