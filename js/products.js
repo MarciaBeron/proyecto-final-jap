@@ -1,8 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const categoryTitle = document.getElementById('category-title');
     const categoryId = localStorage.getItem('catID');
 
-    // Setting the category title based on category ID
     switch (categoryId) {
         case '101':
             categoryTitle.textContent = 'Autos';
@@ -40,13 +39,15 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             const products = data.products;
-            window.products = products; // Make products accessible globally
+            window.products = products;
             renderProducts(products);
         })
         .catch(error => console.error('Error al obtener los productos:', error));
 
     document.getElementById('apply-filters').addEventListener('click', applyFilters);
     document.getElementById('sort-options').addEventListener('change', applySort);
+
+    document.getElementById('productSearch').addEventListener('input', filterProducts);
 
     function applyFilters() {
         const minPrice = parseFloat(document.getElementById('min-price').value) || 0;
@@ -73,7 +74,18 @@ document.addEventListener('DOMContentLoaded', function() {
         renderProducts(sortedProducts);
     }
 
-    document.getElementById('filter-toggle').addEventListener('click', function() {
+    function filterProducts() {
+        const searchText = document.getElementById('productSearch').value.toLowerCase();
+
+        const filteredProducts = window.products.filter(product =>
+            product.name.toLowerCase().includes(searchText) ||
+            product.description.toLowerCase().includes(searchText)
+        );
+
+        renderProducts(filteredProducts);
+    }
+
+    document.getElementById('filter-toggle').addEventListener('click', function () {
         var menu = document.getElementById('filter-menu');
         menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
     });
@@ -99,8 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Function to handle product selection
 function selectProduct(productId) {
-    localStorage.setItem('selectedProductID', productId);  // Save the product ID in local storage
-    window.location.href = 'product-info.html';  // Redirect to product-info.html
+    localStorage.setItem('selectedProductID', productId);
+    window.location.href = 'product-info.html';
 }
