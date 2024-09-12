@@ -150,39 +150,51 @@ document.addEventListener('DOMContentLoaded', function() {
         commentsButton.innerHTML = `Comentarios (${count})`;  // Actualiza el texto del botón
     }
 
+    // Variables para manejar la visibilidad de las secciones
     const showDescriptionButton = document.getElementById('show-description');
     const showCommentsButton = document.getElementById('show-comments');
     const productInfoContainer = document.getElementById('product-info');
     const productCommentsContainer = document.getElementById('product-comments');
 
-    const lastViewedSection = localStorage.getItem('lastViewedSection');
-    if (lastViewedSection === 'description') {
-        productInfoContainer.style.display = 'block';
-        productCommentsContainer.style.display = 'none';
-        showDescriptionButton.classList.add('active');
-        showCommentsButton.classList.remove('active');
-    } else if (lastViewedSection === 'comments') {
-        productInfoContainer.style.display = 'none';
-        productCommentsContainer.style.display = 'block';
-        showCommentsButton.classList.add('active');
-        showDescriptionButton.classList.remove('active');
-    }
+    // Configuración inicial para que las secciones estén cerradas
+    productInfoContainer.style.display = 'none';
+    productCommentsContainer.style.display = 'none';
 
+    // Manejo de clic en el botón de descripción
     showDescriptionButton.addEventListener('click', function() {
+        // Mostrar descripción y ocultar comentarios
         productInfoContainer.style.display = 'block';
         productCommentsContainer.style.display = 'none';
-        localStorage.setItem('lastViewedSection', 'description');
         showDescriptionButton.classList.add('active');
         showCommentsButton.classList.remove('active');
+        // Agregar listener para clic fuera
+        document.removeEventListener('click', handleClickOutside);
+        document.addEventListener('click', handleClickOutside);
     });
 
+    // Manejo de clic en el botón de comentarios
     showCommentsButton.addEventListener('click', function() {
+        // Mostrar comentarios y ocultar descripción
         productInfoContainer.style.display = 'none';
         productCommentsContainer.style.display = 'block';
-        localStorage.setItem('lastViewedSection', 'comments');
         showCommentsButton.classList.add('active');
         showDescriptionButton.classList.remove('active');
+        // Agregar listener para clic fuera
+        document.removeEventListener('click', handleClickOutside);
+        document.addEventListener('click', handleClickOutside);
     });
+
+    // Función para manejar clic fuera de las secciones
+    function handleClickOutside(event) {
+        if (!productInfoContainer.contains(event.target) && !showDescriptionButton.contains(event.target)) {
+            productInfoContainer.style.display = 'none';
+            showDescriptionButton.classList.remove('active');
+        }
+        if (!productCommentsContainer.contains(event.target) && !showCommentsButton.contains(event.target)) {
+            productCommentsContainer.style.display = 'none';
+            showCommentsButton.classList.remove('active');
+        }
+    }
 });
 
 function toggleFavorite(productId) {
