@@ -1038,7 +1038,7 @@ h1::after {
   display: flex;
   flex-direction: column;
   position: relative;
-  max-width: 70%;
+  max-width: 40%;
   margin-bottom: 1rem;
 }
 
@@ -1206,3 +1206,38 @@ h1::after {
   margin-bottom: 1rem; /* Espacio debajo del título */
   font-weight: bold; /* Hacer el texto en negrita */
 }
+
+/* Inicio Zoom Products-info.hmtl */
+#main-image-container {
+  position: relative;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+#main-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+#main-image.zoomed {
+  transform: scale(2);
+  cursor: zoom-out;
+}
+/* Fin Zoom Products-info.hmtl */
+
+/* Inicio Ícono Favorito */
+#favorite-icon {
+  cursor: pointer;
+  font-size: 24px;
+  color: #f00;
+  margin: 10px;
+  transition: color 0.3s ease;
+}
+
+#favorite-icon:hover {
+  color: #ff6666;
+}
+/* Fin Ícono Favorito */
