@@ -1043,3 +1043,135 @@ h1::after {
   font-size: 0.875rem;
 }
 
+.toggle-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 20px;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.btn:hover {
+  color: var(--Milkshake);
+}
+
+.btn.active {
+  background-color: var(--Matcha);
+  color: white;
+}
+
+
+#related-products{
+  display: flex;
+  width: 80%;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.related-product-img {
+  width: 100%;
+  max-width: 150px; 
+  border-radius: 10px;
+}
+
+.related-products img {
+  max-width: 100%;
+}
+#product-images {
+  text-align: center;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+#main-image-container {
+  margin-bottom: 1rem;
+}
+
+#main-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#thumbnails-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.thumbnail {
+  width: 100px;
+  height: 100px;
+  margin: 0.5rem;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbnail.active {
+  border-color: var(--Marshmallow);
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+  width: calc(100% - 20px);
+}
+
+.nav-button {
+  background-color:var(--Milkshake);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.nav-button::before {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.prev-button::before {
+  border-width: 10px 15px 10px 0;
+  border-color: transparent var(--Matcha) transparent transparent;
+}
+
+.next-button::before {
+  border-width: 10px 0 10px 15px;
+  border-color: transparent transparent transparent var(--Matcha);
+}
+
