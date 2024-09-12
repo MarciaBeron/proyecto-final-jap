@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const productId = localStorage.getItem('selectedProductID'); // Get the selected product ID from local storage
+    const productId = localStorage.getItem('selectedProductID');
 
     if (!productId) {
         console.error('No product ID found in local storage.');
@@ -10,36 +10,40 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            displayProductInfo(data);
-            loadProductComments(productId);
+            displayProductImages(data.images);  
+            displayProductInfo(data);  
+            displayRelatedProducts(data.relatedProducts);  
+            loadProductComments(productId);  
         })
         .catch(error => console.error('Error al obtener los detalles del producto:', error));
 
+    function displayProductImages(images) {
+        const productImagesContainer = document.getElementById('product-images');
+        let imagesHtml = '';
+        images.forEach(image => {
+            imagesHtml += `<img src="${image}" class="product-img" alt="Producto">`;
+        });
+        productImagesContainer.innerHTML = imagesHtml;
+    }
+
     function displayProductInfo(product) {
         const productInfoContainer = document.getElementById('product-info');
-        const productTitle = document.getElementById('product-title');
-        
-        productTitle.textContent = product.name;
-        let imagesHtml = '';
-        product.images.forEach(image => {
-            imagesHtml += `<img src="${image}" class="product-img" alt="${product.name}"></img>`;
-        });
         let htmlContent = `
             <div class="product-detail">
-                <div class="product-images">
-                    ${imagesHtml} <!-- Añadimos todas las imágenes aquí -->
-                </div>
                 <h2>${product.name}</h2>
                 <p>${product.description}</p>
                 <p>Precio: ${product.currency} ${product.cost}</p>
                 <p>Vendidos: ${product.soldCount}</p>
             </div>
-            <div class="related-products">
-                <h3>Productos Relacionados</h3>
-                <div class="related-products-container">
         `;
+        productInfoContainer.innerHTML = htmlContent;
+    }
 
-        product.relatedProducts.forEach(related => {
+    function displayRelatedProducts(relatedProducts) {
+        const relatedProductsContainer = document.getElementById('related-products');
+        let htmlContent = `<h3>Productos Relacionados</h3><div class="related-products-container">`;
+
+        relatedProducts.forEach(related => {
             htmlContent += `
                 <div class="related-product-card">
                     <img src="${related.image}" class="related-product-img" alt="${related.name}">
@@ -48,8 +52,8 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         });
 
-        htmlContent += `</div></div>`;
-        productInfoContainer.innerHTML = htmlContent;
+        htmlContent += `</div>`;
+        relatedProductsContainer.innerHTML = htmlContent;
     }
 
     function loadProductComments(productId) {
@@ -76,4 +80,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
         commentsContainer.innerHTML = htmlContent;
     }
+
+    const showDescriptionButton = document.getElementById('show-description');
+    const showCommentsButton = document.getElementById('show-comments');
+    const productInfoContainer = document.getElementById('product-info');
+    const productCommentsContainer = document.getElementById('product-comments');
+
+    const lastViewedSection = localStorage.getItem('lastViewedSection');
+    if (lastViewedSection === 'description') {
+        productInfoContainer.style.display = 'block';
+        productCommentsContainer.style.display = 'none';
+    } else if (lastViewedSection === 'comments') {
+        productInfoContainer.style.display = 'none';
+        productCommentsContainer.style.display = 'block';
+    }
+
+    showDescriptionButton.addEventListener('click', function() {
+        if (productInfoContainer.style.display === 'block') {
+            productInfoContainer.style.display = 'none';
+            localStorage.removeItem('lastViewedSection');
+        } else {
+            productInfoContainer.style.display = 'block';
+            productCommentsContainer.style.display = 'none';
+            localStorage.setItem('lastViewedSection', 'description');
+        }
+    });
+
+    showCommentsButton.addEventListener('click', function() {
+        if (productCommentsContainer.style.display === 'block') {
+            productCommentsContainer.style.display = 'none';
+            localStorage.removeItem('lastViewedSection');
+        } else {
+            productCommentsContainer.style.display = 'block';
+            productInfoContainer.style.display = 'none';
+            localStorage.setItem('lastViewedSection', 'comments');
+        }
+    });
 });
