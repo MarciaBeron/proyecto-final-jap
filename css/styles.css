@@ -1068,6 +1068,11 @@ h1::after {
   position: relative;
   
 }
+.products-img-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 #main-image-container {
   position: relative;
