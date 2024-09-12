@@ -1,35 +1,59 @@
-// Inicio Menú Desplegable
+function logout() {
+  localStorage.removeItem("user");
+  window.location.href = "login.html";
+}
+
 document.addEventListener("DOMContentLoaded", function() {
-    function logout() {
-    localStorage.removeItem("user");
-    window.location.href = "login.html";
-  }
+    //RECIBIR NOTICIAS
+    const newsletterPrompt = document.getElementById("newsletterPrompt");
+    const yesButton = document.getElementById("yes");
+    const noButton = document.getElementById("no");
+    const popupForm = document.getElementById("popupForm");
+  
+    if (!sessionStorage.getItem("newsletterDecision")) {
+        setTimeout(function(){
+            newsletterPrompt.classList.remove("hidden");
+            newsletterPrompt.classList.add("show");
+        }, 100);
+    }
+  
+    yesButton.addEventListener("click", function() {
+        console.log("El usuario quiere recibir novedades.");
+        sessionStorage.setItem("newsletterDecision", "yes");
+        newsletterPrompt.classList.add("hidden");
+        popupForm.classList.remove("hidden");
+    });
+  
+    noButton.addEventListener("click", function() {
+        console.log("El usuario no quiere recibir novedades.");
+        sessionStorage.setItem("newsletterDecision", "no");
+        newsletterPrompt.classList.add("hidden");
+    });
+  
+    popupForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+        console.log("Formulario enviado");
+        popupForm.classList.add("hidden");
+    });
 
+ //MANEJO DE SESION Y MENU COLAPSABLE DE USUARIO
   const user = localStorage.getItem("user");
-  if (!user) {
-    window.location.href = "login.html";
-  }
-
-  const nav = document.querySelector('nav');
-  const userEmail = localStorage.getItem("user");
-
-  if (userEmail) {
+  if (user) {
+    //nombre usuario
     const userLink = document.createElement('a');
     userLink.href = "#";
-    userLink.textContent = `Hola, ${userEmail}`;
+    userLink.textContent = `Hola, ${user}`;
     userLink.classList.add('header__text', 'user-link');
-
+    //menu usuario
     const dropdownMenu = document.createElement('div');
     dropdownMenu.classList.add('dropdown-menu');
     dropdownMenu.style.display = 'none';
-
     const menuItems = [
       { text: 'Mi perfil', href: 'my-profile.html' },
       { text: 'Mis favoritos', href: 'favorites.html' },
       { text: 'Vender', href: 'sell.html' },
       { text: 'Cerrar sesión', href: '#' }
     ];
-
     menuItems.forEach(item => {
       const menuItem = document.createElement('a');
       menuItem.href = item.href;
@@ -41,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
         menuItem.addEventListener('click', logout);
       }
     });
-
+    const nav = document.querySelector('nav');
     const userMenuContainer = document.createElement('div');
     userMenuContainer.classList.add('user-menu-container');
     userMenuContainer.appendChild(userLink);
@@ -59,68 +83,25 @@ document.addEventListener("DOMContentLoaded", function() {
         dropdownMenu.style.display = 'none';
       }
     });
-  }
-});
-// Fin Menú Desplegable
 
-// Inicio Categorías
-document.addEventListener("DOMContentLoaded", function(){
-    document.getElementById("autos").addEventListener("click", function() {
-        localStorage.setItem("catID", 101);
-        window.location = "products.html"
-    });
-    document.getElementById("juguetes").addEventListener("click", function() {
-        localStorage.setItem("catID", 102);
-        window.location = "products.html"
-    });
-    document.getElementById("muebles").addEventListener("click", function() {
-        localStorage.setItem("catID", 103);
-        window.location = "products.html"
-    });
-    const user = localStorage.getItem("user");
-    if (!user) {
-        window.location.href = "login.html";
-    }
-    var logoutButton = document.getElementById("cerrar");
-      if (!localStorage.getItem("user")) {
-        logoutButton.style.display = "none";
-      } else {
-        logoutButton.style.display = "inline";
-      }
-});
-// Fin Categorías
-
-// Inicio Prompt Newsletter
-document.addEventListener("DOMContentLoaded", function(){
-  var newsletterPrompt = document.getElementById("newsletterPrompt");
-  var yesButton = document.getElementById("yes");
-  var noButton = document.getElementById("no");
-  var popupForm = document.getElementById("popupForm");
-
-  if (!sessionStorage.getItem("newsletterDecision")) {
-      setTimeout(function(){
-          newsletterPrompt.classList.remove("hidden");
-          newsletterPrompt.classList.add("show");
-      }, 100);
+    const logoutButton = document.getElementById("cerrar");
+    logoutButton.style.display = "inline";
+  } else if (!user) {
+    window.location.href = "login.html";
+    logoutButton.style.display = "none";
   }
 
-  yesButton.addEventListener("click", function() {
-      console.log("El usuario quiere recibir novedades.");
-      sessionStorage.setItem("newsletterDecision", "yes");
-      newsletterPrompt.classList.add("hidden");
-      popupForm.classList.remove("hidden");
-  });
-
-  noButton.addEventListener("click", function() {
-      console.log("El usuario no quiere recibir novedades.");
-      sessionStorage.setItem("newsletterDecision", "no");
-      newsletterPrompt.classList.add("hidden");
-  });
-
-  popupForm.addEventListener("submit", function(event) {
-      event.preventDefault();
-      console.log("Formulario enviado");
-      popupForm.classList.add("hidden");
-  });
 });
-// Fin Prompt Newsletter
+  // MOSTRAR CATEGORIAS INICIO
+  document.getElementById("autos").addEventListener("click", function() {
+    localStorage.setItem("catID", 101);
+    window.location.href = "products.html"
+});
+document.getElementById("juguetes").addEventListener("click", function() {
+    localStorage.setItem("catID", 102);
+    window.location = "products.html"
+});
+document.getElementById("muebles").addEventListener("click", function() {
+    localStorage.setItem("catID", 103);
+    window.location = "products.html"
+});
