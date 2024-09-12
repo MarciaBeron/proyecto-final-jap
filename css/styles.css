@@ -1234,6 +1234,10 @@ h1::after {
   }
 }
 
+.related-products h3{
+margin-top: 4rem;
+color: var(--Tangerine);
+}
 
 /* Contenedor de los productos relacionados */
 .related-products-container {
