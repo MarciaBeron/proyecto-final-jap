@@ -1234,18 +1234,54 @@ h1::after {
   }
 }
 
-#related-products {
-  width: 100%;
-  margin-top: 2rem; /* Espacio entre la información/comentarios y los productos relacionados */
+
+/* Contenedor de los productos relacionados */
+.related-products-container {
   display: flex;
-  flex-direction: column; /* Coloca los productos relacionados verticalmente */
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
-.related-products-title {
-  color: var(--Moss-green) !important; /* Aplica el color verde */
-  font-size: 1.8rem; /* Tamaño del texto del título */
-  margin-bottom: 1rem; /* Espacio debajo del título */
-  font-weight: bold; /* Hacer el texto en negrita */
+/* Tarjeta de cada producto relacionado */
+.related-product-card {
+  background-color: transparent; /* Fondo transparente */
+  border: 1px solid var(--Gray);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: calc(25% - 15px); /* 4 productos por fila con espacio entre ellos */
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  font-family: var(--font);
+  margin-bottom: 3rem;
+}
+
+/* Imagen del producto relacionado */
+.related-product-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+/* Nombre del producto relacionado */
+.related-product-card p {
+  padding: 10px;
+  margin: 0;
+  color: var(--Moss-green);
+  font-size: 1rem;
+  font-weight: bolder;
+}
+
+/* Efectos de hover para las tarjetas de productos relacionados */
+.related-product-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.related-product-card:hover .related-product-img {
+  transform: scale(1.1);
 }
 
 /* Inicio Zoom Products-info.hmtl */
