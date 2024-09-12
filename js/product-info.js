@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(url)
         .then(response => response.json())
         .then(data => {
+            updatePageTitle(data.name);  // Actualiza el título de la página
             displayProductImages(data.images);  
             displayProductInfo(data);  
             displayRelatedProducts(data.relatedProducts);  
@@ -17,13 +18,57 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => console.error('Error al obtener los detalles del producto:', error));
 
+    function updatePageTitle(productName) {
+        const titleElement = document.getElementById('product-title');
+        titleElement.textContent = productName;
+    }
+
     function displayProductImages(images) {
-        const productImagesContainer = document.getElementById('product-images');
-        let imagesHtml = '';
-        images.forEach(image => {
-            imagesHtml += `<img src="${image}" class="product-img" alt="Producto">`;
+        const mainImageContainer = document.getElementById('main-image-container');
+        const thumbnailsContainer = document.getElementById('thumbnails-container');
+        const mainImage = document.getElementById('main-image');
+        const prevButton = document.getElementById('prev-image');
+        const nextButton = document.getElementById('next-image');
+
+        let currentImageIndex = 0;
+
+        // Mostrar la primera imagen como imagen principal
+        if (images.length > 0) {
+            mainImage.src = images[0];
+        }
+
+        let thumbnailsHtml = '';
+        images.forEach((image, index) => {
+            thumbnailsHtml += `
+                <div class="thumbnail ${index === 0 ? 'active' : ''}" data-src="${image}">
+                    <img src="${image}" alt="Miniatura ${index + 1}">
+                </div>
+            `;
         });
-        productImagesContainer.innerHTML = imagesHtml;
+        thumbnailsContainer.innerHTML = thumbnailsHtml;
+
+        function updateMainImage(index) {
+            mainImage.src = images[index];
+            document.querySelectorAll('.thumbnail').forEach((thumb, i) => thumb.classList.toggle('active', i === index));
+        }
+
+        prevButton.addEventListener('click', function() {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            updateMainImage(currentImageIndex);
+        });
+
+        nextButton.addEventListener('click', function() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            updateMainImage(currentImageIndex);
+        });
+
+        thumbnailsContainer.addEventListener('click', function(e) {
+            const target = e.target.closest('.thumbnail');
+            if (target) {
+                currentImageIndex = images.indexOf(target.getAttribute('data-src'));
+                updateMainImage(currentImageIndex);
+            }
+        });
     }
 
     function displayProductInfo(product) {
@@ -60,7 +105,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const url = `https://japceibal.github.io/emercado-api/products_comments/${productId}.json`;
         fetch(url)
             .then(response => response.json())
-            .then(comments => displayProductComments(comments))
+            .then(comments => {
+                displayProductComments(comments);
+                updateCommentsButton(comments.length);  // Actualiza el texto del botón
+            })
             .catch(error => console.error('Error al obtener los comentarios del producto:', error));
     }
 
@@ -81,6 +129,11 @@ document.addEventListener('DOMContentLoaded', function() {
         commentsContainer.innerHTML = htmlContent;
     }
 
+    function updateCommentsButton(count) {
+        const commentsButton = document.getElementById('show-comments');
+        commentsButton.innerHTML = `Comentarios (${count})`;  // Actualiza el texto del botón
+    }
+
     const showDescriptionButton = document.getElementById('show-description');
     const showCommentsButton = document.getElementById('show-comments');
     const productInfoContainer = document.getElementById('product-info');
@@ -90,30 +143,28 @@ document.addEventListener('DOMContentLoaded', function() {
     if (lastViewedSection === 'description') {
         productInfoContainer.style.display = 'block';
         productCommentsContainer.style.display = 'none';
+        showDescriptionButton.classList.add('active');
+        showCommentsButton.classList.remove('active');
     } else if (lastViewedSection === 'comments') {
         productInfoContainer.style.display = 'none';
         productCommentsContainer.style.display = 'block';
+        showCommentsButton.classList.add('active');
+        showDescriptionButton.classList.remove('active');
     }
 
     showDescriptionButton.addEventListener('click', function() {
-        if (productInfoContainer.style.display === 'block') {
-            productInfoContainer.style.display = 'none';
-            localStorage.removeItem('lastViewedSection');
-        } else {
-            productInfoContainer.style.display = 'block';
-            productCommentsContainer.style.display = 'none';
-            localStorage.setItem('lastViewedSection', 'description');
-        }
+        productInfoContainer.style.display = 'block';
+        productCommentsContainer.style.display = 'none';
+        localStorage.setItem('lastViewedSection', 'description');
+        showDescriptionButton.classList.add('active');
+        showCommentsButton.classList.remove('active');
     });
 
     showCommentsButton.addEventListener('click', function() {
-        if (productCommentsContainer.style.display === 'block') {
-            productCommentsContainer.style.display = 'none';
-            localStorage.removeItem('lastViewedSection');
-        } else {
-            productCommentsContainer.style.display = 'block';
-            productInfoContainer.style.display = 'none';
-            localStorage.setItem('lastViewedSection', 'comments');
-        }
+        productInfoContainer.style.display = 'none';
+        productCommentsContainer.style.display = 'block';
+        localStorage.setItem('lastViewedSection', 'comments');
+        showCommentsButton.classList.add('active');
+        showDescriptionButton.classList.remove('active');
     });
 });
