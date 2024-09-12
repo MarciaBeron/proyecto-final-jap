@@ -41,33 +41,41 @@
     <section class="titulo">
       <h1 id="product-title">Detalles del Producto</h1>
     </section>
-
-    <div id="product-images" class="product-images">
-      <div id="main-image-container">
+  
+    <!-- Contenedor principal para agrupar imágenes y la información del producto -->
+    <div class="product-details-container">
+      <!-- Contenedor de Imágenes -->
+      <div id="product-images" class="product-images">
+        <div id="main-image-container">
           <img id="main-image" src="" alt="Imagen Principal">
-      </div>
-      <div id="thumbnails-container">
-      </div>
-      <div class="nav-buttons">
+        </div>
+        <div id="thumbnails-container">
+          <!-- Aquí van las miniaturas de imágenes -->
+        </div>
+        <div class="nav-buttons">
           <button id="prev-image" class="nav-button">&#10094;</button>
           <button id="next-image" class="nav-button">&#10095;</button>
+        </div>
       </div>
-  </div>
-
-    <div class="toggle-buttons">
-      <button id="show-description" class="btn">Descripción</button>
-      <button id="show-comments" class="btn">Comentarios</button>
-
+  
+      <!-- Contenedor para la información del producto y comentarios -->
+      <div class="product-info-comments">
+        <div class="toggle-buttons">
+          <button id="show-description" class="btn">Descripción</button>
+          <button id="show-comments" class="btn">Comentarios</button>
+        </div>
+        
+        <div id="product-info" class="product-info" style="display: none;"></div>
+        <div id="product-comments" class="product-comments" style="display: none;"></div>
+      </div>
     </div>
-
-      <div id="product-info" class="product-info" style="display: none;"></div>
-      <div id="product-comments" class="product-comments" style="display: none;"></div>
   
-      <div id="related-products" class="related-products"></div>
-
-    
+    <!-- Productos Relacionados debajo de los comentarios -->
+    <div id="related-products" class="related-products">
+      <h2 class="related-products-title">Productos Relacionados</h2>
   
-    </main>
+  </main>
+  
 
   <footer class="text-muted">
     <div class="container">
@@ -91,7 +99,7 @@
 
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
-  <script src="js/product-info.js"></script> <!-- Asegúrate de que este archivo exista y esté en la ubicación correcta -->
+  <script src="js/product-info.js"></script> 
   <script src="../proyecto-final-jap/js/toggle.js"></script>
 
 </body>

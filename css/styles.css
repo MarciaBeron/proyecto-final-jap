@@ -1023,75 +1023,27 @@ h1::after {
   background-color: var(--Tangerine); 
 }
 
-/* Estilos para el menú desplegable (select) */
-#sort-options {
-  background-color: rgba(255, 255, 255, 0.685); 
-  color: var(--Moss-green); 
-  border: 1px solid var(--Moss-green); 
-  padding: 5px; 
-  border-radius: 4px; 
-  box-sizing: border-box; /* Incluye el borde y el padding en el ancho total */
-  transition: border-color 0.3s ease; 
-  margin-top: 1rem;
-}
-
-#sort-options:focus {
-  background-color: var(--Moss-green);
-  color: var(--Marshmallow);
-  border-color: var(--Moss-green); 
-  outline: none; 
-  font-size: 0.875rem;
-}
-
-.toggle-buttons {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  margin: 20px;
-}
-
-.btn {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.btn:hover {
-  color: var(--Milkshake);
-}
-
-.btn.active {
-  background-color: var(--Matcha);
-  color: white;
-}
-
-
-#related-products{
+/* Contenedor principal para agrupar las imágenes y la información */
+.product-details-container {
   display: flex;
-  width: 80%;
-  justify-content: center;
-  text-align: center;
-  flex-wrap: wrap;
+  flex-direction: row; /* Asegura que las imágenes y la información estén en columnas (lado a lado) */
+  gap: 2rem;
+  width: 100%;
   margin-top: 2rem;
 }
 
-.related-product-img {
-  width: 100%;
-  max-width: 150px; 
-  border-radius: 10px;
-}
-
-.related-products img {
-  max-width: 100%;
-}
+/* Contenedor para la columna de imágenes del producto */
 #product-images {
-  text-align: center;
+  flex: 2; /* Ajusta el tamaño de la columna de imágenes */
+  display: flex;
+  flex-direction: column;
   position: relative;
+  max-width: 70%;
   margin-bottom: 1rem;
 }
 
 #main-image-container {
+  position: relative;
   margin-bottom: 1rem;
 }
 
@@ -1104,8 +1056,9 @@ h1::after {
 
 #thumbnails-container {
   display: flex;
-  justify-content: center;
-  margin-top: 10px;
+  justify-content: center; /* Centra las miniaturas horizontalmente */
+  flex-wrap: wrap; /* Permite que las miniaturas se envuelvan en una nueva línea si es necesario */
+  margin-top: 10px; /* Espacio superior entre la imagen principal y las miniaturas */
 }
 
 .thumbnail {
@@ -1129,22 +1082,24 @@ h1::after {
   border-color: var(--Marshmallow);
 }
 
+/* Botones de navegación */
 .nav-buttons {
-  display: flex;
-  justify-content: space-between;
   position: absolute;
   top: 50%;
-  width: 100%;
+  width: calc(100% - 60px); /* Ajusta el ancho para que los botones estén cerca de la imagen */
   transform: translateY(-50%);
-  width: calc(100% - 20px);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
 .nav-button {
-  background-color:var(--Milkshake);
+  background-color: var(--Milkshake);
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1175,3 +1130,79 @@ h1::after {
   border-color: transparent transparent transparent var(--Matcha);
 }
 
+/* Contenedor para la columna de información del producto y comentarios */
+.product-info-comments {
+  flex: 1;
+  max-width: 30%; /* Ajusta el ancho máximo para la columna de información */
+  display: flex;
+  flex-direction: column; /* Apila la información y los comentarios verticalmente */
+}
+#product-info, #product-comments {
+  background-color: var(--Milkshake); 
+  border-radius: 8px; 
+  padding: 1.5rem; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+}
+
+#product-info h2, #product-comments h3 {
+  color: var(--Moss-green); 
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.comment {
+  background-color: transparent; 
+  padding: 1rem; 
+  margin-bottom: 1rem;
+  border-bottom: 1px solid  var(--Moss-green); 
+}
+
+.toggle-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.btn:hover {
+  color: var(--Milkshake);
+}
+
+.btn.active {
+  background-color: var(--Moss-green);
+  color: white;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .product-details-container {
+    flex-direction: column;
+  }
+
+  #product-images, .product-info-comments {
+    max-width: 100%;
+  }
+}
+
+#related-products {
+  width: 100%;
+  margin-top: 2rem; /* Espacio entre la información/comentarios y los productos relacionados */
+  display: flex;
+  flex-direction: column; /* Coloca los productos relacionados verticalmente */
+}
+
+.related-products-title {
+  color: var(--Moss-green) !important; /* Aplica el color verde */
+  font-size: 1.8rem; /* Tamaño del texto del título */
+  margin-bottom: 1rem; /* Espacio debajo del título */
+  font-weight: bold; /* Hacer el texto en negrita */
+}
