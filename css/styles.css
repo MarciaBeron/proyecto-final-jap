@@ -967,6 +967,16 @@ h1::after {
   }
 }
 
+
+#productSearch {
+  padding: 10px;
+  border-radius: 25px; 
+  border: 1px solid var(--Milkshake); 
+  font-size: 1rem; 
+  flex-grow: 1; 
+}
+
+
 .filter {
   position: relative;
   display: inline-block;
@@ -975,25 +985,46 @@ h1::after {
 }
 
 .filter-menu {
+  display: none; 
   background-color: rgba(255, 255, 255, 0.685); 
   padding: 10px; 
   font-size: 1.1rem;
   color: var(--Moss-green);
+  border-radius: 10px;
 }
 
 .filter-toggle {
-  font-size: 1.3rem;
+  font-size: 1rem;
   background-color: var(--Tangerine);
   color: var(--Moss-green);
   border: none;
   padding: 10px 20px;
   cursor: pointer;
+  border-radius: 25px;
 }
 
 .filter-menu h3 {
   margin: 0 0 10px 0;
   color: var(--Moss-green);
   font-size: 1.5rem;
+}
+
+#sort-options {
+  font-size: 1rem; 
+  background-color: var(--Milkshake); 
+  color: var(--Moss-green); 
+  border: none; 
+  padding: 10px 20px; 
+  border-radius: 25px; 
+  cursor: pointer; 
+  appearance: none; 
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  width: auto; 
+}
+
+#sort-options-wrapper {
+  position: relative; 
 }
 
 .price-range {

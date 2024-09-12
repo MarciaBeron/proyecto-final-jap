@@ -44,9 +44,6 @@
 
     <div class="search-container">
       <input type="search" id="productSearch" placeholder="Buscar productos...">
-    </div>
-
-    <div class="filter">
       <button class="filter-toggle" id="filter-toggle">Filtrar</button>
       <div class="filter-menu" id="filter-menu">
         <h3>Filtrar por precio</h3>
@@ -54,16 +51,15 @@
           <input type="number" id="min-price" placeholder="Mínimo">
           <input type="number" id="max-price" placeholder="Máximo">
         </div>
-        <button id="apply-filters">Ver productos</button>
+        <button id="apply-filters">Aplicar</button>
         <select id="sort-options">
           <option value="default">Ordenar por:</option>
           <option value="price-asc">Menor precio</option>
           <option value="price-desc">Mayor precio</option>
           <option value="relevance-desc">Más vendidos</option>
         </select>
-      </div> 
+      </div>
     </div>
-  
     <div id="products-container" class="products-container"></div>
   </main>
 
