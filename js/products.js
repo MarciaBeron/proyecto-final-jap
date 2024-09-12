@@ -44,46 +44,36 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .catch(error => console.error('Error al obtener los productos:', error));
 
-    document.getElementById('apply-filters').addEventListener('click', applyFilters);
-    document.getElementById('sort-options').addEventListener('change', applySort);
-
-    document.getElementById('productSearch').addEventListener('input', filterProducts);
-
-    function applyFilters() {
-        const minPrice = parseFloat(document.getElementById('min-price').value) || 0;
-        const maxPrice = parseFloat(document.getElementById('max-price').value) || Infinity;
-
-        const filteredProducts = window.products.filter(product =>
-            product.cost >= minPrice &&
-            product.cost <= maxPrice
-        );
-
-        renderProducts(filteredProducts);
-    }
-
-    function applySort() {
-        const sortOption = document.getElementById('sort-options').value;
-        let sortedProducts = [...window.products];
-        if (sortOption === 'price-asc') {
-            sortedProducts.sort((a, b) => a.cost - b.cost);
-        } else if (sortOption === 'price-desc') {
-            sortedProducts.sort((a, b) => b.cost - a.cost);
-        } else if (sortOption === 'relevance-desc') {
-            sortedProducts.sort((a, b) => b.soldCount - a.soldCount);
+        document.getElementById('apply-filters').addEventListener('click', updateProducts);
+        document.getElementById('sort-options').addEventListener('change', updateProducts);
+        document.getElementById('productSearch').addEventListener('input', updateProducts);
+        
+        function updateProducts() {
+            const searchText = document.getElementById('productSearch').value.toLowerCase();
+            const minPrice = parseFloat(document.getElementById('min-price').value) || 0;
+            const maxPrice = parseFloat(document.getElementById('max-price').value) || Infinity;
+            const sortOption = document.getElementById('sort-options').value;
+        
+            // filtramos basandonos en precio o texto
+            let filteredProducts = window.products.filter(product =>
+                (product.name.toLowerCase().includes(searchText) ||
+                 product.description.toLowerCase().includes(searchText)) &&
+                product.cost >= minPrice &&
+                product.cost <= maxPrice
+            );
+        
+            // ordenamos los productos filtrados
+            if (sortOption === 'price-asc') {
+                filteredProducts.sort((a, b) => a.cost - b.cost);
+            } else if (sortOption === 'price-desc') {
+                filteredProducts.sort((a, b) => b.cost - a.cost);
+            } else if (sortOption === 'relevance-desc') {
+                filteredProducts.sort((a, b) => b.soldCount - a.soldCount);
+            }
+        
+            // mostramos productos filtrados
+            renderProducts(filteredProducts);
         }
-        renderProducts(sortedProducts);
-    }
-
-    function filterProducts() {
-        const searchText = document.getElementById('productSearch').value.toLowerCase();
-
-        const filteredProducts = window.products.filter(product =>
-            product.name.toLowerCase().includes(searchText) ||
-            product.description.toLowerCase().includes(searchText)
-        );
-
-        renderProducts(filteredProducts);
-    }
 
     document.getElementById('filter-toggle').addEventListener('click', function () {
         var menu = document.getElementById('filter-menu');
