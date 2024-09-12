@@ -69,6 +69,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateMainImage(currentImageIndex);
             }
         });
+
+        // Funcionalidad de Zoom
+        let zoomedIn = false; // Estado para controlar si el zoom está activado o no
+
+        mainImage.addEventListener('click', function() {
+            zoomedIn = !zoomedIn; // Cambia el estado de zoom al hacer clic
+            mainImage.classList.toggle('zoomed', zoomedIn); // Agrega o quita la clase 'zoomed'
+        });
+
+        mainImageContainer.addEventListener('mousemove', function(e) {
+            if (!zoomedIn) return; // Si no está activado el zoom, no hace nada
+            const rect = mainImageContainer.getBoundingClientRect(); // Obtiene la posición del contenedor
+            const x = ((e.clientX - rect.left) / rect.width) * 100; // Calcula la posición x del cursor
+            const y = ((e.clientY - rect.top) / rect.height) * 100; // Calcula la posición y del cursor
+            mainImage.style.transformOrigin = `${x}% ${y}%`; // Establece el origen del zoom
+        });
     }
 
     function displayProductInfo(product) {
@@ -167,4 +183,47 @@ document.addEventListener('DOMContentLoaded', function() {
         showCommentsButton.classList.add('active');
         showDescriptionButton.classList.remove('active');
     });
+});
+
+function toggleFavorite(productId) {
+    // Obtener los favoritos existentes de localStorage
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+    // Verificar si el producto ya está en la lista de favoritos
+    if (favorites.includes(productId)) {
+        // Si ya está, removerlo de la lista
+        favorites = favorites.filter(id => id !== productId);
+    } else {
+        // Si no está, agregarlo a la lista
+        favorites.push(productId);
+    }
+
+    // Guardar la lista actualizada en localStorage
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+
+    // Cambiar el estilo del corazón al estado de favorito
+    updateFavoriteIcon(productId);
+}
+
+// Actualiza el estado visual del icono de favorito
+function updateFavoriteIcon(productId) {
+    const favoriteIcon = document.getElementById('favorite-icon');
+
+    // Obtener los favoritos actuales
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+    // Cambiar la clase del ícono dependiendo de si es favorito o no
+    if (favorites.includes(productId)) {
+        favoriteIcon.classList.remove('bi-heart'); // Elimina el ícono de corazón vacío
+        favoriteIcon.classList.add('bi-heart-fill'); // Agrega el ícono de corazón lleno
+    } else {
+        favoriteIcon.classList.remove('bi-heart-fill'); // Elimina el ícono de corazón lleno
+        favoriteIcon.classList.add('bi-heart'); // Agrega el ícono de corazón vacío
+    }
+}
+
+// Al cargar la página, actualizamos el icono de favoritos
+document.addEventListener('DOMContentLoaded', () => {
+    let productId = 'id-del-producto'; // Reemplaza con la forma en que obtienes el ID del producto actual
+    updateFavoriteIcon(productId);
 });
