@@ -141,3 +141,22 @@ document.addEventListener("DOMContentLoaded", function(e){
         showCategoriesList();
     });
 });
+
+    // Banner
+    const messages = [
+        "Obtiene 10% OFF en tu primera compra en la categoria JUGUETES con el código: BIENVENIDOJAP.",
+        "Envío gratis con compras mayores a $2.500. *Aplican condiciones.",
+        "Compra 2 y lleva el tercero gratis en nuestra categoría ROPA.",
+        "Hasta 50% de descuento en ELECTRODOMÉSTICOS seleccionados."
+    ];
+
+    let currentIndex = 0;
+    const banner = document.getElementById('banner');
+
+    function updateBanner() {
+        banner.textContent = messages[currentIndex];
+        currentIndex = (currentIndex + 1) % messages.length;
+    }
+
+    setInterval(updateBanner, 3000);
+    updateBanner();
