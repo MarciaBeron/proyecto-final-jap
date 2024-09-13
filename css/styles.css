@@ -1354,3 +1354,16 @@ color: var(--Tangerine);
   display: block;
 }
 /* Fin Menu Desplegable Categorias */
+
+/* Inicio Banner */
+.banner {
+  background-color: var(--Moss-green);
+  color: var(--Tangerine);
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+/* Fin Banner */
