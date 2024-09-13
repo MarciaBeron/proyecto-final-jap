@@ -36,62 +36,6 @@ document.addEventListener("DOMContentLoaded", function() {
         popupForm.classList.add("hidden");
     });
 
- //MANEJO DE SESION Y MENU COLAPSABLE DE USUARIO
-  const user = localStorage.getItem("user");
-  if (user) {
-    //nombre usuario
-    const userLink = document.createElement('a');
-    userLink.href = "#";
-    userLink.textContent = `Hola, ${user}`;
-    userLink.classList.add('header__text', 'user-link');
-    //menu usuario
-    const dropdownMenu = document.createElement('div');
-    dropdownMenu.classList.add('dropdown-menu');
-    dropdownMenu.style.display = 'none';
-    const menuItems = [
-      { text: 'Mi perfil', href: 'my-profile.html' },
-      { text: 'Mis favoritos', href: 'favorites.html' },
-      { text: 'Vender', href: 'sell.html' },
-      { text: 'Cerrar sesión', href: '#' }
-    ];
-    menuItems.forEach(item => {
-      const menuItem = document.createElement('a');
-      menuItem.href = item.href;
-      menuItem.textContent = item.text;
-      menuItem.classList.add('dropdown-item');
-      dropdownMenu.appendChild(menuItem);
-
-      if (item.text === 'Cerrar sesión') {
-        menuItem.addEventListener('click', logout);
-      }
-    });
-    const nav = document.querySelector('nav');
-    const userMenuContainer = document.createElement('div');
-    userMenuContainer.classList.add('user-menu-container');
-    userMenuContainer.appendChild(userLink);
-    userMenuContainer.appendChild(dropdownMenu);
-    nav.appendChild(userMenuContainer);
-
-    userLink.addEventListener('click', function(event) {
-      event.preventDefault();
-      dropdownMenu.style.display = dropdownMenu.style.display === 'none' ? 'block' : 'none';
-    });
-
-    document.addEventListener('click', function(event) {
-      const isClickInsideMenu = userMenuContainer.contains(event.target);
-      if (!isClickInsideMenu) {
-        dropdownMenu.style.display = 'none';
-      }
-    });
-
-    const logoutButton = document.getElementById("cerrar");
-    logoutButton.style.display = "inline";
-  } else if (!user) {
-    window.location.href = "login.html";
-    logoutButton.style.display = "none";
-  }
-
-});
   // MOSTRAR CATEGORIAS INICIO
   document.getElementById("autos").addEventListener("click", function() {
     localStorage.setItem("catID", 101);
@@ -105,3 +49,4 @@ document.getElementById("muebles").addEventListener("click", function() {
     localStorage.setItem("catID", 103);
     window.location = "products.html"
 });
+})

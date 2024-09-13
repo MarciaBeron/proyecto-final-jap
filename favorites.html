@@ -10,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <script src="../proyecto-final-jap/js/toggle.js"></script>
   <link rel="icon" href="/img/Favicon.png" type="image/x-icon">
 </head>
 
@@ -21,7 +20,12 @@
     </button>
     <nav>
       <a class="header__text" href="index.html">Inicio</a>
-      <a class="header__text" href="categories.html">Categorías</a>
+      <div class="dropdown">
+        <a class="header__text" href="categories.html" id="dropdownMenuLink" aria-expanded="false">
+          Categorías
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="categoriesDropdown"></div>
+      </div>
       <a class="header__text" href="login.html">Registro</a>
       <span id="user-name" class="header__text" style="float: right;"></span>
     </nav>
@@ -65,8 +69,8 @@
 
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
-  <script src="js/favorites.js"></script> 
-  <script src="../proyecto-final-jap/js/toggle.js"></script>
+  <script src="js/favorites.js"></script>
+  <script src="js/toggle.js"></script>
 
 </body>
 </html>
