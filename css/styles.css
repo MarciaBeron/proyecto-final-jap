@@ -1323,3 +1323,34 @@ color: var(--Tangerine);
   color: #ff6666;
 }
 /* Fin Ícono Favorito */
+
+/* Inicio Menu Desplegable Categorias */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: var(--Moss-green);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-menu a {
+  color: var(--Tangerine);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-menu a:hover {
+  background-color: var(--Marshmallow);
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+/* Fin Menu Desplegable Categorias */

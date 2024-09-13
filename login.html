@@ -10,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <script src="../proyecto-final-jap/js/toggle.js"></script>
   <link rel="icon" href="/img/Favicon.png" type="image/x-icon">
 </head>
 
@@ -21,7 +20,12 @@
     </button>
     <nav>
       <a class="header__text" href="index.html">Inicio</a>
-      <a class="header__text" href="categories.html">Categorías</a>
+      <div class="dropdown">
+        <a class="header__text" href="categories.html" id="dropdownMenuLink" aria-expanded="false">
+          Categorías
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="categoriesDropdown"></div>
+      </div>
       <a class="header__text" href="login.html">Registro</a>
       <span id="user-name" class="header__text" style="float: right;"></span>
     </nav>
