@@ -90,6 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let htmlContent = `
             <div class="product-detail">
                 <h2>${product.name}</h2>
+                <p>Categoría: ${product.category}</p>
                 <p>${product.description}</p>
                 <p>Precio: ${product.currency} ${product.cost}</p>
                 <p>Vendidos: ${product.soldCount}</p>
