@@ -1238,23 +1238,25 @@ h1::after {
 .related-products h3{
 margin-top: 4rem;
 color: var(--Tangerine);
+text-align: center;
 }
 
-/* Contenedor de los productos relacionados */
 .related-products-container {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+  justify-content: center; 
+  align-items: center; 
 }
 
 /* Tarjeta de cada producto relacionado */
 .related-product-card {
-  background-color: transparent; /* Fondo transparente */
+  background-color: transparent; 
   border: 1px solid var(--Gray);
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  width: calc(25% - 15px); /* 4 productos por fila con espacio entre ellos */
+  width: calc(25% - 15px); 
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
   font-family: var(--font);
