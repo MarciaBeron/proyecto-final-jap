@@ -50,12 +50,8 @@ if (user) {
       dropdownMenu.style.display = 'none';
     }
   });
-
-  const logoutButton = document.getElementById("cerrar");
-  logoutButton.style.display = "inline";
 } else if (!user) {
   window.location.href = "login.html";
-  logoutButton.style.display = "none";
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -90,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("Formulario enviado");
         popupForm.classList.add("hidden");
     });
-
+});
   // MOSTRAR CATEGORIAS INICIO
   document.getElementById("autos").addEventListener("click", function() {
     localStorage.setItem("catID", 101);
@@ -98,10 +94,9 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 document.getElementById("juguetes").addEventListener("click", function() {
     localStorage.setItem("catID", 102);
-    window.location = "products.html"
+    window.location.href = "products.html"
 });
 document.getElementById("muebles").addEventListener("click", function() {
     localStorage.setItem("catID", 103);
-    window.location = "products.html"
+    window.location.href = "products.html"
 });
-})

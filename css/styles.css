@@ -1178,7 +1178,7 @@ h1::after {
   display: flex;
   flex-direction: column; /* Apila la información y los comentarios verticalmente */
 }
-#product-info, #product-comments {
+#product-info, #product-comments, #product-form {
   background-color: var(--Milkshake); 
   border-radius: 8px; 
   padding: 1.5rem; 

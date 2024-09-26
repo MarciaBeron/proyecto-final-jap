@@ -1,3 +1,25 @@
+const productForm = document.getElementById('product-form');
+function displayForm() {
+    let htmlContent = `
+        <div class="product-form">
+            <form>
+                <label for="write-comment">Deja tu comentario</label><br>
+                <textarea id="write-comment"></textarea><br>
+                <label for="select-score">Califica el producto</label><br>
+                <select name="select-score" id="select-score">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    `;
+    productForm.innerHTML = htmlContent;
+    productForm.style.display = 'block';
+}
 document.addEventListener('DOMContentLoaded', function() {
     const productId = localStorage.getItem('selectedProductID');
 
@@ -87,6 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function displayProductInfo(product) {
         const productInfoContainer = document.getElementById('product-info');
+        const productForm = document.getElementById('product-form');
         let htmlContent = `
             <div class="product-detail">
                 <h2>${product.name}</h2>
@@ -184,6 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
         productCommentsContainer.style.display = 'none';
         showDescriptionButton.classList.add('active');
         showCommentsButton.classList.remove('active');
+        productForm.style.display = 'none';
         document.removeEventListener('click', handleClickOutside);
         document.addEventListener('click', handleClickOutside);
     });
@@ -193,6 +217,7 @@ document.addEventListener('DOMContentLoaded', function() {
         productCommentsContainer.style.display = 'block';
         showCommentsButton.classList.add('active');
         showDescriptionButton.classList.remove('active');
+        productForm.style.display = 'none';
         document.removeEventListener('click', handleClickOutside);
         document.addEventListener('click', handleClickOutside);
     });
