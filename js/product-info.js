@@ -102,18 +102,26 @@ document.addEventListener('DOMContentLoaded', function() {
     function displayRelatedProducts(relatedProducts) {
         const relatedProductsContainer = document.getElementById('related-products');
         let htmlContent = `<h3>Productos Relacionados</h3><div class="related-products-container">`;
-
+    
         relatedProducts.forEach(related => {
             htmlContent += `
-                <div class="related-product-card">
+                <div class="related-product-card" data-product-id="${related.id}">
                     <img src="${related.image}" class="related-product-img" alt="${related.name}">
                     <p>${related.name}</p>
                 </div>
             `;
         });
-
+    
         htmlContent += `</div>`;
         relatedProductsContainer.innerHTML = htmlContent;
+    
+        document.querySelectorAll('.related-product-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const productId = this.getAttribute('data-product-id');
+                localStorage.setItem('selectedProductID', productId);
+                window.location.href = 'product-info.html';
+            });
+        });
     }
 
     function loadProductComments(productId) {
@@ -130,18 +138,32 @@ document.addEventListener('DOMContentLoaded', function() {
     function displayProductComments(comments) {
         const commentsContainer = document.getElementById('product-comments');
         let htmlContent = '<h3>Comentarios</h3>';
-
+    
         comments.forEach(comment => {
+            const stars = showStars(comment.score);
+    
             htmlContent += `
                 <div class="comment">
                     <p><strong>${comment.user}</strong> (${comment.dateTime}):</p>
-                    <p>Rating: ${comment.score} estrellas</p>
+                    <p>Rating: ${stars}</p>
                     <p>${comment.description}</p>
                 </div>
             `;
         });
-
+    
         commentsContainer.innerHTML = htmlContent;
+    }
+
+    function showStars(amount) {
+        let stars = '';
+        for (let i = 0; i < 5; i++) { 
+            if (i < amount) {
+                stars += '★';
+            } else {
+                stars += '☆';
+            }
+        }
+        return stars;
     }
 
     function updateCommentsButton(count) {
