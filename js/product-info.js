@@ -138,18 +138,32 @@ document.addEventListener('DOMContentLoaded', function() {
     function displayProductComments(comments) {
         const commentsContainer = document.getElementById('product-comments');
         let htmlContent = '<h3>Comentarios</h3>';
-
+    
         comments.forEach(comment => {
+            const stars = showStars(comment.score);
+    
             htmlContent += `
                 <div class="comment">
                     <p><strong>${comment.user}</strong> (${comment.dateTime}):</p>
-                    <p>Rating: ${comment.score} estrellas</p>
+                    <p>Rating: ${stars}</p>
                     <p>${comment.description}</p>
                 </div>
             `;
         });
-
+    
         commentsContainer.innerHTML = htmlContent;
+    }
+
+    function showStars(amount) {
+        let stars = '';
+        for (let i = 0; i < 5; i++) { 
+            if (i < amount) {
+                stars += '★';
+            } else {
+                stars += '☆';
+            }
+        }
+        return stars;
     }
 
     function updateCommentsButton(count) {
