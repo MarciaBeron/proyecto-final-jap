@@ -102,18 +102,26 @@ document.addEventListener('DOMContentLoaded', function() {
     function displayRelatedProducts(relatedProducts) {
         const relatedProductsContainer = document.getElementById('related-products');
         let htmlContent = `<h3>Productos Relacionados</h3><div class="related-products-container">`;
-
+    
         relatedProducts.forEach(related => {
             htmlContent += `
-                <div class="related-product-card">
+                <div class="related-product-card" data-product-id="${related.id}">
                     <img src="${related.image}" class="related-product-img" alt="${related.name}">
                     <p>${related.name}</p>
                 </div>
             `;
         });
-
+    
         htmlContent += `</div>`;
         relatedProductsContainer.innerHTML = htmlContent;
+    
+        document.querySelectorAll('.related-product-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const productId = this.getAttribute('data-product-id');
+                localStorage.setItem('selectedProductID', productId);
+                window.location.href = 'product-info.html';
+            });
+        });
     }
 
     function loadProductComments(productId) {
