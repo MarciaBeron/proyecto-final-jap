@@ -1192,6 +1192,47 @@ h1::after {
   font-weight: bold;
 }
 
+.product-form textarea {
+  width: 100%; 
+  height: 200px; 
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+
+.product-form button[type="submit"] {
+  background-color: var(--Matcha); 
+  color: --Black;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-form button[type="submit"]:hover {
+  background-color: var(--Moss-green); 
+  color: white;
+}
+
+.product-form select {
+  width: 100px;
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-bottom: 15px;  
+}
+
+.product-form label {
+  font-size: 18px;
+  color: var(--Moss-green); 
+}
+
+
+
 .comment {
   background-color: transparent; 
   padding: 1rem; 
