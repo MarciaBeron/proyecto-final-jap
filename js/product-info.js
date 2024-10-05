@@ -1,10 +1,11 @@
 const productForm = document.getElementById('product-form');
+let comments = [];
 function displayForm() {
     let htmlContent = `
         <div class="product-form">
-            <form>
+            <form id="comment-form">
                 <label for="write-comment">Deja tu comentario</label><br>
-                <textarea id="write-comment"></textarea><br>
+                <textarea id="write-comment" required></textarea><br>
                 <label for="select-score">Califica el producto</label><br>
                 <select name="select-score" id="select-score">
                     <option value="1">1</option>
@@ -19,6 +20,34 @@ function displayForm() {
     `;
     productForm.innerHTML = htmlContent;
     productForm.style.display = 'block';
+
+    const commentForm = document.getElementById('comment-form');
+    commentForm.addEventListener('submit', function(event) {
+
+        const commentText = document.getElementById('write-comment').value;
+        const scoreValue = document.getElementById('select-score').value;
+        const username = localStorage.getItem('user') || "Usuario Anónimo";
+        // Create a comment object
+        const newComment = {
+            description: commentText,
+            score: scoreValue,
+            user: username, // You can replace this with actual user info if available
+            dateTime: new Date().toLocaleString() // Format the date/time as needed
+        };
+        // Get the current product ID
+        const productId = localStorage.getItem('selectedProductID');
+        // Save comment to localStorage
+        const storedComments = localStorage.getItem(`productComments_${productId}`);
+        const localComments = storedComments ? JSON.parse(storedComments) : [];
+        localComments.push(newComment);
+        localStorage.setItem(`productComments_${productId}`, JSON.stringify(localComments));
+
+        // Display the new comment immediately
+        displayProductComments([...localComments, ...comments]);
+
+        // Clear the form
+        commentForm.reset();
+    });
 }
 document.addEventListener('DOMContentLoaded', function() {
     const productId = localStorage.getItem('selectedProductID');
@@ -150,12 +179,20 @@ document.addEventListener('DOMContentLoaded', function() {
     function loadProductComments(productId) {
         const url = `https://japceibal.github.io/emercado-api/products_comments/${productId}.json`;
         fetch(url)
-            .then(response => response.json())
-            .then(comments => {
-                displayProductComments(comments);
-                updateCommentsButton(comments.length);
-            })
-            .catch(error => console.error('Error al obtener los comentarios del producto:', error));
+        .then(response => response.json())
+        .then(apiComments => {
+            // Load existing comments from localStorage
+            const storedComments = localStorage.getItem(`productComments_${productId}`);
+            const localComments = storedComments ? JSON.parse(storedComments) : [];
+
+            // Combine API comments with local comments
+            comments = [...apiComments, ...localComments];
+
+            // Display all comments
+            displayProductComments(comments);
+            updateCommentsButton(comments.length);
+        })
+        .catch(error => console.error('Error al obtener los comentarios del producto:', error));
     }
 
     function displayProductComments(comments) {
@@ -169,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="comment">
                     <p><strong>${comment.user}</strong> (${comment.dateTime}):</p>
                     <p>Rating: ${stars}</p>
-                    <p>${comment.description}</p>
+                    <p>${comment.description}</p> 
                 </div>
             `;
         });
