@@ -26,12 +26,12 @@ function displayForm() {
 
         const commentText = document.getElementById('write-comment').value;
         const scoreValue = document.getElementById('select-score').value;
-
+        const username = localStorage.getItem('user') || "Usuario Anónimo";
         // Create a comment object
         const newComment = {
             description: commentText,
             score: scoreValue,
-            user: "Usuario Anónimo", // You can replace this with actual user info if available
+            user: username, // You can replace this with actual user info if available
             dateTime: new Date().toLocaleString() // Format the date/time as needed
         };
         // Get the current product ID
