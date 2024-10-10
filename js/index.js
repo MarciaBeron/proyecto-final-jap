@@ -3,24 +3,28 @@ function logout() {
   window.location.href = "login.html";
 }
 
-//MANEJO DE SESION Y MENU COLAPSABLE DE USUARIO
+// MANEJO DE SESION Y MENU COLAPSABLE DE USUARIO
 const user = localStorage.getItem("user");
 if (user) {
-  //nombre usuario
+  // ENLACE EN NOMBRE DE USUARIO
   const userLink = document.createElement('a');
-  userLink.href = "#";
+  userLink.href = "my-profile.html";
   userLink.textContent = `Hola, ${user}`;
   userLink.classList.add('header__text', 'user-link');
-  //menu usuario
+
+  // MENÚ COLAPSABLE EN SI
   const dropdownMenu = document.createElement('div');
   dropdownMenu.classList.add('dropdown-menu');
-  dropdownMenu.style.display = 'none';
+  
+  // ITEMS DEL MENÚ
   const menuItems = [
     { text: 'Mi perfil', href: 'my-profile.html' },
     { text: 'Mis favoritos', href: 'favorites.html' },
+    { text: 'Mi Carrito', href: 'cart.html'},
     { text: 'Vender', href: 'sell.html' },
     { text: 'Cerrar sesión', href: '#' }
   ];
+
   menuItems.forEach(item => {
     const menuItem = document.createElement('a');
     menuItem.href = item.href;
@@ -28,10 +32,13 @@ if (user) {
     menuItem.classList.add('dropdown-item');
     dropdownMenu.appendChild(menuItem);
 
+    // CERRAR SESIÓN
     if (item.text === 'Cerrar sesión') {
       menuItem.addEventListener('click', logout);
     }
   });
+
+  // SE AÑADE EL MENÚ AL CONTENEDOR
   const nav = document.querySelector('nav');
   const userMenuContainer = document.createElement('div');
   userMenuContainer.classList.add('user-menu-container');
@@ -39,18 +46,7 @@ if (user) {
   userMenuContainer.appendChild(dropdownMenu);
   nav.appendChild(userMenuContainer);
 
-  userLink.addEventListener('click', function(event) {
-    event.preventDefault();
-    dropdownMenu.style.display = dropdownMenu.style.display === 'none' ? 'block' : 'none';
-  });
-
-  document.addEventListener('click', function(event) {
-    const isClickInsideMenu = userMenuContainer.contains(event.target);
-    if (!isClickInsideMenu) {
-      dropdownMenu.style.display = 'none';
-    }
-  });
-} else if (!user) {
+} else {
   window.location.href = "login.html";
 }
 
@@ -87,6 +83,7 @@ document.addEventListener("DOMContentLoaded", function() {
         popupForm.classList.add("hidden");
     });
 });
+
   // MOSTRAR CATEGORIAS INICIO
   document.getElementById("autos").addEventListener("click", function() {
     localStorage.setItem("catID", 101);
