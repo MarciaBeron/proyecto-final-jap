@@ -1568,3 +1568,79 @@ text-align: center;
   opacity: 1;
 }
 /* Fin Foto de Perfil */
+
+.form-container{
+  background-color: var(--Matcha);
+  padding: 20px;
+  border-radius: 10px;
+  width: 500px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto 40px auto;
+  position: relative;
+  top: 10px;
+
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ 
+}
+
+label{
+  margin-bottom: 5px;
+  font-size: 14px;
+  padding-right: 150px;
+}
+
+input{
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 2px solid var(--Milkshake);
+  border-radius: 35px;
+  font-size: 14px;
+  outline: none;
+  width: 60%;
+}
+
+input:focus{
+  border-color: var(--Marshmallow);
+}
+
+.form-container button{
+  padding: 10px;
+  background-color: var(--Moss-green);
+  color: white;
+  border: none;
+  border-radius: 35px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 60%;
+  text-transform: uppercase;
+  font-weight: bold;
+
+}
+
+.form-container button:hover{
+  background-color: var(--Milkshake);
+}
+
+.remove-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+#remove-picture{
+  font-size: 10px;
+  padding: 10px;
+  background-color: var(--Milkshake);
+  width: 22%;
+}
+
+#remove-picture:hover{
+ background-color: var(--Moss-green);
+}
