@@ -37,3 +37,33 @@ document.getElementById('remove-picture').addEventListener('click', () => {
     document.getElementById('profile-picture').src = 'img/default-profile.png';
     localStorage.removeItem('profileImage');
 });
+
+document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevenir el envío por defecto
+  
+    // Obtener los valores de los campos
+    const primerNombre = document.getElementById('primer-nombre').value;
+    const segundoNombre = document.getElementById('segundo-nombre').value;
+    const primerApellido = document.getElementById('primer-apellido').value;
+    const segundoApellido = document.getElementById('segundo-apellido').value;
+    const email = document.getElementById('email').value;
+    const celular = document.getElementById('celular').value;
+  
+    // Verificar que los campos obligatorios (primer nombre, primer apellido, email) no estén vacíos
+    if (primerNombre && primerApellido && email) {
+      // Guardar los valores en localStorage
+      localStorage.setItem('primerNombre', primerNombre);
+      localStorage.setItem('segundoNombre', segundoNombre);
+      localStorage.setItem('primerApellido', primerApellido);
+      localStorage.setItem('segundoApellido', segundoApellido);
+      localStorage.setItem('email', email);
+      localStorage.setItem('celular', celular);
+  
+      // Mensaje de éxito
+      alert('Datos guardados exitosamente');
+    } else {
+      // Mensaje de error si faltan campos obligatorios
+      alert('Por favor, completa los campos obligatorios: Primer nombre, Primer apellido y Correo electrónico.');
+    }
+  });
+  
