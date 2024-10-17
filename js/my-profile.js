@@ -111,7 +111,6 @@ document.querySelector('form').addEventListener('submit', function(event) {
       localStorage.setItem('email', email);
       localStorage.setItem('celular', celular);
   
-      // Mensaje de éxito
     } 
   });
   // Seleccionar elementos del DOM
