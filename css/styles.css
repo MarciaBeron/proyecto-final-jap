@@ -1654,3 +1654,145 @@ input:focus{
 #remove-picture:hover{
  background-color: var(--Moss-green);
 }
+
+.error-message {
+  color: red;
+  font-size: 0.875em;
+  display: block;
+  text-transform: uppercase;
+}
+
+/* Estilos para el modal */
+.modal {
+  display: none; /* Oculto por defecto */
+  position: fixed; /* Fijo encima del contenido */
+  z-index: 1; /* En la parte superior */
+  left: 0;
+  top: 0;
+  width: 100%; /* Ocupa toda la pantalla */
+  height: 100%; /* Ocupa toda la pantalla */
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+}
+
+/* Contenido del modal */
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto; /* Centrar el modal */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 400px; /* Limitar el ancho */
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón de cerrar (X) */
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Estilos del modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal-body h2 {
+  margin-top: 15px;
+  color: #28a745;
+}
+
+/* Animación del checkmark */
+.checkmark {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke: #28a745;
+  stroke-miterlimit: 10;
+  margin: 10px auto 20px;
+  box-shadow: inset 0px 0px 0px #28a745;
+  animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+}
+
+.checkmark-circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: #28a745;
+  fill: none;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark-stem {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) .7s forwards;
+}
+
+.checkmark-kick {
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) .9s forwards;
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes scale {
+  0%, 100% {
+    transform: none;
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes fill {
+  100% {
+    box-shadow: inset 0px 0px 0px 30px #28a745;
+  }
+}
