@@ -112,10 +112,38 @@ document.querySelector('form').addEventListener('submit', function(event) {
       localStorage.setItem('celular', celular);
   
       // Mensaje de éxito
-      alert('Datos guardados exitosamente');
-    } else {
-      // Mensaje de error si faltan campos obligatorios
-      alert('Por favor, completa los campos obligatorios: Primer nombre, Primer apellido y Correo electrónico.');
-    }
+    } 
   });
-  
+  // Seleccionar elementos del DOM
+const form = document.getElementById('myForm');
+const modal = document.getElementById('confirmationModal');
+const closeModal = document.querySelector('.close-btn');
+
+// Función para mostrar el modal
+function showModal() {
+  modal.style.display = 'flex'; // Mostrar el modal
+}
+
+// Función para cerrar el modal
+function closeModalWindow() {
+  modal.style.display = 'none'; // Ocultar el modal
+}
+
+// Escuchar el envío del formulario
+form.addEventListener('submit', function(event) {
+  event.preventDefault(); // Evitar que se envíe el formulario
+  // Mostrar el modal si el formulario es válido
+  if (form.checkValidity()) {
+    showModal();
+  }
+});
+
+// Cerrar el modal cuando se hace clic en la 'x'
+closeModal.addEventListener('click', closeModalWindow);
+
+// Cerrar el modal cuando se hace clic fuera del contenido
+window.addEventListener('click', function(event) {
+  if (event.target === modal) {
+    closeModalWindow();
+  }
+});
