@@ -128,7 +128,6 @@ function closeModalWindow() {
   modal.style.display = 'none'; // Ocultar el modal
 }
 
-// Escuchar el envío del formulario
 form.addEventListener('submit', function(event) {
   event.preventDefault(); // Evitar que se envíe el formulario
   // Mostrar el modal si el formulario es válido
