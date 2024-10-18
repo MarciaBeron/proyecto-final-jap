@@ -11,6 +11,8 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link rel="icon" href="/img/Favicon.png" type="image/x-icon">
+  <title>reCAPTCHA demo: Simple page</title>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -61,6 +63,9 @@
           <input type="email" name="email" placeholder="Usuario / E-mail" id="username" required>
           <input type="password" name="password" placeholder="Contraseña" id="password" required>
           <a href="forgot-password.html" class="forgot-password">Recuperar contraseña</a>
+          <form action="?" method="POST">
+            <div class="g-recaptcha" data-sitekey="your_site_key"></div>
+          </form>
           <button type="submit">ingresar</button>
       </form>
     </div>

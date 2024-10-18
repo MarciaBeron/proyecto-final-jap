@@ -1,4 +1,3 @@
-
 function validateForm() {
   var email = document.getElementById("username").value;
   var password = document.getElementById("password").value;
@@ -12,6 +11,12 @@ function validateForm() {
   }
 
 }
+
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // Para revenir el envío por defecto
+  validateForm();  // Llama a la función que valida el formulario y guarda el email
+});
+
 
 document.addEventListener("DOMContentLoaded", function(){
 
