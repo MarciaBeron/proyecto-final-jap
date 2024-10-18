@@ -55,11 +55,31 @@ const imageSizeLimit = 4 * 1024 * 1024;
 
 // CARGA DE IMAGEN DESDE LOCALSTORAGE O PREDETERMINADA
 window.addEventListener('DOMContentLoaded', () => {
-    const profilePicture = document.getElementById('profile-picture');
-    const savedImage = localStorage.getItem('profileImage');
-    
-    profilePicture.src = savedImage || 'img/default-profile.png';
+  const profilePicture = document.getElementById('profile-picture');
+  const savedImage = localStorage.getItem('profileImage');
+  
+  profilePicture.src = savedImage || 'img/default-profile.png';
+  
+  // MANTENER EMAIL DEL USUARIO Y LIMPIAR OTROS CAMPOS
+  const emailField = document.getElementById('email');
+  const savedEmail = localStorage.getItem('user');
+  
+  // Limpieza de los demás campos
+  document.getElementById('primer-nombre').value = '';
+  document.getElementById('segundo-nombre').value = '';
+  document.getElementById('primer-apellido').value = '';
+  document.getElementById('segundo-apellido').value = '';
+  document.getElementById('celular').value = '';
+  
+  // Prellenar el campo de email si hay un usuario logueado
+  if (savedEmail) {
+      emailField.value = savedEmail;
+  } else {
+      // Redirigir a login si no hay usuario logueado
+      window.location.href = 'login.html';
+  }
 });
+
 
 // CARGA DE UNA NUEVA IMAGEN
 document.getElementById('upload').addEventListener('change', (event) => {
