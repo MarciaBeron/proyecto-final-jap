@@ -134,7 +134,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function displayProductInfo(product) {
         const productInfoContainer = document.getElementById('product-info');
-        const productForm = document.getElementById('product-form');
         let htmlContent = `
             <div class="product-detail">
                 <h2>${product.name}</h2>

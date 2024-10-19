@@ -29,7 +29,18 @@ body {
   margin: 0; 
   height:100%
 }
-
+body.dark{
+  background-image: url(../img/modo-oscuro.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  font-family: var(--font);
+  display: flex; 
+  flex-direction: column;
+  margin: 0; 
+  height:100%
+}
 /* Inicio Scrollbar */
 body::-webkit-scrollbar{
   width: 8px;
@@ -41,10 +52,67 @@ body::-webkit-scrollbar-thumb{
 }
 /* Fin Scrollbar */
 
+/* comienzo switch claro-oscuro */
+.switch-box{
+	display: flex;
+}
+.toggle-switch{
+  width: 100px;
+  height: 45px;
+  position: relative;
+}
+input[type="checkbox"].switch_3{
+  appearance: none;
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+width: 80%;
+height: 80%;
+cursor: pointer;
+outline: 0;
+z-index: 1;
+border: none;
+}
+input[type="checkbox"].switch_3:checked + svg.checkbox .is_unchecked{
+opacity: 1;
+  transform: translateX(0) rotate(0deg);
+}
+input[type="checkbox"].switch_3:checked + svg.checkbox .is_checked{
+opacity: 0;
+  transform: translateX(-200%) rotate(180deg);
+}
+svg.checkbox{
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+/*width: 80%;
+height: 80%;*/
+}
+svg.checkbox .is_unchecked{
+opacity: 1;
+fill: #fff;
+  transform-origin: 50% 50%;
+  transform: translateX(200%) rotate(45deg);
+transition: all .35s;
+}
+svg.checkbox .is_checked{
+opacity: 1;
+fill: yellow;
+  transform-origin: 50% 50%;
+  transform: translateX(0) rotate(0deg);
+transition: all .35s;
+}
+/* fin switch claro-oscuro */
 main {
   flex: auto; 
   padding: 20px; 
-  box-sizing: border-box; 
+  box-sizing: border-box;
+  min-height: calc(100vh - 210px);
+  margin-top: 5%; 
 }
 
 /* por ahora afuera (Agus)
@@ -186,7 +254,10 @@ main {
 .jumbotron .display-4 {
   font-weight: bold;
 }
-
+.jumbotron.text-center{
+  background-color: rgba(219, 232, 195, 0.5);
+  border-radius: 50px;
+}
 nav a{
   text-decoration: none;
 }
@@ -221,8 +292,8 @@ nav a{
 
 @media (min-width: 768px) {
   .jumbotron {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    padding-top: 14rem;
+    padding-bottom: 7rem;
   }
 }
 
@@ -392,10 +463,6 @@ footer a{
   display: none;
 }
 
-main {
-  min-height: calc(100vh - 210px);
-}
-
 a.custom-card,
 a.custom-card:hover {
   color: inherit;
@@ -413,6 +480,8 @@ a.custom-card:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: fixed;
+  z-index: 1;
 }
 
 .header nav {
@@ -1365,7 +1434,9 @@ h1::after {
   background-color: var(--Moss-green);
   color: white;
 }
-
+button.dark{
+  background-color: rgba(219, 232, 195, 0.5);
+}
 /* Estilo del select */
 #select-score {
   background-color: var(--Moss-green); 
@@ -1588,7 +1659,10 @@ text-align: center;
   margin: 0 auto 40px auto;
   position: relative;
   top: 10px;
+}
 
+.form-container.dark{
+  background-color: rgba(219, 232, 195, 0.5);
 }
 
 form{
@@ -1640,6 +1714,7 @@ input:focus{
 
 .remove-container{
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-bottom: 30px;
