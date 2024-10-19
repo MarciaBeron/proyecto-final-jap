@@ -1180,7 +1180,7 @@ h1::after {
 }
 
 /* Inicio Ícono Favorito */
-#favorite-icon {\ margin-left: auto; 
+#favorite-icon {margin-left: auto; 
   cursor: pointer;
   font-size: 24px;
   color: #f00;
