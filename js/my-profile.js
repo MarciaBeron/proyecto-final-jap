@@ -78,6 +78,7 @@ window.addEventListener('DOMContentLoaded', () => {
       // Redirigir a login si no hay usuario logueado
       window.location.href = 'login.html';
   }
+
 });
 
 
@@ -109,6 +110,7 @@ document.getElementById('remove-picture').addEventListener('click', () => {
     document.getElementById('profile-picture').src = 'img/default-profile.png';
     localStorage.removeItem('profileImage');
 });
+
 
 document.querySelector('form').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevenir el envío por defecto

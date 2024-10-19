@@ -27,25 +27,21 @@ function displayForm() {
         const commentText = document.getElementById('write-comment').value;
         const scoreValue = document.getElementById('select-score').value;
         const username = localStorage.getItem('user') || "Usuario Anónimo";
-        // Create a comment object
         const newComment = {
             description: commentText,
             score: scoreValue,
-            user: username, // You can replace this with actual user info if available
-            dateTime: new Date().toLocaleString() // Format the date/time as needed
+            user: username,
+            dateTime: new Date().toLocaleString()
         };
-        // Get the current product ID
+
         const productId = localStorage.getItem('selectedProductID');
-        // Save comment to localStorage
         const storedComments = localStorage.getItem(`productComments_${productId}`);
         const localComments = storedComments ? JSON.parse(storedComments) : [];
         localComments.push(newComment);
         localStorage.setItem(`productComments_${productId}`, JSON.stringify(localComments));
 
-        // Display the new comment immediately
-        displayProductComments([...localComments, ...comments]);
+        displayProductComments([localComments]);
 
-        // Clear the form
         commentForm.reset();
     });
 }
@@ -138,7 +134,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function displayProductInfo(product) {
         const productInfoContainer = document.getElementById('product-info');
-        const productForm = document.getElementById('product-form');
         let htmlContent = `
             <div class="product-detail">
                 <h2>${product.name}</h2>
@@ -181,14 +176,9 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch(url)
         .then(response => response.json())
         .then(apiComments => {
-            // Load existing comments from localStorage
             const storedComments = localStorage.getItem(`productComments_${productId}`);
             const localComments = storedComments ? JSON.parse(storedComments) : [];
-
-            // Combine API comments with local comments
             comments = [...apiComments, ...localComments];
-
-            // Display all comments
             displayProductComments(comments);
             updateCommentsButton(comments.length);
         })
