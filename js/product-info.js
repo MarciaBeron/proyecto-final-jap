@@ -1,4 +1,5 @@
 const productForm = document.getElementById('product-form');
+const productId = localStorage.getItem('selectedProductID');
 let comments = [];
 function displayForm() {
     let htmlContent = `
@@ -57,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(url)
         .then(response => response.json())
         .then(data => {
+            localStorage.setItem('selectedProduct', JSON.stringify(data))
             updatePageTitle(data.name);
             displayProductImages(data.images);
             displayProductInfo(data);
@@ -349,43 +351,35 @@ function logout() {
 
   // Función para agregar al carrito sin redirección
 async function addToCart(event) {
-    event.preventDefault(); // Previene cualquier comportamiento por defecto
-
+    event.preventDefault(); 
     try {
-        // Obtener el ID del producto de la URL
-        const params = new URLSearchParams(window.location.search);
-        const productId = params.get('id');
-        
-        // Obtener el producto actual del localStorage o de donde esté almacenado
-        const currentProduct = JSON.parse(localStorage.getItem('currentProduct'));
-        
+        // Obtener el producto actual del localStorage
+        const currentProduct = JSON.parse(localStorage.getItem('selectedProduct'));
         if (!currentProduct) {
             throw new Error('Producto no encontrado');
         }
 
-        // Obtener el carrito actual del localStorage
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        
         // Verificar si el producto ya está en el carrito
         const existingProductIndex = cart.findIndex(item => item.id === currentProduct.id);
-        
         if (existingProductIndex >= 0) {
             // Si el producto ya está en el carrito, incrementar la cantidad
-            cart[existingProductIndex].count = (cart[existingProductIndex].count || 1) + 1;
+            cart[existingProductIndex].count = (cart[existingProductIndex].count) + 1;
         } else {
             // Si el producto no está en el carrito, agregarlo con count = 1
             cart.push({
-                ...currentProduct,
+                image: currentProduct.images[0],
+                id: currentProduct.id,
+                name: currentProduct.name,
+                currency: currentProduct.currency,
+                price: currentProduct.cost,
                 count: 1
             });
         }
-        
         // Guardar el carrito actualizado
         localStorage.setItem('cart', JSON.stringify(cart));
-        
         // Mostrar mensaje de éxito
         showSuccessMessage('Producto agregado al carrito');
-        
     } catch (error) {
         console.error('Error al agregar al carrito:', error);
         showErrorMessage('Error al agregar al carrito');
@@ -394,9 +388,7 @@ async function addToCart(event) {
 
 // Función para comprar ahora (redirección al carrito)
 function buyNow() {
-    // Primero agregamos al carrito
     addToCart(new Event('click')).then(() => {
-        // Luego redirigimos a la página del carrito
         window.location.href = 'cart.html';
     });
 }
