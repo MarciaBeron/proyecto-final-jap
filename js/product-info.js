@@ -345,3 +345,123 @@ function logout() {
   } else {
     window.location.href = "login.html";
   }
+
+
+  // Función para agregar al carrito sin redirección
+async function addToCart(event) {
+    event.preventDefault(); // Previene cualquier comportamiento por defecto
+
+    try {
+        // Obtener el ID del producto de la URL
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get('id');
+        
+        // Obtener el producto actual del localStorage o de donde esté almacenado
+        const currentProduct = JSON.parse(localStorage.getItem('currentProduct'));
+        
+        if (!currentProduct) {
+            throw new Error('Producto no encontrado');
+        }
+
+        // Obtener el carrito actual del localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        // Verificar si el producto ya está en el carrito
+        const existingProductIndex = cart.findIndex(item => item.id === currentProduct.id);
+        
+        if (existingProductIndex >= 0) {
+            // Si el producto ya está en el carrito, incrementar la cantidad
+            cart[existingProductIndex].count = (cart[existingProductIndex].count || 1) + 1;
+        } else {
+            // Si el producto no está en el carrito, agregarlo con count = 1
+            cart.push({
+                ...currentProduct,
+                count: 1
+            });
+        }
+        
+        // Guardar el carrito actualizado
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        // Mostrar mensaje de éxito
+        showSuccessMessage('Producto agregado al carrito');
+        
+    } catch (error) {
+        console.error('Error al agregar al carrito:', error);
+        showErrorMessage('Error al agregar al carrito');
+    }
+}
+
+// Función para comprar ahora (redirección al carrito)
+function buyNow() {
+    // Primero agregamos al carrito
+    addToCart(new Event('click')).then(() => {
+        // Luego redirigimos a la página del carrito
+        window.location.href = 'cart.html';
+    });
+}
+
+// Función para mostrar mensaje de éxito
+function showSuccessMessage(message) {
+    // Crear el elemento del mensaje
+    const messageDiv = document.createElement('div');
+    messageDiv.textContent = message;
+    messageDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: var(--Matcha);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 5px;
+        z-index: 1000;
+        animation: fadeIn 0.3s, fadeOut 0.3s 2.7s;
+    `;
+
+    // Agregar estilos de animación
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-20px); }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Agregar el mensaje al DOM
+    document.body.appendChild(messageDiv);
+
+    // Eliminar el mensaje después de 3 segundos
+    setTimeout(() => {
+        messageDiv.remove();
+        style.remove();
+    }, 3000);
+}
+
+// Función para mostrar mensaje de error
+function showErrorMessage(message) {
+    // Similar a showSuccessMessage pero con estilo diferente
+    const messageDiv = document.createElement('div');
+    messageDiv.textContent = message;
+    messageDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #ff4444;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 5px;
+        z-index: 1000;
+        animation: fadeIn 0.3s, fadeOut 0.3s 2.7s;
+    `;
+
+    document.body.appendChild(messageDiv);
+    
+    setTimeout(() => {
+        messageDiv.remove();
+    }, 3000);
+}
