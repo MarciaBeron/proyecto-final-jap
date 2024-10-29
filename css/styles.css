@@ -1165,6 +1165,47 @@ h1::after {
 }
 /* Fin del estilo del select */
 
+/* Contenedor para los botones */
+.product-buttons {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+/* Estilos base para ambos botones */
+.product-btn {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Estilo específico para el botón de agregar al carrito */
+.add-cart-btn {
+  background-color: var(--Matcha);
+  color: var(--Black);
+}
+
+.add-cart-btn:hover {
+  background-color: var(--Moss-green);
+  color: var(--Milkshake);
+}
+
+/* Estilo específico para el botón de comprar */
+.buy-btn {
+  background-color: var(--Matcha);
+  color: var(--Black);
+}
+
+.buy-btn:hover {
+  background-color:var(--Moss-green);
+  color: var(--Milkshake);
+}
+
 /* Responsividad */
 @media (max-width: 768px) {
   .product-details-container {
