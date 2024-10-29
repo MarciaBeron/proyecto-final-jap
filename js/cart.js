@@ -49,3 +49,31 @@ function logout() {
   } else {
     window.location.href = "login.html";
   }
+
+  //logica del carrito
+  document.addEventListener('DOMContentLoaded', () => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartContainer = document.getElementById('chosen-products');
+    const cartSummary = document.getElementById('payment');
+
+    if (cart.length === 0) {
+        cartContainer.innerHTML = '<p>El carrito está vacío.</p>';
+        return;
+    }
+
+    cart.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.classList.add('cart-item');
+        
+        itemElement.innerHTML = `
+              <img src="${item.image}" alt="${item.name}" />
+            <div>
+              <h3>${item.name}</h3>
+              <p>Precio: $${item.currency} ${item.price}</p>
+              <p>Cantidad: ${item.count}</p>
+            </div>
+        `;
+        
+        cartContainer.appendChild(itemElement);
+    });
+});
