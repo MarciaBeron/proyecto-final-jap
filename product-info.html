@@ -65,7 +65,10 @@
           <button id="show-form" class="btn" onclick="displayForm()">Dejá tu comentario</button>
           <i id="favorite-icon" class="bi bi-heart" onclick="toggleFavorite('id-del-producto')"></i>
         </div>
-        <button id="add-cart" class="btn">Agregar al Carrito</button>
+        <div class="product-buttons">
+          <button id="add-cart" class="product-btn add-cart-btn" onclick="addToCart(event)">Agregar al carrito</button>
+          <button id="buy-now" class="product-btn buy-btn" onclick="buyNow()">Comprar ahora</button>
+        </div>
         </br>
         <div id="product-info" class="product-info" style="display: none;"></div>
         <div id="product-comments" class="product-comments" style="display: none;"></div>
@@ -103,6 +106,7 @@
   <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>
   <script src="js/toggle.js"></script>
+  <script src="js/dark-theme.js"></script>
 
 </body>
 

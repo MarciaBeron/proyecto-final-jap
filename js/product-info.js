@@ -1,4 +1,5 @@
 const productForm = document.getElementById('product-form');
+const productId = localStorage.getItem('selectedProductID');
 let comments = [];
 function displayForm() {
     let htmlContent = `
@@ -27,25 +28,21 @@ function displayForm() {
         const commentText = document.getElementById('write-comment').value;
         const scoreValue = document.getElementById('select-score').value;
         const username = localStorage.getItem('user') || "Usuario Anónimo";
-        // Create a comment object
         const newComment = {
             description: commentText,
             score: scoreValue,
-            user: username, // You can replace this with actual user info if available
-            dateTime: new Date().toLocaleString() // Format the date/time as needed
+            user: username,
+            dateTime: new Date().toLocaleString()
         };
-        // Get the current product ID
+
         const productId = localStorage.getItem('selectedProductID');
-        // Save comment to localStorage
         const storedComments = localStorage.getItem(`productComments_${productId}`);
         const localComments = storedComments ? JSON.parse(storedComments) : [];
         localComments.push(newComment);
         localStorage.setItem(`productComments_${productId}`, JSON.stringify(localComments));
 
-        // Display the new comment immediately
-        displayProductComments([...localComments, ...comments]);
+        displayProductComments([localComments]);
 
-        // Clear the form
         commentForm.reset();
     });
 }
@@ -61,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(url)
         .then(response => response.json())
         .then(data => {
+            localStorage.setItem('selectedProduct', JSON.stringify(data))
             updatePageTitle(data.name);
             displayProductImages(data.images);
             displayProductInfo(data);
@@ -138,7 +136,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function displayProductInfo(product) {
         const productInfoContainer = document.getElementById('product-info');
-        const productForm = document.getElementById('product-form');
         let htmlContent = `
             <div class="product-detail">
                 <h2>${product.name}</h2>
@@ -181,14 +178,9 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch(url)
         .then(response => response.json())
         .then(apiComments => {
-            // Load existing comments from localStorage
             const storedComments = localStorage.getItem(`productComments_${productId}`);
             const localComments = storedComments ? JSON.parse(storedComments) : [];
-
-            // Combine API comments with local comments
             comments = [...apiComments, ...localComments];
-
-            // Display all comments
             displayProductComments(comments);
             updateCommentsButton(comments.length);
         })
@@ -355,3 +347,113 @@ function logout() {
   } else {
     window.location.href = "login.html";
   }
+
+
+  // Función para agregar al carrito sin redirección
+async function addToCart(event) {
+    event.preventDefault(); 
+    try {
+        // Obtener el producto actual del localStorage
+        const currentProduct = JSON.parse(localStorage.getItem('selectedProduct'));
+        if (!currentProduct) {
+            throw new Error('Producto no encontrado');
+        }
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        // Verificar si el producto ya está en el carrito
+        const existingProductIndex = cart.findIndex(item => item.id === currentProduct.id);
+        if (existingProductIndex >= 0) {
+            // Si el producto ya está en el carrito, incrementar la cantidad
+            cart[existingProductIndex].count = (cart[existingProductIndex].count) + 1;
+        } else {
+            // Si el producto no está en el carrito, agregarlo con count = 1
+            cart.push({
+                image: currentProduct.images[0],
+                id: currentProduct.id,
+                name: currentProduct.name,
+                currency: currentProduct.currency,
+                price: currentProduct.cost,
+                count: 1
+            });
+        }
+        // Guardar el carrito actualizado
+        localStorage.setItem('cart', JSON.stringify(cart));
+        // Mostrar mensaje de éxito
+        showSuccessMessage('Producto agregado al carrito');
+    } catch (error) {
+        console.error('Error al agregar al carrito:', error);
+        showErrorMessage('Error al agregar al carrito');
+    }
+}
+
+// Función para comprar ahora (redirección al carrito)
+function buyNow() {
+    addToCart(new Event('click')).then(() => {
+        window.location.href = 'cart.html';
+    });
+}
+
+// Función para mostrar mensaje de éxito
+function showSuccessMessage(message) {
+    // Crear el elemento del mensaje
+    const messageDiv = document.createElement('div');
+    messageDiv.textContent = message;
+    messageDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: var(--Matcha);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 5px;
+        z-index: 1000;
+        animation: fadeIn 0.3s, fadeOut 0.3s 2.7s;
+    `;
+
+    // Agregar estilos de animación
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-20px); }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Agregar el mensaje al DOM
+    document.body.appendChild(messageDiv);
+
+    // Eliminar el mensaje después de 3 segundos
+    setTimeout(() => {
+        messageDiv.remove();
+        style.remove();
+    }, 3000);
+}
+
+// Función para mostrar mensaje de error
+function showErrorMessage(message) {
+    // Similar a showSuccessMessage pero con estilo diferente
+    const messageDiv = document.createElement('div');
+    messageDiv.textContent = message;
+    messageDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #ff4444;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 5px;
+        z-index: 1000;
+        animation: fadeIn 0.3s, fadeOut 0.3s 2.7s;
+    `;
+
+    document.body.appendChild(messageDiv);
+    
+    setTimeout(() => {
+        messageDiv.remove();
+    }, 3000);
+}
