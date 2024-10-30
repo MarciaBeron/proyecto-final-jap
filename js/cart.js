@@ -49,3 +49,15 @@ function logout() {
   } else {
     window.location.href = "login.html";
   }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const cantidadInput = document.getElementById('cantidad');
+    const precioUnitario = 100; // Cambia esto por el precio real del producto
+    const subtotalElement = document.getElementById('subtotal');
+
+    cantidadInput.addEventListener('input', function() {
+        const cantidad = parseInt(cantidadInput.value) || 0; // Obtiene la cantidad
+        const subtotal = precioUnitario * cantidad; // Calcula el subtotal
+        subtotalElement.textContent = `$${subtotal}`; // Actualiza el subtotal en el HTML
+    });
+});
