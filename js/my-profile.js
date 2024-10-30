@@ -106,6 +106,7 @@ document.getElementById('celular').value = localStorage.getItem('celular') || ''
 
 // FUNCIÓN PARA GUARDAR INPUTS EN LOCALSTORAGE
 document.querySelector('form').addEventListener('submit', function(event) {
+
 event.preventDefault();
 const primerNombre = document.getElementById('primer-nombre').value;
 const segundoNombre = document.getElementById('segundo-nombre').value;
@@ -134,6 +135,18 @@ modal.style.display = 'flex';
 function closeModalWindow() {
 modal.style.display = 'none';
 }
+
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault(); // Evitar que se envíe el formulario
+  // Mostrar el modal si el formulario es válido
+  if (form.checkValidity()) {
+    showModal();
+  }
+});
+
+// Cerrar el modal cuando se hace clic en la 'x'
+
 closeModal.addEventListener('click', closeModalWindow);
 window.addEventListener('click', function(event) {
 if (event.target === modal) {
