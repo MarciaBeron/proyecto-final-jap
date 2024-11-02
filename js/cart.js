@@ -30,8 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
         <div>
             <h3>${item.name}</h3>
             <p class="price">Precio: ${item.currency} ${(item.price * item.count)}</p>
-            <label for="quantity">Cantidad:</label>
+          <div>  
             <input type="number" class="quantity" value="${item.count}" min="1">
+        </div>
         </div>
         <i class="bi bi-trash" style="cursor: pointer;"></i>
     `;

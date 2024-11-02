@@ -1592,31 +1592,188 @@ input:focus{
   stroke-dashoffset: 30;
   animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) .9s forwards;
 }
-.cart-container{
+
+/*CARRITO*/
+.main-container {
+  display: flex; /* Utiliza flexbox para alinear los elementos horizontalmente */
+  align-items: flex-start; /* Alinea verticalmente los elementos al inicio */
+  gap: 1rem; /* Espacio entre los contenedores */
+  padding: 1rem; /* Espaciado interno del contenedor principal */
+}
+
+.cart-conteiner{
+  display: flex; /* Distribuir espacio entre los elementos */
+  align-items: center; /* Alinear verticalmente al centro */
+  border-radius: 8px; /* Mantener el radio de borde */
+  border: 2px solid var(--Milkshake);
+  flex: 1; /* Incrementa el tamaño relativo para que sea más grande */
+  padding: 1rem; /* Aumenta el padding para dar más espacio interno */
+  width: 100%; /* Incrementa el ancho máximo */
+  margin: 1rem;
+}
+  
+#chosen-products {
+  background-color: #f4e2e17d; /* Color de fondo */
+  color: var(--Moss-green); /* Color de texto */
+  border: 2px solid var(--Moss-green); /* Borde */
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-around;
-  align-content: center;
+  flex-direction: column; /* Mantiene el contenido en columnas internas */
+  border-radius: 1rem; /* Bordes redondeados */
+  padding: 1rem; /* Espaciado interno */
+  width: 100%; /* Ajusta el ancho según sea necesario */
+  max-width: 100%; /* Asegura que no exceda el ancho del contenedor */
+  margin-bottom: 2rem;
 }
-.cart-container div{
-  background-color: rgba(255, 255, 255, 0.444);
-  border-radius: 13px;
-  border-style: solid;
-  border-color: var(--Milkshake);
-}
-.cart-item{
+
+#chosen-products > div {
   display: flex;
-  flex-direction: row;
-  border-style: none;
+  flex-direction: row; /* Distribuye en fila */
+  justify-content: space-between; /* Espacio entre los elementos de la fila */
+  align-items: center;
+  width: 90%; /* Cada fila ocupa el ancho completo del contenedor */
+  gap: 1rem;
+  padding: 1rem;
 }
-.cart-item div{
-  border-style: none;
-  width: auto;
+
+#chosen-products img {
+  background-color: var(--Moss-green);
+  border-radius: 1rem;
+  padding: 0.1rem;
+  margin-left: 1.5rem;
+  width: 30%;
+  height: auto;
 }
-.cart-item img{
-  width: 25%;
+
+#chosen-products > div > div {
+  display: flex;
+  flex-direction: column; /* Cambia a columna para el contenido textual */
+  flex: 1; /* Permite que el contenido ocupe el espacio restante */
+  border: 0.1rem solid var(--Moss-green);
+  border-radius: 1rem;
+  background-color: #334d4226;
+  align-items: flex; /* Alinea el contenido a la derecha */
+  justify-content: center; /* Centra verticalmente el contenido */
+  padding: 0;
+  width: 50%;
+  height: 9rem;
 }
+
+#chosen-products h3 {
+  font-size: 2rem;
+  margin-top: 1rem; /* Quita márgenes para evitar separación indeseada */
+  margin-left: 1rem;
+  align-items: center;
+}
+
+#chosen-products > p{
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  align-items: center;
+  max-width: 50%;
+  width: 50%;
+  margin: 2rem auto;
+}
+
+#chosen-products .price {
+  font-size: 1.5rem;
+  margin: 0; /* Quita márgenes para evitar separación indeseada */
+  margin-left: 1rem;
+  align-items: center;
+}
+
+#chosen-products > div > div > div {
+  flex: 1; /* Permite que los elementos hijos también ocupen espacio igual */
+  display: flex; /* Asegura que los elementos dentro de este div se alineen */
+  justify-content: flex-end; /* Alinea horizontalmente el contenido a la derecha */
+  align-items: center; /* Alinea los elementos verticalmente al centro */
+}
+
+#chosen-products > div > div > div > input {
+  background-color: transparent;
+  border: 0.1rem solid var(--Moss-green);
+  width: 3rem; /* Mantén el mismo ancho para todos los inputs */
+  height: 1rem; /* Establece la misma altura que el label */
+  color: var(--Moss-green);
+  margin: 1rem; /* Elimina márgenes innecesarios y reduce el espacio entre inputs */
+  text-align: center;
+  align-self: center; /* Alinea el input al centro del contenedor flex */
+}
+
+#chosen-products > div > i{
+  color: var(--Tangerine);
+  font-size: 1.5rem;
+  margin-right: 0;
+}
+
+#payment {
+  background-color: #f4e2e17d; /* Color de fondo */
+  color: var(--Moss-green); /* Color de texto */
+  border: 2px solid var(--Moss-green); /* Borde */
+  display: flex;
+  flex-direction: column; /* Apilar en filas para el contenido interno */
+  align-items:center; /* Centra horizontalmente el contenido */
+  border-radius: 1rem; /* Bordes redondeados */
+  padding: 1rem; /* Espaciado interno */
+  width: 30%;
+  max-width: 50%; /* Ajusta el ancho según sea necesario */
+  margin: 0; /* Elimina márgenes innecesarios */
+}
+
+#total-products{
+  text-align: left;
+  color: var(--Moss-green);
+  margin-bottom: 2rem;
+}
+
+#subtotal-uyu{
+  text-align: left;
+  color: var(--Moss-green);
+  margin-bottom: 0.5rem;
+}
+
+#subtotal-usd{
+  text-align: left;
+  color: var(--Moss-green);
+  margin-bottom: 3rem;
+}
+
+#final-total{
+  font-size: 2rem;
+  text-align: left;
+  color: var(--Moss-green);
+  margin-bottom: 3rem;
+}
+
+#currencySelector{
+  font-size: 1rem;
+  color: var(--Moss-green);
+  background-color: #f7c2bc6f;
+  border: 0.1rem solid var(--Moss-green);
+  border-radius: 2rem;
+  width: 70%;
+}
+
+#payment > div{
+  display: flex;           
+  flex-direction: column;   
+  align-items: center;        
+  justify-content: center;     
+  gap: 0.5rem;    
+                  
+}             
+
+#to-pay, #keep-buying {
+  font-size: 1.3rem;
+  color: var(--Moss-green);
+  background-color: var(--Matcha);
+  border: 0.1rem solid var(--Moss-green);
+  border-radius: 2rem;
+  padding: 0.1rem 0.2rem;
+  margin: 0 auto;        /* Espaciado interno para un mejor aspecto */
+  margin-bottom: 0.5rem;
+}
+
+
 @keyframes stroke {
   100% {
       stroke-dashoffset: 0;
