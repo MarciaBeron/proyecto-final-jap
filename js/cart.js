@@ -121,33 +121,104 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  function updateTotals() {
-    total = 0;
-    subtotalUYU = 0;
-    subtotalUSD = 0;
-    productsQuantity = 0; 
+  const changeAPI = 'https://api.cambio-uruguay.com';
 
-    cart.forEach((item, i) => {
-      const quantity = parseInt(document.querySelectorAll('.quantity')[i].value) || 0;
-      const price = item.price;
+  async function fetchExchangeRates() {
+      try {
+          const response = await fetch(changeAPI);
+          const data = await response.json();
+          const usdRates = data.find(key => key.origin === 'brou' && key.type === '' && key.code === 'USD');
 
-      const itemTotal = price * quantity;
-      total += itemTotal;
-
-      if (item.currency === 'UYU') {
-        subtotalUYU += itemTotal;
-      } else if (item.currency === 'USD') {
-        subtotalUSD += itemTotal;
+          return {
+              uyudollar: usdRates.sell, 
+              dollaruuy: usdRates.sell 
+          };
+      } catch (error) {
+          console.error('Error fetching data:', error);
+          return null;
       }
-
-      productsQuantity += quantity; 
+  }
+  
+  async function updateTotals() {
+      const exchangeData = await fetchExchangeRates();
+      if (!exchangeData) return;
+  
+      const exchangeRateUYUtoUSD = exchangeData.uyudollar;
+      const exchangeRateUSDtoUYU = exchangeData.dollaruuy;
+  
+      let total = 0;
+      let subtotalUYU = 0;
+      let subtotalUSD = 0;
+      let productsQuantity = 0;
+  
+      cart.forEach((item, i) => {
+          const quantity = parseInt(document.querySelectorAll('.quantity')[i].value) || 0;
+          const price = item.price;
+  
+          const itemTotal = price * quantity;
+          total += itemTotal;
+  
+          if (item.currency === 'UYU') {
+              subtotalUYU += itemTotal;
+          } else if (item.currency === 'USD') {
+              subtotalUSD += itemTotal;
+          }
+  
+          productsQuantity += quantity; 
+      });
+  
+      const totalInUSD = subtotalUYU / exchangeRateUYUtoUSD + subtotalUSD;
+      const totalInUYU = subtotalUSD * exchangeRateUSDtoUYU + subtotalUYU;
+  
+      totalPriceElement.innerHTML = `Total: 
+      <select id="currencySelector">
+          <option value"currency">Moneda</option>
+          <option value="UYU">UYU</option>
+          <option value="USD">USD</option>
+      </select>`;
+  
+      subtotalUYUElement.textContent = `Subtotal UYU: ${subtotalUYU.toFixed(2)}`;
+      subtotalUSDElement.textContent = `Subtotal USD: ${subtotalUSD.toFixed(2)}`;
+      totalProducts.textContent = `Cantidad de productos: ${productsQuantity}`;
+  
+      function updateTotalDisplay(selectedCurrency) {
+        if (selectedCurrency === 'USD') {
+            totalPriceElement.innerHTML = `Total: 
+            <select id="currencySelector">
+                <option value"currency">Moneda</option>
+                <option value="UYU">UYU</option>
+                <option value="USD" selected>USD</option>
+            </select> ${totalInUSD.toFixed(2)}`;
+        } else if(selectedCurrency === 'UYU') {
+            totalPriceElement.innerHTML = `Total: 
+            <select id="currencySelector">
+                <option value"currency">Moneda</option>
+                <option value="UYU" selected>UYU</option>
+                <option value="USD">USD</option>
+            </select> ${totalInUYU.toFixed(2)}`;
+        } else {
+          totalPriceElement.innerHTML = `Total: 
+          <select id="currencySelector">
+              <option value"currency">Moneda</option>
+              <option value="UYU">UYU</option>
+              <option value="USD">USD</option>
+          </select>`;
+        }
+    
+        document.getElementById('currencySelector').addEventListener('change', function() {
+            updateTotalDisplay(this.value);
+        });
+    }
+    
+    document.getElementById('currencySelector').addEventListener('change', function() {
+        updateTotalDisplay(this.value);
     });
-
-    totalPriceElement.textContent = `Total General: ${subtotalUYU + subtotalUSD}`;
-    subtotalUYUElement.textContent = `Subtotal UYU: ${subtotalUYU}`;
-    subtotalUSDElement.textContent = `Subtotal USD: ${subtotalUSD}`;
-    totalProducts.textContent = `Cantidad de productos: ${productsQuantity}`; 
   }
 
   updateTotals();
+  
+  document.getElementById('keep-buying').addEventListener('click', function() {
+    window.location.href = 'categories.html'
+  })
+
 });
