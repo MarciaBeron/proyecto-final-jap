@@ -1792,3 +1792,9 @@ input:focus{
       box-shadow: inset 0px 0px 0px 30px #28a745;
  }
 }
+ /* Badge del carrito */
+#cart-badge {
+  font-size: 0.75rem;
+  background-color: var(--Tangerine);
+  color: var(--Moss-green);
+}
