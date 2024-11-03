@@ -326,12 +326,22 @@ async function addToCart(event) {
         }
         // Guardar el carrito actualizado
         localStorage.setItem('cart', JSON.stringify(cart));
+        //Actualizar badge del carrito
+        updateCartBadge();
         // Mostrar mensaje de éxito
         showSuccessMessage('Producto agregado al carrito');
     } catch (error) {
         console.error('Error al agregar al carrito:', error);
         showErrorMessage('Error al agregar al carrito');
     }
+}
+
+// Función para actualizar el numero en el badge del carrito
+function updateCartBadge() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const badge = document.getElementById('cart-badge');
+    const totalItems = cart.reduce((acc, item) => acc + item.count, 0);
+    badge.textContent = totalItems > 0 ? totalItems : '';
 }
 
 // Función para comprar ahora (redirección al carrito)
@@ -405,3 +415,7 @@ function showErrorMessage(message) {
         messageDiv.remove();
     }, 3000);
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartBadge();
+});
