@@ -1798,3 +1798,16 @@ input:focus{
   background-color: var(--Tangerine);
   color: var(--Moss-green);
 }
+ /* Tipo de envío y dirección */
+.shipping-and-address-container{
+  background-color: #f4e2e17d;
+  color: var(--Moss-green);
+  border: 2px solid #F4CFCF;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 2rem;
+}

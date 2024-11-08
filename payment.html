@@ -11,6 +11,10 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link rel="icon" href="/img/Favicon.png" type="image/x-icon">
+  <!-- Para que el mapa funcione: -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 </head>
 
 <body>
@@ -45,6 +49,59 @@
   </header>
 
   <main>
+    <section class="titulo">
+      <h1 id="page-title">Envío y Formas de Pago</h1>
+    </section>
+
+  <div class="shipping-and-address-container">
+    <div class="shipping-container">
+      <h2>TIPO DE ENVÍO</h2>
+      <form class="shipping-type" id="shippingType">
+        <label>
+          <input type="radio" name="shipment" value="premium">PREMIUM <br> DEMORA: 2 A 5 DÍAS <br> COSTO: 15%
+        </label>
+
+        <label>
+          <input type="radio" name="shipment" value="express">EXPRESS <br> DEMORA: 5 A 8 DÍAS <br> COSTO: 7%
+        </label>
+
+        <label>
+          <input type="radio" name="shipment" value="standard">STANDARD <br> DEMORA: 12 A 15 DÍAS <br> COSTO: 5%
+        </label>
+      </form>
+    </div>
+
+    <div class="address-containter">
+      <h2>DIRECCIÓN DE ENVÍO</h2>
+      <form class="address-form" id="addressForm">
+        <label for="user-address">Calle</label>
+        <input type="text" id="user-address" name="useraddress" required>
+
+        <label for="number">Número</label>
+        <input type="number" id="number" name="number" required>
+
+        <label for="apartment">Apartamento</label>
+        <input type="number" id="apartment" name="apartment">
+
+        <label for="corner">Esquina</label>
+        <input type="text" id="corner" name="corner" required>
+
+        <label for="department">Departamento</label>
+        <select id="department" name="department">
+          <option value="">Seleccione un departamento</option>
+        </select>
+
+        <label for="locality">Localidad</label>
+        <select id="locality" name="locality" disabled>
+          <option value="">Seleccione una localidad</option>
+        </select>
+
+        <button type="button" id="save-address" class="btn btn-primary">Aceptar</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="map" style="height: 400px; width: 100%;"></div>
 
   </main>
 
@@ -78,7 +135,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
-  <script src="payment.js"></script>
+  <script src="js/payment.js"></script>
   <script src="js/toggle.js"></script>
   <script src="js/dark-theme.js"></script>
 </body>
