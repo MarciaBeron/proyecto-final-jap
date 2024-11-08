@@ -14,6 +14,9 @@
   <!-- Para que el mapa funcione: -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<!-- Para los íconos -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
 </head>
 
@@ -52,24 +55,53 @@
     <section class="titulo">
       <h1 id="page-title">Envío y Formas de Pago</h1>
     </section>
-
-  <div class="shipping-and-address-container">
-    <div class="shipping-container">
-      <h2>TIPO DE ENVÍO</h2>
-      <form class="shipping-type" id="shippingType">
-        <label>
-          <input type="radio" name="shipment" value="premium">PREMIUM <br> DEMORA: 2 A 5 DÍAS <br> COSTO: 15%
-        </label>
-
-        <label>
-          <input type="radio" name="shipment" value="express">EXPRESS <br> DEMORA: 5 A 8 DÍAS <br> COSTO: 7%
-        </label>
-
-        <label>
-          <input type="radio" name="shipment" value="standard">STANDARD <br> DEMORA: 12 A 15 DÍAS <br> COSTO: 5%
-        </label>
-      </form>
+    <div class="shipping-and-address-container">
+      <div class="shipping-container">
+        <h2>TIPO DE ENVÍO</h2>
+        <form class="shipping-type" id="shippingType">
+          <label>
+            <input type="radio" name="shipment" value="premium" id="premium">
+            <span class="material-icons" id="premium-icon">check_box_outline_blank</span> PREMIUM 
+            <br> DEMORA: 2 A 5 DÍAS <br> COSTO: 15%
+          </label>
+    
+          <label>
+            <input type="radio" name="shipment" value="express" id="express">
+            <span class="material-icons" id="express-icon">check_box_outline_blank</span> EXPRESS 
+            <br> DEMORA: 5 A 8 DÍAS <br> COSTO: 7%
+          </label>
+    
+          <label>
+            <input type="radio" name="shipment" value="standard" id="standard">
+            <span class="material-icons" id="standard-icon">check_box_outline_blank</span> STANDARD 
+            <br> DEMORA: 12 A 15 DÍAS <br> COSTO: 5%
+          </label>
+        </form>
+      </div>
     </div>
+    
+    
+    
+  
+  <script>
+  document.querySelectorAll('input[type="radio"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+      // Restablecer todos los íconos
+      document.querySelectorAll('.material-icons').forEach(icon => {
+        icon.textContent = 'check_box_outline_blank'; // Devolver a cuadro vacío
+      });
+  
+      // Cambiar el ícono del radio seleccionado
+      const selectedIcon = document.getElementById(radio.value + '-icon');
+      selectedIcon.textContent = 'check_box'; // Cuadro con tic
+    });
+  });
+  </script>
+  </body>
+  
+  
+  
+  
 
     <div class="address-containter">
       <h2>DIRECCIÓN DE ENVÍO</h2>

@@ -1853,3 +1853,61 @@ input:focus{
   text-decoration: none;
   cursor: pointer;
 }
+
+.shipping-type {
+  display: flex;
+  flex-direction: row; /* Las opciones de envío estarán en fila */
+  justify-content: space-between; /* Espacio equidistante entre las opciones */
+  gap: 20px; /* Espacio entre las opciones */
+}
+
+.shipping-type label {
+  display: flex;
+  flex-direction: row; /* Cambié de columna a fila para que el icono esté antes que el texto */
+  align-items: flex-start; /* Alinea el contenido al principio */
+  font-size: 14px;
+  text-align: left; /* Asegura que el texto se alinee a la izquierda */
+  width: 200px; /* Ancho fijo para las opciones */
+  padding: 10px;
+}
+
+.material-icons {
+  font-size: 80px !important; /* Aumenta el tamaño del icono con !important */
+  margin-right: 10px; /* Espacio entre el icono y el texto */
+  cursor: pointer;
+}
+
+.shipping-type input[type="radio"] {
+  margin-right: 8px;
+  display: none; /* Ocultamos el radio button */
+}
+
+.shipping-type .material-icons {
+  font-size: 24px; /* Tamaño del ícono */
+  color: #FFA500; /* Color naranja */
+  cursor: pointer;
+}
+
+/* Cambiar icono cuando el radio está seleccionado */
+.shipping-type input[type="radio"]:checked + span {
+  content: 'check_box'; /* Cambia a cuadro con el tic */
+}
+
+
+@media screen and (max-width: 800px) {
+  .shipping-type {
+    flex-direction: row; /* En pantallas pequeñas, las opciones se apilan verticalmente */
+    align-items: center;
+  }
+
+  /* Reducir el tamaño de los iconos en pantallas pequeñas */
+  .material-icons {
+    font-size: 30px !important; /* Reduce el tamaño de los iconos */
+  }
+
+  /* Reducir el tamaño de los textos en pantallas pequeñas */
+  .shipping-type label {
+    font-size: 12px; /* Reduce el tamaño del texto */
+    width: auto; /* El ancho no tiene que ser fijo */
+  }
+}
