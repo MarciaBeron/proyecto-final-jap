@@ -109,3 +109,50 @@ function updateMap(address) {
       console.error('Error al obtener la geolocalización:', error);
     });
 }
+
+// FUNCIÓN PARA LOS MODALES
+document.addEventListener('DOMContentLoaded', () => {
+  // BOTENES PARA ABRIR LOS MODALES
+  const btnTransfer = document.getElementById('btnTransfer');
+  const btnCreditCard = document.getElementById('btnCreditCard');
+  const btnMercadoPago = document.getElementById('btnMercadoPago');
+
+  // SE OBTIENEN LOS MODALES
+  const modalTransfer = document.getElementById('modalTransfer');
+  const modalCreditCard = document.getElementById('modalCreditCare');
+  const modalMercadoPago = document.getElementById('modalMercadoPago');
+
+  // BOTONES DE CIERRE EN LOS MODALES
+  const closeButtons = document.querySelectorAll('.close');
+
+  // FUNCIÓN QUE ABRE EL MODAL
+  function openModal(modal) {
+      modal.style.display = 'block';
+  }
+
+  // FUNCIÓN QUE CIERRA EL MODAL
+  function closeModal(modal) {
+      modal.style.display = 'none';
+  }
+
+  // EVENTO QUE ABRE LOS MODALES
+  btnTransfer.addEventListener('click', () => openModal(modalTransfer));
+  btnCreditCard.addEventListener('click', () => openModal(modalCreditCard));
+  // FALTA!: btnMercadoPago.addEventListener('click', () => openModal(modalMercadoPago));
+
+  // EVENTOS QUE CIERRAN LOS MODALES
+  closeButtons.forEach(button => {
+      button.addEventListener('click', () => {
+          const modalId = button.getAttribute('data-close');
+          const modalToClose = document.getElementById(modalId);
+          closeModal(modalToClose);
+      });
+  });
+
+  // CERRE DEL MODAL AL HACER CLICK FUERA DEL MISMO
+  window.addEventListener('click', (event) => {
+      if (event.target.classList.contains('modal')) {
+          closeModal(event.target);
+      }
+  });
+});
