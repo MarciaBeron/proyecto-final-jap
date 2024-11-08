@@ -101,6 +101,82 @@
     </div>
   </div>
 
+  <div class="form-of-payment-container">
+    <h2>SUBTOTAL</h2>
+    <h2>TOTAL CON ENVÍO</h2>
+    <br>
+    <h2>FORMA DE PAGO</h2>
+    <button id="btnTransfer">TRANSFERENCIA BANCARIA</button>
+    <button id="btnCreditCard">TARJETA DE CRÉDITO</button>
+    <button id="btnMercadoPago">MERCADOPAGO</button>
+    <button type="submit">FINALIZAR COMPRA</button>
+  </div>
+
+  <div class="modals">
+
+    <div id="modalTransfer" class="modal">
+    <div class="modal-content">
+      <span class="close" data-close="modalTransfer">&times;</span>
+      <h2>ELIJA SU BANCO</h2>
+
+      <a href="https://www.brou.com.uy" target="_blank">
+        <img src="/img/Bancos/BROU.png">
+      </a>
+
+      <a href="https://www.bandes.com.uy" target="_blank">
+        <img src="/img/Bancos/BANDES.png">
+      </a>
+      <a href="https://www.heritage.com.uy" target="_blank">
+        <img src="/img/Bancos/BANQUE HERITAGE.png">
+      </a>
+      
+      <a href="https://www.bbva.com.uy" target="_blank">
+        <img src="/img/Bancos/BBVA.png">
+      </a>
+      
+      <a href="https://www.citibank.com.uy" target="_blank">
+        <img src="/img/Bancos/CITI BANK.png">
+      </a>
+      
+      <a href="https://www.hsbc.com.uy" target="_blank">
+        <img src="/img/Bancos/HSBC.png">
+      </a>
+      
+      <a href="https://www.itau.com.uy" target="_blank">
+        <img src="/img/Bancos/ITAU.png">
+      </a>
+      
+      <a href="https://www.santander.com.uy" target="_blank">
+        <img src="/img/Bancos/Santander.png">
+      </a>
+      
+      <a href="https://www.scotiabank.com.uy" target="_blank">
+        <img src="/img/Bancos/SCOTIABANK.png">
+      </a>
+    </div>
+    </div>
+
+    <div id="modalCreditCare" class="modal">
+      <div class="modal-content">
+        <span class="close" data-close="modalCreditCard">&times;</span>
+
+        <label for="number">Número de la tarjeta</label>
+        <input type="number" id="number" name="number" required>
+
+        <label for="card-name">Nombre en la tarjeta</label>
+        <input type="text" id="card-name" name="cardname" required>
+
+        <label for="expiration-date">Fecha de vencimiento</label>
+        <input type="date" id="expiration-date" name="expirationdate" required>
+
+        <label for="cvv-code">CVV</label>
+        <input type="number" id="cvv-code" name="cvvcode" required>
+
+        <button type="submit">ENVIAR</button>
+      </div>
+    </div>
+  </div>
+
   <div id="map" style="height: 400px; width: 100%;"></div>
 
   </main>
