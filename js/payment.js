@@ -1,3 +1,15 @@
+// FUNCIÓN CHECKBOXES
+document.querySelectorAll('input[type="radio"]').forEach(radio => {
+  radio.addEventListener('change', function() {
+    document.querySelectorAll('.material-icons').forEach(icon => {
+      icon.textContent = 'check_box_outline_blank';
+    });
+
+    const selectedIcon = document.getElementById(radio.value + '-icon');
+    selectedIcon.textContent = 'check_box';
+  });
+});
+
 // FUNCIÓN PARA JSON DE LOCALIDADES
 async function loadLocalities() {
     try {
@@ -116,11 +128,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnTransfer = document.getElementById('btnTransfer');
   const btnCreditCard = document.getElementById('btnCreditCard');
   const btnMercadoPago = document.getElementById('btnMercadoPago');
+  const btnCompletePurchase = document.getElementById('btnCompletePurchase');
 
   // SE OBTIENEN LOS MODALES
   const modalTransfer = document.getElementById('modalTransfer');
-  const modalCreditCard = document.getElementById('modalCreditCare');
+  const modalCreditCard = document.getElementById('modalCreditCard');
   const modalMercadoPago = document.getElementById('modalMercadoPago');
+  const modalCompletePurchase = document.getElementById('modalCompletePurchase');
 
   // BOTONES DE CIERRE EN LOS MODALES
   const closeButtons = document.querySelectorAll('.close');
@@ -128,7 +142,27 @@ document.addEventListener('DOMContentLoaded', () => {
   // FUNCIÓN QUE ABRE EL MODAL
   function openModal(modal) {
       modal.style.display = 'block';
-  }
+      if (modal === modalCompletePurchase) {
+        // CONFETTI AL FINALIZAR COMPRA
+        confetti({
+            particleCount: 300,
+            spread: 100,
+            origin: { x: 0.5, y: 0.5 }
+        });
+
+        confetti({
+            particleCount: 300,
+            spread: 120,
+            origin: { x: 0.2, y: 0.6 }
+        });
+
+        confetti({
+            particleCount: 300,
+            spread: 120,
+            origin: { x: 0.8, y: 0.6 }
+        });
+    }
+}
 
   // FUNCIÓN QUE CIERRA EL MODAL
   function closeModal(modal) {
@@ -138,7 +172,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // EVENTO QUE ABRE LOS MODALES
   btnTransfer.addEventListener('click', () => openModal(modalTransfer));
   btnCreditCard.addEventListener('click', () => openModal(modalCreditCard));
-  // FALTA!: btnMercadoPago.addEventListener('click', () => openModal(modalMercadoPago));
+  btnMercadoPago.addEventListener('click', () => openModal(modalMercadoPago));
+  btnCompletePurchase.addEventListener('click', () => openModal(modalCompletePurchase));
 
   // EVENTOS QUE CIERRAN LOS MODALES
   closeButtons.forEach(button => {

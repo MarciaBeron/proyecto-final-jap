@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Información del Producto</title>
+  <title>eMercado - Envío y Pago</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
@@ -14,10 +14,8 @@
   <!-- Para que el mapa funcione: -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<!-- Para los íconos -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
+  <!-- Para que los íconos funcionen -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -81,23 +79,7 @@
             </label>
           </form>
         </div>
-
-        <script>
-          document.querySelectorAll('input[type="radio"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-              // Restablecer todos los íconos
-              document.querySelectorAll('.material-icons').forEach(icon => {
-                icon.textContent = 'check_box_outline_blank'; // Devolver a cuadro vacío
-              });
-        
-              // Cambiar el ícono del radio seleccionado
-              const selectedIcon = document.getElementById(radio.value + '-icon');
-              selectedIcon.textContent = 'check_box'; // Cuadro con tic
-            });
-          });
-        </script>
-        
-    
+            
         <div class="address-container">
           <h2>DIRECCIÓN DE ENVÍO</h2>
           <form class="address-form" id="addressForm">
@@ -121,13 +103,11 @@
               <label for="department">Departamento</label>
               <select id="department" name="department">
                 <option value="">Seleccionar Departamento</option>
-                <!-- Opciones aquí -->
               </select>
         
               <label for="locality">Localidad</label>
               <select id="locality" name="locality">
                 <option value="">Seleccionar Localidad</option>
-                <!-- Opciones aquí -->
               </select>
             </div>
     
@@ -136,23 +116,25 @@
         </div>
       </div>
     
-      <!-- Contenedor derecho: Subtotal y Forma de Pago -->
+      <!-- Contenedor derecho: Subtotales, Total y Forma de Pago -->
       <div class="right-container">
         <div class="form-of-payment-container">
-          <h2>SUBTOTAL</h2>
-          <h2>TOTAL CON ENVÍO</h2>
+          <h2>COSTOS</h2>
+          <h2>SUBTOTAL CARRITO</h2>
+          <h2>SUBTOTAL CON ENVÍO</h2>
+          <h2>TOTAL</h2>
           <br>
           <h2>FORMA DE PAGO</h2>
           <button id="btnTransfer">TRANSFERENCIA BANCARIA</button>
           <button id="btnCreditCard">TARJETA DE CRÉDITO</button>
           <button id="btnMercadoPago">MERCADOPAGO</button>
-          <button type="submit">FINALIZAR COMPRA</button>
+          <button id="btnCompletePurchase" type="submit">FINALIZAR COMPRA</button>
         </div>
       </div>
     </div>
-    
-  <div class="modals">
 
+  <!-- Modales -->  
+  <div class="modals">
     <div id="modalTransfer" class="modal">
     <div class="modal-content">
       <span class="close" data-close="modalTransfer">&times;</span>
@@ -165,6 +147,7 @@
       <a href="https://www.bandes.com.uy" target="_blank">
         <img src="/img/Bancos/BANDES.png">
       </a>
+
       <a href="https://www.heritage.com.uy" target="_blank">
         <img src="/img/Bancos/BANQUE HERITAGE.png">
       </a>
@@ -195,7 +178,7 @@
     </div>
     </div>
 
-    <div id="modalCreditCare" class="modal">
+    <div id="modalCreditCard" class="modal">
       <div class="modal-content">
         <span class="close" data-close="modalCreditCard">&times;</span>
 
@@ -214,10 +197,30 @@
         <button type="submit">ENVIAR</button>
       </div>
     </div>
+
+    <div id="modalMercadoPago" class="modal">
+      <div class="modal-content">
+        <span class="close" data-close="modalMercadoPago">&times;</span>
+
+        <a href="https://www.mercadopago.com.uy" target="_blank">
+          <img src="/img/Bancos/MERCADOPAGO.png">
+        </a>
+      </div>
+    </div>
+
+    <div id="modalCompletePurchase" class="modal">
+      <div class="modal-content">
+        <span class="close" data-close="modalCompletePurchase">&times;</span>
+
+        <h2>¡GRACIAS POR TU COMPRA!</h2>
+        <p>Te enviaremos el detalle y la factura a tu email registrado.</p>
+
+      </div>
+    </div>
   </div>
 
+  <!-- Mapa -->  
   <div id="map" style="height: 400px; width: 72%;"></div>
-
   </main>
 
   <footer class="text-muted">
@@ -250,9 +253,10 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
+  <!-- Para que el confetti funcione: --> 
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
   <script src="js/payment.js"></script>
   <script src="js/toggle.js"></script>
   <script src="js/dark-theme.js"></script>
 </body>
-
 </html>
