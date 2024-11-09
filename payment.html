@@ -55,95 +55,102 @@
     <section class="titulo">
       <h1 id="page-title">Envío y Formas de Pago</h1>
     </section>
-    <div class="shipping-and-address-container">
-      <div class="shipping-container">
-        <h2>TIPO DE ENVÍO</h2>
-        <form class="shipping-type" id="shippingType">
-          <label>
-            <input type="radio" name="shipment" value="premium" id="premium">
-            <span class="material-icons" id="premium-icon">check_box_outline_blank</span> PREMIUM 
-            <br> DEMORA: 2 A 5 DÍAS <br> COSTO: 15%
-          </label>
     
-          <label>
-            <input type="radio" name="shipment" value="express" id="express">
-            <span class="material-icons" id="express-icon">check_box_outline_blank</span> EXPRESS 
-            <br> DEMORA: 5 A 8 DÍAS <br> COSTO: 7%
-          </label>
+    <div class="main-container">
+      <!-- Contenedor izquierdo: Tipo de Envío y Dirección -->
+      <div class="left-container">
+        <div class="shipping-container">
+          <h2>TIPO DE ENVÍO</h2>
+          <form class="shipping-type" id="shippingType">
+            <label>
+              <input type="radio" name="shipment" value="premium" id="premium">
+              <span class="material-icons" id="premium-icon">check_box_outline_blank</span> PREMIUM 
+              <br> DEMORA: 2 A 5 DÍAS <br> COSTO: 15%
+            </label>
     
-          <label>
-            <input type="radio" name="shipment" value="standard" id="standard">
-            <span class="material-icons" id="standard-icon">check_box_outline_blank</span> STANDARD 
-            <br> DEMORA: 12 A 15 DÍAS <br> COSTO: 5%
-          </label>
-        </form>
+            <label>
+              <input type="radio" name="shipment" value="express" id="express">
+              <span class="material-icons" id="express-icon">check_box_outline_blank</span> EXPRESS 
+              <br> DEMORA: 5 A 8 DÍAS <br> COSTO: 7%
+            </label>
+    
+            <label>
+              <input type="radio" name="shipment" value="standard" id="standard">
+              <span class="material-icons" id="standard-icon">check_box_outline_blank</span> STANDARD 
+              <br> DEMORA: 12 A 15 DÍAS <br> COSTO: 5%
+            </label>
+          </form>
+        </div>
+
+        <script>
+          document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+              // Restablecer todos los íconos
+              document.querySelectorAll('.material-icons').forEach(icon => {
+                icon.textContent = 'check_box_outline_blank'; // Devolver a cuadro vacío
+              });
+        
+              // Cambiar el ícono del radio seleccionado
+              const selectedIcon = document.getElementById(radio.value + '-icon');
+              selectedIcon.textContent = 'check_box'; // Cuadro con tic
+            });
+          });
+        </script>
+        
+    
+        <div class="address-container">
+          <h2>DIRECCIÓN DE ENVÍO</h2>
+          <form class="address-form" id="addressForm">
+            <div class="address-row-1">
+              <label for="user-address">Calle</label>
+              <input type="text" id="user-address" name="useraddress" required>
+              
+              <label for="number">Número</label>
+              <input type="number" id="number" name="number" required>
+              
+              <label for="apartment">Apartamento</label>
+              <input type="number" id="apartment" name="apartment">
+            </div>
+            
+            <div class="address-row-2">
+              <label for="corner">Esquina</label>
+              <input type="text" id="corner" name="corner" required>
+            </div>
+    
+            <div class="address-form-row">
+              <label for="department">Departamento</label>
+              <select id="department" name="department">
+                <option value="">Seleccionar Departamento</option>
+                <!-- Opciones aquí -->
+              </select>
+        
+              <label for="locality">Localidad</label>
+              <select id="locality" name="locality">
+                <option value="">Seleccionar Localidad</option>
+                <!-- Opciones aquí -->
+              </select>
+            </div>
+    
+            <button type="button" id="save-address" class="btn btn-primary">Aceptar</button>
+          </form>
+        </div>
+      </div>
+    
+      <!-- Contenedor derecho: Subtotal y Forma de Pago -->
+      <div class="right-container">
+        <div class="form-of-payment-container">
+          <h2>SUBTOTAL</h2>
+          <h2>TOTAL CON ENVÍO</h2>
+          <br>
+          <h2>FORMA DE PAGO</h2>
+          <button id="btnTransfer">TRANSFERENCIA BANCARIA</button>
+          <button id="btnCreditCard">TARJETA DE CRÉDITO</button>
+          <button id="btnMercadoPago">MERCADOPAGO</button>
+          <button type="submit">FINALIZAR COMPRA</button>
+        </div>
       </div>
     </div>
     
-    
-    
-  
-  <script>
-  document.querySelectorAll('input[type="radio"]').forEach(radio => {
-    radio.addEventListener('change', function() {
-      // Restablecer todos los íconos
-      document.querySelectorAll('.material-icons').forEach(icon => {
-        icon.textContent = 'check_box_outline_blank'; // Devolver a cuadro vacío
-      });
-  
-      // Cambiar el ícono del radio seleccionado
-      const selectedIcon = document.getElementById(radio.value + '-icon');
-      selectedIcon.textContent = 'check_box'; // Cuadro con tic
-    });
-  });
-  </script>
-  </body>
-  
-  
-  
-  
-
-    <div class="address-containter">
-      <h2>DIRECCIÓN DE ENVÍO</h2>
-      <form class="address-form" id="addressForm">
-        <label for="user-address">Calle</label>
-        <input type="text" id="user-address" name="useraddress" required>
-
-        <label for="number">Número</label>
-        <input type="number" id="number" name="number" required>
-
-        <label for="apartment">Apartamento</label>
-        <input type="number" id="apartment" name="apartment">
-
-        <label for="corner">Esquina</label>
-        <input type="text" id="corner" name="corner" required>
-
-        <label for="department">Departamento</label>
-        <select id="department" name="department">
-          <option value="">Seleccione un departamento</option>
-        </select>
-
-        <label for="locality">Localidad</label>
-        <select id="locality" name="locality" disabled>
-          <option value="">Seleccione una localidad</option>
-        </select>
-
-        <button type="button" id="save-address" class="btn btn-primary">Aceptar</button>
-      </form>
-    </div>
-  </div>
-
-  <div class="form-of-payment-container">
-    <h2>SUBTOTAL</h2>
-    <h2>TOTAL CON ENVÍO</h2>
-    <br>
-    <h2>FORMA DE PAGO</h2>
-    <button id="btnTransfer">TRANSFERENCIA BANCARIA</button>
-    <button id="btnCreditCard">TARJETA DE CRÉDITO</button>
-    <button id="btnMercadoPago">MERCADOPAGO</button>
-    <button type="submit">FINALIZAR COMPRA</button>
-  </div>
-
   <div class="modals">
 
     <div id="modalTransfer" class="modal">
@@ -192,8 +199,8 @@
       <div class="modal-content">
         <span class="close" data-close="modalCreditCard">&times;</span>
 
-        <label for="number">Número de la tarjeta</label>
-        <input type="number" id="number" name="number" required>
+        <label for="CardNumber">Número de la tarjeta</label>
+        <input type="number" id="CardNumber" name="CardNumber" required>
 
         <label for="card-name">Nombre en la tarjeta</label>
         <input type="text" id="card-name" name="cardname" required>
@@ -209,7 +216,7 @@
     </div>
   </div>
 
-  <div id="map" style="height: 400px; width: 100%;"></div>
+  <div id="map" style="height: 400px; width: 72%;"></div>
 
   </main>
 
