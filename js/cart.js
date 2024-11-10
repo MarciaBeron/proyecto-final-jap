@@ -196,6 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   localStorage.setItem('paymentSelectedCurrency', selectedCurrency);
+  localStorage.setItem('finalTotal', totalValue);
 
   // Redirigir a payment
   window.location.href = 'payment.html';

@@ -1,12 +1,30 @@
 // FUNCIÓN CHECKBOXES
+const subtotalCartCurrency = localStorage.getItem('paymentSelectedCurrency');
+const subtotalCartValue = parseFloat(localStorage.getItem('finalTotal'));
+
 document.querySelectorAll('input[type="radio"]').forEach(radio => {
   radio.addEventListener('change', function() {
+    const premium = document.getElementById('premium');
+    const express = document.getElementById('express');
+    const standard = document.getElementById('standard');
+    let shippingPercentage = 0.00;
     document.querySelectorAll('.material-icons').forEach(icon => {
       icon.textContent = 'check_box_outline_blank';
     });
-
     const selectedIcon = document.getElementById(radio.value + '-icon');
     selectedIcon.textContent = 'check_box';
+
+    if (premium.checked) {
+      shippingPercentage = 0.15;
+    } else if (express.checked) {
+      shippingPercentage = 0.07;
+    } else if (standard.checked){
+      shippingPercentage = 0.05;
+    }
+    const shippingPrice = subtotalCartValue * shippingPercentage;
+    const totalWithShipping = subtotalCartValue + shippingPrice;
+    document.getElementById('shipping-price').innerHTML = `Envío ${subtotalCartCurrency} ${shippingPrice.toFixed(2)}`;
+    document.getElementById('total-to-pay').innerHTML = `Total ${subtotalCartCurrency} ${totalWithShipping.toFixed(2)} `
   });
 });
 
@@ -123,7 +141,13 @@ function updateMap(address) {
 }
 
 // FUNCIÓN PARA LOS MODALES
+
 document.addEventListener('DOMContentLoaded', () => {
+  //TRAER SUBTOTALES DESDE EL CART
+  const subtotalCartToShow = document.getElementById('subtotal-to-pay');
+  subtotalCartToShow.innerHTML = `Subtotal Carrito ${subtotalCartCurrency} ${subtotalCartValue}`;
+  shippingCost();
+
   // BOTENES PARA ABRIR LOS MODALES
   const btnTransfer = document.getElementById('btnTransfer');
   const btnCreditCard = document.getElementById('btnCreditCard');
@@ -164,30 +188,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 }
 
-  // FUNCIÓN QUE CIERRA EL MODAL
-  function closeModal(modal) {
-      modal.style.display = 'none';
-  }
 
-  // EVENTO QUE ABRE LOS MODALES
-  btnTransfer.addEventListener('click', () => openModal(modalTransfer));
-  btnCreditCard.addEventListener('click', () => openModal(modalCreditCard));
-  btnMercadoPago.addEventListener('click', () => openModal(modalMercadoPago));
-  btnCompletePurchase.addEventListener('click', () => openModal(modalCompletePurchase));
+// FUNCIÓN QUE CIERRA EL MODAL
+function closeModal(modal) {
+    modal.style.display = 'none';
+}
 
-  // EVENTOS QUE CIERRAN LOS MODALES
-  closeButtons.forEach(button => {
-      button.addEventListener('click', () => {
-          const modalId = button.getAttribute('data-close');
-          const modalToClose = document.getElementById(modalId);
-          closeModal(modalToClose);
-      });
-  });
+// EVENTO QUE ABRE LOS MODALES
+btnTransfer.addEventListener('click', () => openModal(modalTransfer));
+btnCreditCard.addEventListener('click', () => openModal(modalCreditCard));
+btnMercadoPago.addEventListener('click', () => openModal(modalMercadoPago));
+btnCompletePurchase.addEventListener('click', () => openModal(modalCompletePurchase));
 
-  // CERRE DEL MODAL AL HACER CLICK FUERA DEL MISMO
-  window.addEventListener('click', (event) => {
-      if (event.target.classList.contains('modal')) {
-          closeModal(event.target);
-      }
-  });
+// EVENTOS QUE CIERRAN LOS MODALES
+closeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const modalId = button.getAttribute('data-close');
+        const modalToClose = document.getElementById(modalId);
+        closeModal(modalToClose);
+    });
+});
+
+// CERRE DEL MODAL AL HACER CLICK FUERA DEL MISMO
+window.addEventListener('click', (event) => {
+    if (event.target.classList.contains('modal')) {
+        closeModal(event.target);
+    }
+});
 });
