@@ -57,16 +57,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const quantity = parseInt(quantityInput.value) || 0; 
       const newSubtotal = item.price * quantity; 
       subtotalElement.textContent = `Precio: ${item.currency} ${newSubtotal}`;
-      
+      item.count = quantity;
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartBadge();
       updateTotals();
-    });
+      console.log('cantidad', productsQuantity)
+;    });
 
     const deleteProduct = itemElement.querySelector('.bi');
     deleteProduct.addEventListener('click', function() {
       cart.splice(index, 1);
       localStorage.setItem('cart', JSON.stringify(cart));
       cartContainer.removeChild(itemElement);
-      updateTotals(); 
+      updateTotals();
+      updateCartBadge(); 
     });
   });
 

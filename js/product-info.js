@@ -307,7 +307,8 @@ async function addToCart(event) {
             throw new Error('Producto no encontrado');
         }
 
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let cart = JSON.parse(localStorage.getItem('cart'))||[];
+        console.log('cart', cart);
         // Verificar si el producto ya está en el carrito
         const existingProductIndex = cart.findIndex(item => item.id === currentProduct.id);
         if (existingProductIndex >= 0) {
@@ -334,14 +335,6 @@ async function addToCart(event) {
         console.error('Error al agregar al carrito:', error);
         showErrorMessage('Error al agregar al carrito');
     }
-}
-
-// Función para actualizar el numero en el badge del carrito
-function updateCartBadge() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const badge = document.getElementById('cart-badge');
-    const totalItems = cart.reduce((acc, item) => acc + item.count, 0);
-    badge.textContent = totalItems > 0 ? totalItems : '';
 }
 
 // Función para comprar ahora (redirección al carrito)
