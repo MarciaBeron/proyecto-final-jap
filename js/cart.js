@@ -169,9 +169,97 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   updateTotals();
-  
+  // Redirige a catalogo al clickear "seguir comprando"
   document.getElementById('keep-buying').addEventListener('click', function() {
     window.location.href = 'categories.html'
   })
 
+ // Redirección para el botón "PAGAR"
+ document.getElementById('to-pay').addEventListener('click', function() {
+  const selectedCurrency = document.getElementById('currencySelector').value;
+  
+  // Obtener los subtotales originales
+  const subtotalUYU = parseFloat(document.getElementById('subtotal-uyu').textContent.replace('Subtotal UYU: ', ''));
+  const subtotalUSD = parseFloat(document.getElementById('subtotal-usd').textContent.replace('Subtotal USD: ', ''));
+  
+  // Obtener el total que se muestra en la página (que ya incluye la conversión)
+  const totalElement = document.getElementById('final-total');
+  const totalText = totalElement.textContent;
+  const totalValue = parseFloat(totalText.split(' ').pop());
+  
+  if (selectedCurrency === 'UYU') {
+    localStorage.setItem('paymentSubtotalUYU', totalValue || 0.00);
+    localStorage.setItem('paymentSubtotalUSD', subtotalUSD || 0.00);
+  } else {
+    localStorage.setItem('paymentSubtotalUYU', subtotalUYU || 0.00);
+    localStorage.setItem('paymentSubtotalUSD', totalValue || 0.00);
+  }
+  
+  localStorage.setItem('paymentSelectedCurrency', selectedCurrency);
+
+  // Redirigir a payment
+  window.location.href = 'payment.html';
+});
+
+});
+
+//logica para guardar el subtotal en el localstorage para redirigir a pagar
+
+async function fetchExchangeRates() {
+  try {
+    const response = await fetch('https://api.cambio-uruguay.com');
+    const data = await response.json();
+    const usdRates = data.find(key => key.origin === 'brou' && key.code === 'USD');
+    return usdRates ? { usdToUyu: usdRates.sell, uyuToUsd: 1 / usdRates.sell } : null;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return null;
+  }
+}
+
+async function updateTotals() {
+  const exchangeRates = await fetchExchangeRates();
+  if (!exchangeRates) return;
+
+  let totalUSD = subtotalUSD + subtotalUYU * exchangeRates.uyuToUsd;
+  let totalUYU = subtotalUYU + subtotalUSD * exchangeRates.usdToUyu;
+
+  // Actualiza los elementos en la UI con los subtotales
+  subtotalUYUElement.textContent = `Subtotal UYU: ${subtotalUYU.toFixed(2)}`;
+  subtotalUSDElement.textContent = `Subtotal USD: ${subtotalUSD.toFixed(2)}`;
+  totalProducts.textContent = `Cantidad de productos: ${productsQuantity}`;
+
+  // Guarda los subtotales en localStorage para usarlos más tarde en payment.html
+  localStorage.setItem('subtotalUYU', subtotalUYU.toFixed(2));
+  localStorage.setItem('subtotalUSD', subtotalUSD.toFixed(2));
+
+  function displayTotal(currency) {
+    totalPriceElement.innerHTML = `Total: 
+    <select id="currencySelector">
+      <option value="UYU"${currency === 'UYU' ? ' selected' : ''}>UYU</option>
+      <option value="USD"${currency === 'USD' ? ' selected' : ''}>USD</option>
+    </select> ${currency === 'UYU' ? totalUYU.toFixed(2) : totalUSD.toFixed(2)}`;
+    document.getElementById('currencySelector').addEventListener('change', e => displayTotal(e.target.value));
+  }
+
+  displayTotal('UYU'); // Muestra el total inicial en UYU
+}
+
+cart.forEach((item, index) => {
+  // Lógica para manejar los productos en el carrito...
+
+  quantityInput.addEventListener('input', function () {
+    item.count = parseInt(quantityInput.value) || 0;
+    itemElement.querySelector('.price').textContent = `Precio: ${item.currency} ${item.price * item.count}`;
+    localStorage.setItem('cart', JSON.stringify(cart));  // Guardar el carrito después de la actualización
+    updateTotals();  // Actualizar totales al cambiar la cantidad
+  });
+
+  const deleteProduct = itemElement.querySelector('.bi');
+  deleteProduct.addEventListener('click', function () {
+    cart.splice(index, 1);  // Eliminar producto
+    localStorage.setItem('cart', JSON.stringify(cart));  // Guardar el carrito actualizado
+    cartContainer.removeChild(itemElement);  // Eliminar el producto del carrito visualmente
+    updateTotals();  // Actualizar totales después de eliminar el producto
+  });
 });
