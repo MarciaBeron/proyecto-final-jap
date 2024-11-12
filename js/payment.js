@@ -140,14 +140,15 @@ function updateMap(address) {
     });
 }
 
-// FUNCIÓN PARA LOS MODALES
-
 document.addEventListener('DOMContentLoaded', () => {
   //TRAER SUBTOTALES DESDE EL CART
   const subtotalCartToShow = document.getElementById('subtotal-to-pay');
   subtotalCartToShow.innerHTML = `Subtotal Carrito ${subtotalCartCurrency} ${subtotalCartValue}`;
   shippingCost();
+})
 
+// FUNCIÓN PARA LOS MODALES
+  document.addEventListener('DOMContentLoaded', () => {
   // BOTENES PARA ABRIR LOS MODALES
   const btnTransfer = document.getElementById('btnTransfer');
   const btnCreditCard = document.getElementById('btnCreditCard');
@@ -187,7 +188,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 }
-
 
 // FUNCIÓN QUE CIERRA EL MODAL
 function closeModal(modal) {
