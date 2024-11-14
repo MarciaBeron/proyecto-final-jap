@@ -148,8 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 // FUNCIÓN PARA LOS MODALES
-  document.addEventListener('DOMContentLoaded', () => {
-  // BOTENES PARA ABRIR LOS MODALES
+document.addEventListener('DOMContentLoaded', () => {
+  // BOTONES PARA ABRIR LOS MODALES
   const btnTransfer = document.getElementById('btnTransfer');
   const btnCreditCard = document.getElementById('btnCreditCard');
   const btnMercadoPago = document.getElementById('btnMercadoPago');
@@ -160,6 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalCreditCard = document.getElementById('modalCreditCard');
   const modalMercadoPago = document.getElementById('modalMercadoPago');
   const modalCompletePurchase = document.getElementById('modalCompletePurchase');
+  const modalConfirmationCreditCard = document.getElementById('modalConfirmationCreditCard');
 
   // BOTONES DE CIERRE EN LOS MODALES
   const closeButtons = document.querySelectorAll('.close');
@@ -168,51 +169,79 @@ document.addEventListener('DOMContentLoaded', () => {
   function openModal(modal) {
       modal.style.display = 'block';
       if (modal === modalCompletePurchase) {
-        // CONFETTI AL FINALIZAR COMPRA
-        confetti({
-            particleCount: 300,
-            spread: 100,
-            origin: { x: 0.5, y: 0.5 }
-        });
+          // CONFETTI AL FINALIZAR COMPRA
+          confetti({
+              particleCount: 300,
+              spread: 100,
+              origin: { x: 0.5, y: 0.5 }
+          });
 
-        confetti({
-            particleCount: 300,
-            spread: 120,
-            origin: { x: 0.2, y: 0.6 }
-        });
+          confetti({
+              particleCount: 300,
+              spread: 120,
+              origin: { x: 0.2, y: 0.6 }
+          });
 
-        confetti({
-            particleCount: 300,
-            spread: 120,
-            origin: { x: 0.8, y: 0.6 }
-        });
-    }
-}
+          confetti({
+              particleCount: 300,
+              spread: 120,
+              origin: { x: 0.8, y: 0.6 }
+          });
+      }
+  }
 
-// FUNCIÓN QUE CIERRA EL MODAL
-function closeModal(modal) {
-    modal.style.display = 'none';
-}
+  // FUNCIÓN QUE CIERRA EL MODAL
+  function closeModal(modal) {
+      modal.style.display = 'none';
+  }
 
-// EVENTO QUE ABRE LOS MODALES
-btnTransfer.addEventListener('click', () => openModal(modalTransfer));
-btnCreditCard.addEventListener('click', () => openModal(modalCreditCard));
-btnMercadoPago.addEventListener('click', () => openModal(modalMercadoPago));
-btnCompletePurchase.addEventListener('click', () => openModal(modalCompletePurchase));
+  // EVENTO QUE ABRE LOS MODALES
+  btnTransfer?.addEventListener('click', () => openModal(modalTransfer));
+  btnCreditCard?.addEventListener('click', () => openModal(modalCreditCard));
+  btnMercadoPago?.addEventListener('click', () => openModal(modalMercadoPago));
+  btnCompletePurchase?.addEventListener('click', () => openModal(modalCompletePurchase));
 
-// EVENTOS QUE CIERRAN LOS MODALES
-closeButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const modalId = button.getAttribute('data-close');
-        const modalToClose = document.getElementById(modalId);
-        closeModal(modalToClose);
-    });
-});
+  // EVENTOS QUE CIERRAN LOS MODALES
+  closeButtons.forEach(button => {
+      button.addEventListener('click', () => {
+          const modalId = button.getAttribute('data-close');
+          const modalToClose = document.getElementById(modalId);
+          closeModal(modalToClose);
+      });
+  });
 
-// CERRE DEL MODAL AL HACER CLICK FUERA DEL MISMO
-window.addEventListener('click', (event) => {
-    if (event.target.classList.contains('modal')) {
-        closeModal(event.target);
-    }
-});
+  // CIERRE DEL MODAL AL HACER CLICK FUERA DEL MISMO
+  window.addEventListener('click', (event) => {
+      if (event.target.classList.contains('modal')) {
+          closeModal(event.target);
+      }
+  });
+
+  // VALIDACIÓN DE TARJETA DE CRÉDITO
+  const submitBtn = document.querySelector('#modalCreditCard button[type="submit"]');
+  submitBtn?.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      const cardNumber = document.getElementById('CardNumber').value;
+      if (cardNumber.length !== 16) {
+          alert('La tarjeta debe tener 16 dígitos.');
+          return;
+      }
+
+      const expirationDate = new Date(document.getElementById('expiration-date').value);
+      const today = new Date();
+      if (expirationDate < today) {
+          alert('La tarjeta está vencida. Ingrese otra.');
+          return;
+      }
+
+      const cvvCode = document.getElementById('cvv-code').value;
+      if (cvvCode.length !== 3) {
+          alert('El CVV debe ser de 3 dígitos.');
+          return;
+      }
+
+      openModal(modalConfirmationCreditCard);
+      closeModal(modalCreditCard);
+  });
 });

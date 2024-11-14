@@ -183,7 +183,7 @@
         <span class="close" data-close="modalCreditCard">&times;</span>
 
         <label for="CardNumber">Número de la tarjeta</label>
-        <input type="number" id="CardNumber" name="CardNumber" required>
+        <input type="number" id="CardNumber" name="CardNumber" required minlength="16" maxlength="16">
 
         <label for="card-name">Nombre en la tarjeta</label>
         <input type="text" id="card-name" name="cardname" required>
@@ -192,9 +192,16 @@
         <input type="date" id="expiration-date" name="expirationdate" required>
 
         <label for="cvv-code">CVV</label>
-        <input type="number" id="cvv-code" name="cvvcode" required>
+        <input type="number" id="cvv-code" name="cvvcode" required min="100" max="100">
 
         <button type="submit">ENVIAR</button>
+      </div>
+    </div>
+
+    <div id="modalConfirmationCreditCard" class="modal">
+      <div class="modal-content">
+        <span class="close" data-close="modalConfirmationCreditCard">&times;</span>
+        <p>¡Datos guardados con éxito!</p>
       </div>
     </div>
 
