@@ -1,7 +1,14 @@
 // FUNCIÓN CHECKBOXES
 const subtotalCartCurrency = localStorage.getItem('paymentSelectedCurrency');
-const subtotalCartValue = parseFloat(localStorage.getItem('finalTotal'));
+const totalInUSD = parseFloat(localStorage.getItem('paymentSubtotalUSD'));
+const totalInUYU = parseFloat(localStorage.getItem('paymentSubtotalUYU'));
+if (subtotalCartCurrency === 'USD'){
+  localStorage.setItem('finalTotal', totalInUSD);
+} else if (subtotalCartCurrency === 'UYU'){
+  localStorage.setItem('finalTotal', totalInUYU);
+}
 
+const subtotalCartValue = parseFloat(localStorage.getItem('finalTotal'));
 document.querySelectorAll('input[type="radio"]').forEach(radio => {
   radio.addEventListener('change', function() {
     const premium = document.getElementById('premium');

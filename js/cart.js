@@ -119,10 +119,13 @@ document.addEventListener('DOMContentLoaded', () => {
   
           productsQuantity += quantity; 
       });
-  
+      
+      
       const totalInUSD = subtotalUYU / exchangeRateUYUtoUSD + subtotalUSD;
+      localStorage.setItem('paymentSubtotalUSD', totalInUSD.toFixed(2) || 0.00);
       const totalInUYU = subtotalUSD * exchangeRateUSDtoUYU + subtotalUYU;
-  
+      localStorage.setItem('paymentSubtotalUYU', totalInUYU.toFixed(2) || 0.00);
+
       totalPriceElement.innerHTML = `Total: 
       <select id="currencySelector">
           <option value"currency">Moneda</option>
@@ -160,11 +163,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
         document.getElementById('currencySelector').addEventListener('change', function() {
             updateTotalDisplay(this.value);
+            setToStorage();
         });
     }
     
     document.getElementById('currencySelector').addEventListener('change', function() {
         updateTotalDisplay(this.value);
+        setToStorage();
     });
   }
 
@@ -177,7 +182,33 @@ document.addEventListener('DOMContentLoaded', () => {
  // Redirección para el botón "PAGAR"
  document.getElementById('to-pay').addEventListener('click', function() {
   const selectedCurrency = document.getElementById('currencySelector').value;
-  
+  if (selectedCurrency === 'Moneda') {
+    showCurrencyModal();
+    return;
+  }
+
+  setToStorage();
+    // Redirigir a payment
+    window.location.href = 'payment.html';
+  });
+
+  setToStorage();
+});
+
+// Function to show modal if currency is not selected
+  function showCurrencyModal() {
+    const modal = document.getElementById('currency-modal');
+    modal.style.display = 'block'; // Show modal
+    const closeModal = modal.querySelector('.close');
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none'; // Close modal
+  });
+}
+
+//logica para guardar
+function setToStorage(){
+  const selectedCurrency = document.getElementById('currencySelector').value;
+    
   // Obtener los subtotales originales
   const subtotalUYU = parseFloat(document.getElementById('subtotal-uyu').textContent.replace('Subtotal UYU: ', ''));
   const subtotalUSD = parseFloat(document.getElementById('subtotal-usd').textContent.replace('Subtotal USD: ', ''));
@@ -190,19 +221,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (selectedCurrency === 'UYU') {
     localStorage.setItem('paymentSubtotalUYU', totalValue || 0.00);
     localStorage.setItem('paymentSubtotalUSD', subtotalUSD || 0.00);
-  } else {
+  } else if (selectedCurrency === 'USD'){
     localStorage.setItem('paymentSubtotalUYU', subtotalUYU || 0.00);
     localStorage.setItem('paymentSubtotalUSD', totalValue || 0.00);
   }
   
   localStorage.setItem('paymentSelectedCurrency', selectedCurrency);
   localStorage.setItem('finalTotal', totalValue);
-
-  // Redirigir a payment
-  window.location.href = 'payment.html';
-});
-
-});
+}
 
 //logica para guardar el subtotal en el localstorage para redirigir a pagar
 
@@ -254,6 +280,7 @@ cart.forEach((item, index) => {
     itemElement.querySelector('.price').textContent = `Precio: ${item.currency} ${item.price * item.count}`;
     localStorage.setItem('cart', JSON.stringify(cart));  // Guardar el carrito después de la actualización
     updateTotals();  // Actualizar totales al cambiar la cantidad
+    setToStorage();
   });
 
   const deleteProduct = itemElement.querySelector('.bi');
@@ -262,5 +289,6 @@ cart.forEach((item, index) => {
     localStorage.setItem('cart', JSON.stringify(cart));  // Guardar el carrito actualizado
     cartContainer.removeChild(itemElement);  // Eliminar el producto del carrito visualmente
     updateTotals();  // Actualizar totales después de eliminar el producto
+    setToStorage();
   });
 });

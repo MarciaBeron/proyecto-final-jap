@@ -1771,7 +1771,18 @@ input:focus{
   margin: 0 auto;        /* Espaciado interno para un mejor aspecto */
   margin-bottom: 0.5rem;
 }
-
+#currency-modal {
+  position: fixed; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  background-color: var(--Matcha); 
+  width: 80%;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 8px;
+  z-index: 10000;
+}
 
 @keyframes stroke {
   100% {
