@@ -76,28 +76,30 @@ if (primerNombre && primerApellido && email) {
 
 // MODAL DE DATOS GUARDADOS
 const modal = document.getElementById('confirmationModal');
-const closeModal = document.querySelector('.close-btn');
+const closeModalButton = document.querySelector('.close');
+
 function showModal() {
-modal.style.display = 'flex';
+  modal.style.display = 'flex';
 }
+
 function closeModalWindow() {
-modal.style.display = 'none';
+  modal.style.display = 'none';
 }
 
-
-form.addEventListener('submit', function(event) {
-  event.preventDefault(); // Evitar que se envíe el formulario
-  // Mostrar el modal si el formulario es válido
-  if (form.checkValidity()) {
+document.querySelector('form').addEventListener('submit', function(event) {
+  event.preventDefault();
+  if (this.checkValidity()) {
     showModal();
   }
 });
 
-// Cerrar el modal cuando se hace clic en la 'x'
+closeModalButton.addEventListener('click', function(event) {
+  closeModalWindow();
+  event.stopPropagation();
+});
 
-closeModal.addEventListener('click', closeModalWindow);
 window.addEventListener('click', function(event) {
-if (event.target === modal) {
+  if (event.target === modal) {
     closeModalWindow();
-}
+  }
 });
