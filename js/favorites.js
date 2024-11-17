@@ -1,50 +1,39 @@
-// Función para cargar los productos favoritos desde el localStorage
-function loadFavorites() {
-    // Obtener los IDs de productos favoritos desde localStorage
-    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-
-    // Contenedor donde se mostrarán los productos favoritos
+document.addEventListener('DOMContentLoaded', function () {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     const favoritesContainer = document.getElementById('favorites-container');
 
-    // Verificar si hay productos favoritos
     if (favorites.length === 0) {
-        favoritesContainer.innerHTML = "<p>No tienes productos favoritos aún.</p>";
+        favoritesContainer.innerHTML = '<p>No hay productos en favoritos.</p>';
         return;
     }
 
-    // Recorrer cada ID de producto favorito y crear un elemento para mostrarlo
-    favorites.forEach(productId => {
-        // Crear un contenedor para cada producto
-        let productElement = document.createElement('div');
-        productElement.className = 'favorite-product';
+    favorites.forEach(product => {
+        // Validar que el producto tenga datos válidos
+        if (!product || !product.id) {
+            console.warn('Producto inválido encontrado en favoritos.');
+            return;
+        }
 
-        // Aquí puedes agregar contenido dinámico para cada producto favorito
-        // Esto es solo un ejemplo simple. Puedes mejorarlo según el diseño de tu página.
-        productElement.innerHTML = `
-            <h3>Producto ID: ${productId}</h3>
-            <p>Detalles del producto con ID: ${productId}</p>
-            <button onclick="removeFavorite('${productId}')">Eliminar de Favoritos</button>
+        const productHtml = `
+            <div class="favorite-item">
+                <img src="${product.images ? product.images[0] : ''}" alt="${product.name || 'Producto'}" class="favorite-item-img">
+                <div class="favorite-item-info">
+                    <p>${product.name || 'Nombre no disponible'}</p>
+                    <p>Precio: ${product.currency || ''} ${product.cost || 'N/A'}</p>
+                </div>
+                <button class="remove-favorite" data-id="${product.id}">Eliminar</button>
+            </div>
         `;
-
-        // Agregar el producto al contenedor de favoritos
-        favoritesContainer.appendChild(productElement);
+        favoritesContainer.innerHTML += productHtml;
     });
-}
 
-// Función para eliminar un producto de la lista de favoritos
-function removeFavorite(productId) {
-    // Obtener la lista actual de favoritos
-    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-
-    // Filtrar la lista para eliminar el producto seleccionado
-    favorites = favorites.filter(id => id !== productId);
-
-    // Guardar la lista actualizada en localStorage
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-
-    // Recargar la lista de favoritos en la página
-    loadFavorites();
-}
-
-// Cargar los favoritos cuando se cargue la página
-document.addEventListener('DOMContentLoaded', loadFavorites);
+    document.querySelectorAll('.remove-favorite').forEach(button => {
+        button.addEventListener('click', function () {
+            const productId = parseInt(this.getAttribute('data-id'));
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            favorites = favorites.filter(item => item.id !== productId);
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            location.reload(); // Actualizar la página para reflejar los cambios
+        });
+    });
+});
