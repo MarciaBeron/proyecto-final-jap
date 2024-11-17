@@ -114,36 +114,57 @@ document.getElementById('save-address').addEventListener('click', function() {
   var number = document.getElementById('number').value;
   var corner = document.getElementById('corner').value;
 
-  var fullAddress = address + ' ' + number + ', ' + corner;
-  
-  updateMap(fullAddress);
+  var fullAddress = address + ' ' + number;
+
+  console.log('Dirección completa a buscar:', fullAddress);
+
+  updateMap(fullAddress).then((mainAddressData) => {
+    if (mainAddressData) {
+      map.setView([mainAddressData.lat, mainAddressData.lon], 13);
+
+      if (marker) {
+        map.removeLayer(marker);
+      }
+
+      marker = L.marker([mainAddressData.lat, mainAddressData.lon]).addTo(map)
+        .bindPopup('<b>Dirección:</b><br>' + fullAddress)
+        .openPopup();
+    } else {
+      alert('No se pudo encontrar la dirección principal, por favor verifica el formato.');
+    }
+
+    if (corner) {
+      var cornerAddress = corner;
+      console.log('Buscando la esquina:', cornerAddress);
+      updateMap(cornerAddress).then((cornerAddressData) => {
+        if (!cornerAddressData) {
+          alert('No se pudo encontrar la esquina.');
+        }
+      });
+    }
+  });
 });
 
 function updateMap(address) {
-  var geocodeURL = `https://nominatim.openstreetmap.org/search?format=json&q=${address}`;
+  var geocodeURL = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&addressdetails=1`;
 
-  fetch(geocodeURL)
+  return fetch(geocodeURL)
     .then(response => response.json())
     .then(data => {
+      console.log('Respuesta de la API:', data);
+
       if (data && data.length > 0) {
-        var lat = data[0].lat;
-        var lon = data[0].lon;
-
-        map.setView([lat, lon], 13);
-
-        if (marker) {
-          map.removeLayer(marker);
-        }
-
-        marker = L.marker([lat, lon]).addTo(map)
-          .bindPopup('<b>Dirección:</b><br>' + address)
-          .openPopup();
+        return {
+          lat: data[0].lat,
+          lon: data[0].lon
+        };
       } else {
-        alert('No se pudo encontrar la dirección');
+        return null;
       }
     })
     .catch(error => {
       console.error('Error al obtener la geolocalización:', error);
+      return null;
     });
 }
 
