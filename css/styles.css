@@ -328,10 +328,46 @@ footer a{
 .site-header .dropdown-menu a {
   color:var(--Black);
 }
+/* Estilo del botón de selección dentro del dropzone */
 .dropzone {
-  border: 2px dashed #0087F7;
-  border-radius: 5px;
-  background: var(--White);
+  border: 2px dashed var(--Moss-green); /* Bordes acordes con el diseño */
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  background-color: var(--Matcha);
+  transition: background-color 0.3s ease;
+}
+
+.dropzone:hover {
+  background-color: var(--Milkshake); /* Cambio de fondo al pasar el cursor */
+}
+
+.dropzone p {
+  color: var(--Moss-green); /* Texto en el color de la paleta */
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.dropzone input {
+  display: none; /* Oculta el input de archivo por defecto */
+}
+
+.dropzone::before {
+  content: "Seleccionar archivo o arrastrar aquí";
+  display: inline-block;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: 2px solid var(--Milkshake);
+  border-radius: 30px;
+  background-color: var(--Moss-green);
+  color: var(--White);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dropzone:hover::before {
+  background-color: var(--Milkshake); /* Fondo cambia a Milkshake */
+  color: var(--Moss-green); /* Texto cambia a Moss-green */
 }
 .img-fit {
   max-height: 100%;
@@ -2026,4 +2062,41 @@ button[type="submit"]:hover{
   color: #333; /* Color del texto */
   box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
 }
+/* Estilo base para los selectores */
+select {
+  width: 80%; /* Reduce el ancho al 80% del contenedor */
+  max-width: 300px; /* Ancho máximo para evitar que se expandan demasiado */
+  margin: 0 auto; /* Centra los selectores */
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-family: var(--font);
+  color: var(--Moss-green);
+  background-color: var(--Milkshake);
+  border: 2px solid var(--Milkshake);
+  border-radius: 25px;
+  appearance: none;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
 
+/* Opciones dentro del select */
+select option {
+  background-color: var(--Milkshake);
+  color: var(--Moss-green);
+  padding: 10px;
+}
+
+/* Efecto al enfocar */
+select:focus {
+  outline: none;
+  border-color: var(--Moss-green);
+  background-color: var(--Matcha);
+  color: var(--Black);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Efecto al pasar el cursor */
+select:hover {
+  border-color: var(--Tangerine);
+  box-shadow: 0 0 5px rgba(255, 140, 0, 0.5);
+}
