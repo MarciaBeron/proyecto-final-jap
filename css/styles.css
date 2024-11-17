@@ -1215,18 +1215,93 @@ h1::after {
   color: white;
 }
 
-/* Inicio Ícono Favorito */
-#favorite-icon {margin-left: auto; 
+/* Inicio Favoritos */
+.favorite-icon {
+  background: none;
+  border: none;
   cursor: pointer;
   font-size: 24px;
-  color: #f00;
-  margin: 10px;
+  color: #aaa;
   transition: color 0.3s ease;
+  outline: none;
 }
-#favorite-icon:hover {
-  color: #ff6666;
+
+.favorite-icon .bi-heart-fill {
+  color: #f00;
 }
-/* Fin Ícono Favorito */
+
+.favorite-icon.favorite-active {
+  color: #f00;
+}
+
+.favorite-icon:hover {
+  color: #f66;
+}
+
+.favorite-icon:focus {
+  outline: none;
+  box-shadow: 0 0 4px #f00;
+}
+
+/* Tarjeta de cada producto favorito */
+.favorite-item {
+  background-color: transparent;
+  border: 1px solid var(--Gray);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: calc(25% - 15px);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  font-family: var(--font);
+  margin-bottom: 3rem;
+  margin: 10px; /* Espacio adicional entre tarjetas */
+  display: inline-block; /* Muestra las tarjetas en línea */
+}
+
+/* Imagen del producto favorito */
+.favorite-item-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+/* Información del producto favorito */
+.favorite-item-info {
+  padding: 10px;
+  color: var(--Moss-green);
+  font-size: 1rem;
+  font-weight: bolder;
+}
+
+/* Efectos de hover para las tarjetas de productos favoritos */
+.favorite-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.favorite-item:hover .favorite-item-img {
+  transform: scale(1.1);
+}
+
+/* Botón para eliminar un favorito */
+.remove-favorite {
+  background-color: var(--Moss-green);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.remove-favorite:hover {
+  background-color: var(--Milkshake);
+}
+/* Fin Favoritos */
+
 /* Inicio Menu Desplegable Categorias */
 .dropdown {
   position: relative;
