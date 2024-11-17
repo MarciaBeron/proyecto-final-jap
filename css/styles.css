@@ -1609,14 +1609,16 @@ input:focus{
 /* Contenido del modal */
 .modal-content {
   background-color: var(--Milkshake);
+  margin: 15% auto;
+ /* Centrar el modal */
   padding: 20px;
-  border-radius: 10px; 
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 400px;
+ /* Limitar el ancho */
+  border-radius: 8px;
   text-align: center;
-  position: relative; 
-  width: 90%;
-  max-width: 400px; 
-  box-shadow: var(--Gray); 
-  word-wrap: break-word; /* Permitir que las palabras largas se dividan */
+  box-shadow: var(--Gray);
 }
 
 
