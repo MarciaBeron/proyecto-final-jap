@@ -1625,7 +1625,7 @@ input:focus{
 /* Texto del mensaje de éxito */
 .modal-body h2 {
   margin-top: 15px;
-  color: var(--Moss-green)
+  color: var(--Moss-green);
   word-wrap: break-word; 
   overflow-wrap: break-word; 
   max-width: 100%; 
@@ -2177,3 +2177,52 @@ select:hover {
   border-color: var(--Tangerine);
   box-shadow: 0 0 5px rgba(255, 140, 0, 0.5);
 }
+
+
+/*CATEGORIAS*/
+
+body > main > p{
+  font-family: var(--font);
+  color: var(--Tangerine);
+  text-align: center;
+}
+
+body > main > div > div > div > div > div > p{
+  color: var(--Tangerine);
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+#rangeFilterCountMin{
+  background-color: #dbe8c347;
+  border: 0.1rem solid #556140;
+  margin-bottom: 1rem;
+}
+
+#rangeFilterCountMax{
+  background-color: #dbe8c347;
+  border: 0.1rem solid #556140;
+  margin-bottom: 1rem;
+}
+
+
+#cat-list-container > div{
+  background-color: #dbe8c347;
+  border: 0.1rem solid #556140;
+  margin-bottom: 1rem;
+}
+
+#cat-list-container > div > div > div.col > div > h4{
+  margin-top: 2rem;
+  color: var(--Moss-green);
+  font-family: var(--font);
+  font-size: 2rem;
+  text-align: center;
+}
+
+#cat-list-container > div > div > div.col > p{
+  color: var(--Moss-green);
+  font-family: var(--font);
+  font-size: 1.3rem;
+}
+
