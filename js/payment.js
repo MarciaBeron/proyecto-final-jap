@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
   shippingCost();
 })
 
-// FUNCIÓN PARA LOS MODALES
+// MODALES
 document.addEventListener('DOMContentLoaded', () => {
   // BOTONES PARA ABRIR LOS MODALES
   const btnTransfer = document.getElementById('btnTransfer');
@@ -174,81 +174,126 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // FUNCIÓN QUE ABRE EL MODAL
   function openModal(modal) {
-      modal.style.display = 'block';
-      if (modal === modalCompletePurchase) {
-          // CONFETTI AL FINALIZAR COMPRA
-          confetti({
-              particleCount: 300,
-              spread: 100,
-              origin: { x: 0.5, y: 0.5 }
-          });
-
-          confetti({
-              particleCount: 300,
-              spread: 120,
-              origin: { x: 0.2, y: 0.6 }
-          });
-
-          confetti({
-              particleCount: 300,
-              spread: 120,
-              origin: { x: 0.8, y: 0.6 }
-          });
-      }
+    modal.style.display = 'block';
+    if (modal.id === 'modalCompletePurchase') {
+      // CONFETTI AL FINALIZAR COMPRA
+      confetti({ particleCount: 300, spread: 100, origin: { x: 0.5, y: 0.5 } });
+      confetti({ particleCount: 300, spread: 120, origin: { x: 0.2, y: 0.6 } });
+      confetti({ particleCount: 300, spread: 120, origin: { x: 0.8, y: 0.6 } });
+    }
   }
 
   // FUNCIÓN QUE CIERRA EL MODAL
   function closeModal(modal) {
-      modal.style.display = 'none';
+    modal.style.display = 'none';
   }
 
-  // EVENTO QUE ABRE LOS MODALES
+  // EVENTOS QUE ABREN LOS MODALES DE FORMA DE PAGO
   btnTransfer?.addEventListener('click', () => openModal(modalTransfer));
   btnCreditCard?.addEventListener('click', () => openModal(modalCreditCard));
   btnMercadoPago?.addEventListener('click', () => openModal(modalMercadoPago));
-  btnCompletePurchase?.addEventListener('click', () => openModal(modalCompletePurchase));
 
   // EVENTOS QUE CIERRAN LOS MODALES
   closeButtons.forEach(button => {
-      button.addEventListener('click', () => {
-          const modalId = button.getAttribute('data-close');
-          const modalToClose = document.getElementById(modalId);
-          closeModal(modalToClose);
-      });
+    button.addEventListener('click', () => {
+      const modalId = button.getAttribute('data-close');
+      const modalToClose = document.getElementById(modalId);
+      closeModal(modalToClose);
+    });
   });
 
   // CIERRE DEL MODAL AL HACER CLICK FUERA DEL MISMO
   window.addEventListener('click', (event) => {
-      if (event.target.classList.contains('modal')) {
-          closeModal(event.target);
-      }
+    if (event.target.classList.contains('modal')) {
+      closeModal(event.target);
+    }
   });
 
   // VALIDACIÓN DE TARJETA DE CRÉDITO
   const submitBtn = document.querySelector('#modalCreditCard button[type="submit"]');
   submitBtn?.addEventListener('click', (event) => {
-      event.preventDefault();
+    event.preventDefault();
 
-      const cardNumber = document.getElementById('CardNumber').value;
-      if (cardNumber.length !== 16) {
-          alert('La tarjeta debe tener 16 dígitos.');
-          return;
+    const cardNumber = document.getElementById('CardNumber').value;
+    if (cardNumber.length !== 16) {
+      alert('La tarjeta debe tener 16 dígitos.');
+      return;
+    }
+
+    const expirationDate = new Date(document.getElementById('expiration-date').value);
+    const today = new Date();
+    if (expirationDate < today) {
+      alert('La tarjeta está vencida. Ingrese otra.');
+      return;
+    }
+
+    const cvvCode = document.getElementById('cvv-code').value;
+    if (cvvCode.length !== 3) {
+      alert('El CVV debe ser de 3 dígitos.');
+      return;
+    }
+
+    openModal(modalConfirmationCreditCard);
+    closeModal(modalCreditCard);
+  });
+
+  // SELECCIÓN DE BOTONES DE FORMA DE PAGO
+  const paymentButtons = [btnTransfer, btnCreditCard, btnMercadoPago];
+  paymentButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      paymentButtons.forEach(btn => btn.classList.remove('selected'));
+      button.classList.add('selected');
+    });
+  });
+
+  // VALIDACIÓN FINALIZAR COMPRA
+  btnCompletePurchase?.addEventListener('click', function () {
+    const address = document.getElementById('user-address').value.trim();
+    const number = document.getElementById('number').value.trim();
+    const corner = document.getElementById('corner').value.trim();
+    const department = document.getElementById('department').value;
+    const locality = document.getElementById('locality').value;
+
+    if (!address || !number || !corner || !department || !locality) {
+      alert('Debe completar todos los campos de la dirección.');
+      return;
+    }
+
+    const shipmentSelected = document.querySelector('input[name="shipment"]:checked');
+    if (!shipmentSelected) {
+      alert('Debe seleccionar una forma de envío.');
+      return;
+    }
+
+    if (subtotalCartValue <= 0) {
+      alert('El carrito está vacío. Debe agregar productos para continuar.');
+      return;
+    }
+
+    let paymentMethod = '';
+    if (btnTransfer.classList.contains('selected')) {
+      paymentMethod = 'Transferencia Bancaria';
+    } else if (btnCreditCard.classList.contains('selected')) {
+      paymentMethod = 'Tarjeta de Crédito';
+    } else if (btnMercadoPago.classList.contains('selected')) {
+      paymentMethod = 'MercadoPago';
+    } else {
+      alert('Debe seleccionar una forma de pago.');
+      return;
+    }
+
+    if (paymentMethod === 'Tarjeta de Crédito') {
+      const cardNumber = document.getElementById('CardNumber').value.trim();
+      const cardName = document.getElementById('card-name').value.trim();
+      const expirationDate = document.getElementById('expiration-date').value;
+      const cvvCode = document.getElementById('cvv-code').value.trim();
+
+      if (!cardNumber || !cardName || !expirationDate || !cvvCode) {
+        alert('Debe completar todos los campos de la tarjeta de crédito.');
+        return;
       }
-
-      const expirationDate = new Date(document.getElementById('expiration-date').value);
-      const today = new Date();
-      if (expirationDate < today) {
-          alert('La tarjeta está vencida. Ingrese otra.');
-          return;
-      }
-
-      const cvvCode = document.getElementById('cvv-code').value;
-      if (cvvCode.length !== 3) {
-          alert('El CVV debe ser de 3 dígitos.');
-          return;
-      }
-
-      openModal(modalConfirmationCreditCard);
-      closeModal(modalCreditCard);
+    }
+    
+    openModal(modalCompletePurchase);
   });
 });
