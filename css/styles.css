@@ -2179,7 +2179,7 @@ select:hover {
 }
 
 
-/*CATEGORIAS*/
+/*INICIO*/
 
 body > main > p{
   font-family: var(--font);
@@ -2226,3 +2226,29 @@ body > main > div > div > div > div > div > p{
   font-size: 1.3rem;
 }
 
+/* Ajustes generales para las tarjetas */
+.custom-card {
+  max-width: 300px; /* Ancho máximo para las tarjetas */
+  border-radius: 10px; /* Esquinas redondeadas */
+  overflow: hidden; /* Asegura que el contenido se ajuste */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-card:hover {
+  transform: scale(1.05); /* Efecto de zoom al pasar el ratón */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+.card-img-top {
+  border-bottom: 2px solid #ddd; /* Línea decorativa debajo de la imagen */
+  height: 200px; /* Altura fija para uniformar las imágenes */
+  object-fit: cover; /* Recorta imágenes para que se ajusten al contenedor */
+}
+
+.text-center {
+  text-align: center; /* Alineación centrada del texto */
+}
+
+#juguetes > div > p{
+  font-size: 1.36rem;
+}
