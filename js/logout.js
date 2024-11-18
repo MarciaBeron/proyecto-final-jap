@@ -45,7 +45,8 @@ if (user) {
   userMenuContainer.appendChild(userLink);
   userMenuContainer.appendChild(dropdownMenu);
   nav.appendChild(userMenuContainer);
-
+  //Eliminar Registro de navbar
+  document.getElementById("register").style.display='none';
 } else {
   window.location.href = "login.html";
 }
