@@ -1687,21 +1687,20 @@ input:focus{
   padding: 1rem; /* Espaciado interno del contenedor principal */
 }
 
-.cart-conteiner{
+.cart-container{
   display: flex; /* Distribuir espacio entre los elementos */
   align-items: center; /* Alinear verticalmente al centro */
   border-radius: 8px; /* Mantener el radio de borde */
-  border: 2px solid var(--Milkshake);
   flex: 1; /* Incrementa el tamaño relativo para que sea más grande */
   padding: 1rem; /* Aumenta el padding para dar más espacio interno */
   width: 100%; /* Incrementa el ancho máximo */
   margin: 1rem;
-}
-  
-#chosen-products {
   background-color: #f4e2e17d; /* Color de fondo */
   color: var(--Moss-green); /* Color de texto */
   border: 2px solid var(--Moss-green); /* Borde */
+}
+
+#chosen-products {
   display: flex;
   flex-direction: column; /* Mantiene el contenido en columnas internas */
   border-radius: 1rem; /* Bordes redondeados */
@@ -1797,18 +1796,21 @@ input:focus{
   border: 2px solid var(--Moss-green); /* Borde */
   display: flex;
   flex-direction: column; /* Apilar en filas para el contenido interno */
-  align-items:center; /* Centra horizontalmente el contenido */
+  align-items: left; /* Centra horizontalmente el contenido */
   border-radius: 1rem; /* Bordes redondeados */
   padding: 1rem; /* Espaciado interno */
-  width: 30%;
+  width: auto;
   max-width: 50%; /* Ajusta el ancho según sea necesario */
   margin: 0; /* Elimina márgenes innecesarios */
+  justify-items: auto;
 }
+
 
 #total-products{
   text-align: left;
   color: var(--Moss-green);
   margin-bottom: 2rem;
+  width: max-content;
 }
 
 #subtotal-uyu{
@@ -1828,6 +1830,7 @@ input:focus{
   text-align: left;
   color: var(--Moss-green);
   margin-bottom: 3rem;
+  width: auto;
 }
 
 #currencySelector{
@@ -1836,7 +1839,7 @@ input:focus{
   background-color: #f7c2bc6f;
   border: 0.1rem solid var(--Moss-green);
   border-radius: 2rem;
-  width: 70%;
+  width: auto;
 }
 
 #payment > div{
