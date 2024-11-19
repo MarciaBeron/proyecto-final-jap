@@ -3,8 +3,8 @@ const path = require('path');
 
 const app = express();
 
-// Ruta fija directamente a la carpeta donde está el index.html
-const projectPath = 'C:\\Users\\Madmoaselle\\Desktop\\JAP\\50547878_entrega7\\proyecto-final-jap';
+// Ruta relativa basada en la ubicación del archivo app.js
+const projectPath = path.join(__dirname, 'proyecto-final-jap');
 
 // Servir archivos estáticos desde la carpeta correcta
 app.use(express.static(projectPath));
