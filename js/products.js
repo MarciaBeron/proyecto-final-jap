@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     const categoryTitle = document.getElementById('category-title');
     const categoryId = localStorage.getItem('catID');
+    const url = PRODUCTS_URL + categoryId + '.json';
+    console.log('url de productps:', url)
 
     switch (categoryId) {
         case '101':
@@ -34,15 +36,23 @@ document.addEventListener('DOMContentLoaded', function () {
             categoryTitle.textContent = 'Categoría Seleccionada';
     }
 
-    const url = `https://japceibal.github.io/emercado-api/cats_products/${categoryId}.json`;
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            const products = data.products;
-            window.products = products;
-            renderProducts(products);
+    //const url = `https://japceibal.github.io/emercado-api/cats_products/${categoryId}.json`;
+    getJSONData(url)
+        .then(response => {
+            console.log('Respuesta de getJSONData:', response); // Esto te ayudará a ver el objeto que estás recibiendo
+
+            // Asegúrate de que `response.data` tenga los productos
+            const products = response.data.products;
+            if (!products || products.length === 0) {
+                console.error('No se encontraron productos en la respuesta.');
+            } else {
+                window.products = products;
+                renderProducts(products);
+            }
         })
-        .catch(error => console.error('Error al obtener los productos:', error));
+        .catch(error => {
+            console.error('Error al obtener los productos:', error);
+        });
 
         document.getElementById('apply-filters').addEventListener('click', updateProducts);
         document.getElementById('sort-options').addEventListener('change', updateProducts);

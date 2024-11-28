@@ -1,5 +1,6 @@
 const productForm = document.getElementById('product-form');
 const productId = localStorage.getItem('selectedProductID');
+const infoUrl = PRODUCT_INFO_URL + productId + '.json'
 let comments = [];
 function displayForm() {
     let htmlContent = `
@@ -54,10 +55,10 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    const url = `https://japceibal.github.io/emercado-api/products/${productId}.json`;
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
+    //const url = `https://japceibal.github.io/emercado-api/products/${productId}.json`;
+    getJSONData(infoUrl)
+        .then(response => {
+            const data = response.data;
             localStorage.setItem('selectedProduct', JSON.stringify(data))
             updatePageTitle(data.name);
             displayProductImages(data.images);
@@ -174,9 +175,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function loadProductComments(productId) {
-        const url = `https://japceibal.github.io/emercado-api/products_comments/${productId}.json`;
-        fetch(url)
-        .then(response => response.json())
+
+        const commentUrl = PRODUCT_INFO_COMMENTS_URL + productId + '.json';
+        getJSONData(commentUrl)
+        .then(response => response.data)
         .then(apiComments => {
             const storedComments = localStorage.getItem(`productComments_${productId}`);
             const localComments = storedComments ? JSON.parse(storedComments) : [];
