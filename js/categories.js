@@ -84,18 +84,23 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
     showCategoriesList();
 }
 
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
+//Función que se ejecuta una vez que se haya lanzado el evento de que el documento se encuentra cargado, es decir, se encuentran todos los elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(CATEGORIES_URL).then(function(resultObj){
-        if (resultObj.status === "ok"){
-            currentCategoriesArray = resultObj.data
-            showCategoriesList()
-            //sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
+    getJSONData(CATEGORIES_URL).then(function(resultObj) {
+        if (resultObj.status === "ok") {
+            currentCategoriesArray = resultObj.data;
+            showCategoriesList(); // Mostrar las categorías
+        } else if (resultObj.status === "error" && resultObj.data.message === 'Token inválido.') {
+            alert("Tu sesión ha expirado o no has iniciado sesión. Por favor, inicia sesión.");
+            window.location.href = "login.html"; // Redirigir al login
+        } else {
+            alert("No se pudo obtener la lista de categorías. Por favor, inténtalo más tarde.");
         }
+    }).catch(function(error) {
+        console.error('Error al obtener las categorías:', error);
+        alert("No se pudo obtener la lista de categorías. Por favor, inténtalo más tarde.");
     });
-
+    
     document.getElementById("sortAsc").addEventListener("click", function(){
         sortAndShowCategories(ORDER_ASC_BY_NAME);
     });
