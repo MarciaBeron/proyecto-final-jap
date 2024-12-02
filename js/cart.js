@@ -179,17 +179,49 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = 'categories.html'
   })
 
+  
  // Redirección para el botón "PAGAR"
- document.getElementById('to-pay').addEventListener('click', function() {
-  const selectedCurrency = document.getElementById('currencySelector').value;
-  if (selectedCurrency === 'Moneda') {
-    showCurrencyModal();
-    return;
+ document.getElementById('to-pay').addEventListener('click', async function () {
+  const token = localStorage.getItem('authToken'); // Suponiendo que el JWT está en localStorage
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  if (cart.length === 0) {
+      alert('El carrito está vacío.');
+      return;
   }
 
-  setToStorage();
-    // Redirigir a payment
-    window.location.href = 'payment.html';
+  try {
+      // Enviar los datos del carrito al backend
+      const response = await fetch('http://localhost:3000/cart', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({
+              user_id: 1, // Reemplaza por el ID del usuario autenticado
+              products: cart.map(item => ({
+                  product_id: item.id,
+                  count: item.count,
+                  unitCost: item.price,
+                  currency: item.currency,
+                  image: item.image
+              }))
+          })
+      });
+
+      if (response.ok) {
+          const data = await response.json();
+          alert(`Carrito enviado correctamente. ID del carrito: ${data.cart_id}`);
+      } else {
+          const error = await response.json();
+          alert(`Error: ${error.message}`);
+      }
+  } catch (error) {
+      console.error('Error enviando el carrito:', error.message);
+      alert('Error al enviar el carrito. Inténtalo nuevamente.');
+  }
+  window.location.href="payment.html";
   });
 
   setToStorage();

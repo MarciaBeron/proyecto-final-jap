@@ -38,7 +38,7 @@ document.querySelectorAll('input[type="radio"]').forEach(radio => {
 // FUNCIÓN PARA JSON DE LOCALIDADES
 async function loadLocalities() {
     try {
-      const response = await fetch('localities.json');
+      const response = await fetch(LOCALITIES);
       const data = await response.json();
   
       populateDepartments(data);
